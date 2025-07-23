@@ -1,0 +1,1099 @@
+
+Client
+Back end
+
+front end
+---------
+
+html  - > 
+CSS 
+bootstrap -> 
+java script -> 
+
+	to provide -> validations for client and server side
+	to develop dynamic web pages
+	integration purpose .
+
+
+Angular 
+React
+
+Type script    					Java script
+
+Angular 					React
+Angukar Js 					React js
+
+Angular  js -> It was completely stopped.
+
+
+Ionic
+React native 
+
+
+-----------------------------------------------------------
+
+Back end
+---------
+Java 
+Python 
+php 
+.net
+node js
+scalar 
+ruby
+
+-------------------------------------------------------------
+
+Server
+------
+Apache Tomcat
+netty 
+jetty
+glash fish 
+Jboss
+xamp
+
+-------------------------------------------------------------
+
+Translators
+----------
+
+3 transalators 
+
+ 
+Interpriter -> It will traslator code by line by line 
+		 [ Performance is low]
+Compiler ->It will convert all lines at a time  [Perfor.. fast]
+Assembler -> used to convert the assembly language in to the            machine understandable language.
+
+---------------------------------------------------------------
+
+Java
+----
+
+-> James gosling
+-> 1991
+-> 1995 - 1st version 
+-> Sun micro systems
+-> aquired by oracle corporation
+
+--------------------------------------------------------------
+
+Types of java appication
+-------------------------
+
+	1) SE  -> Standard edition
+	2) EE  -> Enterprice edition
+	3) ME  -> Micro edition
+	4) java FX - [Scripting]
+
+
+SE - To develop the stand alone applications
+
+	->  calculator , notepad , calander , clock , media ,,,
+
+
+EE -> To develope large scale web applications 
+
+	-> youtube, gmail, face book , snap chat
+
+
+ME -> To develop the mobile applications.
+
+FX -> Nasa gorund systems applications , medical applciations
+
+---------------------------------------------------------------
+
+Java features 
+-------------
+
+-> Simple -> the complex topics of c & c++ , like pointers, 
+		 operator overloading eliminated in java
+-> oops -> every thing we should represent in the form of            objects only.
+-> Java -> Independant
+-> WORA  - > Write once run anywhere 
+-> Automatice memory management with help of JVM.
+-> JVM  -> Java virtual machine 
+        -> it converts byte code to machine understandable code
+	-> automatic memory management
+	-> JVM dependant.
+	-> it is resposible fot the execution of the java code
+
+
+--------------------------------------------------------------------------------
+
+
+Jdk , Jvm , Jre
+
+-------------------
+
+Jdk- Java development kit  -> 
+	
+	-> its kit contains several tools which are used to develop , Complile, Run,debug
+
+JRE -> Java run time environment
+	
+       -> It provides the platform to Run the java code
+	-> It contains JVM
+
+JVM -> Java virtual machine.
+
+
+-----------------------------------------------------------------------------------------
+
+Jvm architecture
+----------------
+
+-> Class loader  -> It will load all dot class files into the jvm
+	
+ 1) Bootstrap class loader 
+	
+	-> Parent class loader , it load all core java classes .util, .lang
+
+ 2) Extension class loader
+	
+	-> /ext -> JDBC , Cryptographic
+
+ 3) System class loader
+	
+	-> it will load userdefined classed into the jvm
+
+ 4) Custom class loader
+
+	-> we can customize to create our own class loader by extending Class Loader.
+
+
+
+-> Class loader 
+
+-> Methode Area -> it stores/keeps/contains all the class code information
+
+-> Heap Area	-> It stores objects data
+
+-> Java Stack	-> It Method execution information
+
+-> Native Stack -> It contains Non-java code execution information  
+ 
+-> PC Registers -> It contains Next line execution information 
+
+-> Executive Engine -> It uses Interpreter  + JIT [Just in Time compiler ]
+
+-> Native Interface -> It Load all the Non java libraries
+ 
+-> Native Libraries  -> It contains the Non java libraries.
+
+
+-----------------------------------------------------------------------------------------
+
+IDE -> Integrated development environment
+
+
+	Eclips
+		-> My Eclips
+		-> NetBeans
+	STS  [Spring tool suit]
+	Intellij
+	VS code
+
+
+-----------------------------------------------------------------------------------------
+
+
+-> Install the STS 
+
+
+url -> https://spring.io/tools
+-----------------------------------------------------------------------------------------
+
+Project Structure
+-----------------
+
+	-> Packages
+	-> Classes
+	-> Import statements
+	-> class declarations
+	-> varibales and methods	
+	-> Constructors 
+
+-----------------------------------------------------------------------------------------
+
+Variables
+---------
+
+-> Its a referance name we assigned for the data which it is going to store inside the memory.
+-> 
+		name  = "apple";
+		age =  45;
+
+
+-> Declaration 	-> 
+					
+		int age;
+		String name;
+		Boolean isValid;
+	
+
+-> Intialisation -> 
+
+Data Types
+-----------
+
+-> To specify the type of data which is goinng to store in a varible
+
+
+2 Types
+--------
+
+	1) Primitive  / Pre-defined Type  / Primary
+	2) Non-Primitive / Derived types
+
+1) Primitive Types : 
+--------------------
+
+	1) Integral
+			
+		-> Byte		->  1 byte	- 0
+		-> Short	->  2 bytes	- 0	
+		-> Int		->  4 bytes	- 0
+		-> Long		->  8 bytes	- 0
+
+	2) Decimal
+		
+		-> float	->  4 bytes	- 0  -> 
+		-> Double	->  8 bytes	- 0  -> 
+
+	3) Boolean 		-> 1 bit        - false   -> Os or 1's [false or true]
+	4) Char			-> 2 bytes	- \u0000 
+
+
+1 Byte - 8 Bits 
+
+
+Note 
+-----
+for upto 6 decimal values -> float      -> 0.991111
+for upto 15 decimal values -> Double	-> 0.991111999999999
+
+Char 
+----
+2 bytes -> 16 bits 
+
+-> char = to hold or to store only one charecter
+-> we should enclose the value in between th   '  '
+-> We can store a numerical , or Alphabet, or any symbol 
+
+	char c  =  'B'
+	char d  =  '4'
+	char e  =  '&'
+
+
+Boolean -> 
+--------
+
+1 bit -> true  [1] or false  [0]	
+
+
+Boolean isVarified	= true
+	isPassed	= false
+	isUpdated	= true
+	isMarried	= true 
+
+
+2) Non - Primitive data types
+---------------------------
+
+1) Strings
+2) Arrays
+3) Classes
+
+-----------------------------------------------------------------------------------------
+
+Identifier
+----------
+
+-> All java components or names we can termed as Identifiers expect Reserved Key words.
+-> used to give names for Classes , packages , variables and methodes.
+
+-> While defining Java Identifiers we should follow some rules
+
+rule 1 -> 
+
+The following are the some basic sintax rules to declare any identifier
+
+	a - z
+	A - z
+	0 - 9
+	$ [dollar]
+	_ [underscore]
+
+rule 2 -> 
+
+-> They should not start with the Numbers 
+	
+		name2 ->	true
+		7name -> 	false
+		name7name -> 	true
+
+rule 3 -> they cannot start with any other symbols except $ ,  _ 
+
+		name$ ->  true
+		name_$  ->true
+		_age4$ -> true
+
+rule 4 -> dont use spaces in between words or names
+
+		is Verfied -> false
+		name_modified$______8 -> true
+		age num& -> false
+		1num -> false
+		amount_deducted -> true
+		age_verified_$done -> true
+
+rule 5 -> you should not use any reserved java key words
+	
+		String name = "Krishna";  true	
+		String if = "samsung";	false
+
+		int i = 14;		true
+		int byte  = 77;		false
+		
+		Boolean for = true;	false
+		Boolean forr = false;	true
+
+Note -> 53 reserved key words in java
+
+-----------------------------------------------------------------------------------
+
+Naming conventions
+------------------
+
+-> we should follow proper naming syntaxed while writing java code especially 
+   declaring packages, classes, varibles, methodes, Constants
+
+-> class declaration 
+		
+	-> Starting letter should be Capital
+	-> and shold follow camel casing rule
+
+	public class Student {
+
+ 	}	
+
+	public class StudentData {
+	
+	} 
+
+variables  & methods ->
+-----------------------
+
+-> Always variables start with "small" letters only
+-> and shold follow camel casing rule
+
+
+    	String name  = "GMRIT";
+	Boolean isPassed = true;
+	Long panNumber  = CYKPR6754E;
+
+packages ->
+-----------
+
+-> Always use small letters and dont follow any camel casing rule
+-> separate the multiple words with usage of dot "  .   " operator
+
+ 		demo.com.student
+		java.student.details
+
+Constants -> 
+------------
+
+-> Always use only "CAPITAL letters"
+-> dont follow camel casing , separate the multiple words with usege of '  _   '
+		
+		NUMBER  = 45;
+ 		MAX_MARKS  = 99;
+		TOTAL_AMOUNT_TRANSFERED  = 999999;
+		COLLEGE_CODE = 10245;
+
+
+-----------------------------------------------------------------------------------
+		 
+Operators
+=========
+
+-> These are symbols which are used to perform some operations on operands.
+
+ 1) Arthmatic
+ 2) Relational 
+ 3) Logical
+ 4) Assignemt
+ 5) dot
+ 6) new operator
+ 7) conditional operator  / Ternary operator
+ 8) instanceOf 
+
+-> Arthmatic
+  ----------
+	
+	 Addition    ->  + 
+	 Subtration  ->  - 
+	 Multiplication  ->  * 
+	 Division  	-> /  -> quotient
+	 Modulas 	-> %  -> Remainder  
+	 Increment -> Pre & Post  -> ++ 
+	 Decrement -> Pre & Post  -> --
+
+
+int a  = 1 ;
+		
+
+		//sop(a++);			// 1		
+		
+		System.out.println(a);          // 2
+		 
+		// sop(a++);			// 2
+		// sop(a--);			// 3
+		// sop(a++ + a);		// 2 -> 2  + 3  = > 5
+		// sop (++a  - --a);            // 4 - 3 = 1 
+
+ 	
+-> Relational 
+--------------
+
+-> If you want to check multiple conditios  we can go for relational operators
+-> 
+	
+	< , > , == , <= , >= , != 
+
+	
+-> Logical operators
+---------------------
+
+-> && or || or !
+
+ int age;
+
+if( age != 30) {
+
+	Sop("student is eligible for marriage")
+}
+
+
+Assighnment
+---------------
+
+ = 
+
+to assign any values to any variable 
+
+
+	int a  = 10;
+
++= , -= , /= , *= ,....
+
+
+ 	int b = 20 ;
+
+	b = b + 10;    b+=10;
+	
+	b // 30
+
+
+-----------------------------------------------------------------------------------
+	 
+Dot operator
+-----------
+
+
+-> to call or access the class components
+-> variables or methodes or static members
+-> package naming conventions
+
+-----------------------------------------------------------------------------------
+
+new operator
+------------
+
+ 				Studemt s1 = new Student();
+
+-> To allocate the memory for the class components in the heap area.
+
+
+instaseOf operator
+------------------
+
+
+to check the created object or referance variable which is related to that class or not.
+
+ex1:
+-----
+	String s1  =  "GMRIT";
+
+	if(s1 instanceOf String) {
+			//
+	} 
+
+
+ex2:
+----
+
+ public class Employee {
+
+
+	psvm(){
+
+	Employee e1 = new Employee();
+
+
+   if ( e1 instanceOf Employee){
+		// sop //
+	}
+
+
+}
+
+
+Ternary operator / Conditional operator
+----------------------------------------
+
+-> To evaluate one expression based on the previous condition we can use this ternary operator.
+
+ ( condition ) ?  statement1 : statement2 ;
+
+-> 
+		public class Demo{
+
+		psvm(){
+
+		int a = 10;
+
+		String result = (a > 0 )?  "its true" : "its false";
+
+		System.out.print(result);
+
+
+		int res = (a > 0 )?  1 : 0;
+		System.out.print(res);
+
+		
+		}
+	} 
+
+--------------------------------------------------------------------------------
+
+
+Control statements
+------------------
+
+-> Always the execution flow will from top to the bottom 
+-> but as per the user requirement we can control the flow of execution with the help of controll statements
+
+
+3 types 
+-------
+
+1) Decision making statements/ conditional statements
+2) Looping stmt
+3) Branching stmt
+
+
+1) Decision making statements
+------------------------------
+
+ 	-> simple if
+	-> if else
+	-> if else if ladder
+	-> Switch
+
+
+	if( ) {
+		
+	//
+	
+	} 
+
+-> always if accepts true or value.
+
+
+if () {
+
+}
+
+else{
+
+} 
+if () {
+
+}
+
+else{
+
+} 
+if () {
+
+}
+
+else{
+
+}
+
+NOte -> If the number of conditions more than 5 its recomended to go for switch;
+
+ 
+Switch 
+------
+
+	int num ;
+
+
+	switch( num )  {
+
+	case 1 : System.out
+
+
+
+	}
+
+
+
+
+
+//  rank -> 1 to 3 -> product based
+	     4 to 6 -> service based		
+		7 to 8 -> midlevel company 
+		  9 to 10 -> start up
+		     > 11 -> not eligible for IT
+
+
+------------------------------------------------------------------------------------
+
+looping statements 
+
+----------------
+
+for 
+while 
+do while
+for each
+
+
+for(int i = 0 ; i<= 10 ; i++){
+
+	} 
+
+ex : 1
+------
+
+package com.gmr.java;
+
+public class BreakingStmt {
+
+	public static void main(String[] args) {
+
+		for (int i = 1; i <= 10; i++) {
+
+			System.out.println(i);
+
+		}
+	}
+
+}
+
+
+while 
+------
+
+		while (i <= 10) {
+			System.out.println(i);
+			i++;
+		}
+
+
+do - While
+----------
+		do {
+			System.out.println(i);
+			i--;
+		} while (i >= 1);
+	
+
+
+arr -> 10 values
+
+
+for( String res  :  arr ){
+		syso(res);
+} 	      
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+3) Branching statements
+
+ break;   -> it stops the programme execution.
+
+		
+ continue; -> it skips the current statemt or iteratoion           execution and 		Allow further execution.
+       
+	ex : print 1 to 10 except number 7 using coninue
+	
+package com.gmr.java;
+
+public class BreakingStmt {
+
+	public static void main(String[] args) {
+
+		for (int i = 1; i <= 10; i++) {
+
+			if (i == 7) {
+				continue;
+			}
+			System.out.println(i);
+
+		}
+	}
+
+}
+ 
+		
+ return;  -> to return output after method execution .
+	
+
+-----------------------------------------------------------------------------------
+
+Switch ex: 1
+------------------
+
+
+package com.gmr.java;
+
+import java.util.Scanner;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		System.out.println("type input here");
+
+		// print week names based on the number
+
+		for (int i = 1; i <= 5; i++) {
+
+			Scanner sc = new Scanner(System.in);
+			int num = sc.nextInt();
+
+			switch (num) {
+
+			case 1:
+				System.out.println("Monday");
+				break;
+
+			case 2:
+				System.out.println("Tuesday");
+				break;
+
+			case 3:
+				System.out.println("Wednesday");
+				break;
+				
+				default : System.out.println("please select the correct input");
+
+			}
+
+		}
+
+	}
+
+}
+
+
+
+example 2 : 
+---------
+
+
+package com.gmr.java;
+
+import java.util.Scanner;
+
+public class Demo {
+
+	public static void main(String[] args) {
+
+		System.out.println("type input here");
+
+		// print the developer level based on the ranking
+
+		for (int i = 1; i <= 5; i++) {
+
+			Scanner sc = new Scanner(System.in);
+			int num = sc.nextInt();
+
+			int group = 0;
+
+			if (num >= 1 && num <= 3) {
+				group = 1;
+			} else if (num >= 4 && num <= 6) {
+				group = 2;
+			} else if (num >= 7 && num <= 10) {
+				group = 3;
+			}
+
+			switch (group) {
+
+			case 1:
+
+				System.out.println("junior developer");
+				break;
+
+			case 2:
+
+				System.out.println("senior developer");
+				break;
+
+			case 3:
+				System.out.println("manager");
+				break;
+
+			default:
+		System.out.println("please select the correct input");
+
+			}
+
+		}
+
+	}
+
+}
+
+		
+
+	
+Task -> // print the if the inputs as
+	     
+	     AI -> Artificail lntelligence
+	     CS -> Cyber security
+	     DS -> Data science
+	     EEE -> Electrical and electronics
+	     ECE -> Electronics and comunication
+	     IT  -> Information technology
+-----------------------------------------------------------------------------------
+
+class , object , constructor, oops
+
+-----------------------------------------------------------------------------------
+
+Strings
+-------
+
+-> used to store group of charecters enclosed with " ";
+-> Strigs are immuatable in nature
+-> means if we try to modify the string object than a new object will create.
+-> String is pre defined class in java present in java.lang
+
+-> Typese to create String in java
+
+	1) Stirng literal 
+	2) new keyword
+
+
+1) String using literal 
+------------------------
+
+	String name  = "samsung";
+
+2) String using New keyword
+---------------------------
+
+	String name = new String ("samsung");
+
+
+need to know about the memories in java
+----------------------------------------
+1) SCP -> String constant pool
+2) HEAP 
+
+------------------------------------------------------------------------
+
+== 	  -> checking the adress location of the values
+.equals() ->  Content or actual values in a given variables
+
+------------------------------------------------------------------------------
+
+concat()
+indexOf()
+charAt()
+lastIndexOf()
+length()
+subStrign()
+valueOf()
+intern()
+toUpperCase()
+toLowerCase()
+equlasIgnoreCase()
+
+
+
+
+-----------------------------------------------------------------------------------
+
+
+Constructors
+------------
+
+Contstuctors are used to intialise the instance variables in the current class
+with the help of this key word
+
+-> It doesnt contain any return type
+-> And the constructor name is same is class name
+
+Constructor types 
+----------------
+
+Default or Non parameterised
+Parameterised
+Copy constructors
+
+
+Example
+------
+
+package com.gmr.java;
+
+public class BreakingStmt {
+
+	String name1;
+	int age;
+	int amount;
+
+	BreakingStmt(String name2, int age, int amount) {
+
+		this.age = age;
+		this.name1 = name2;
+		this.amount = amount;
+
+		System.out.println("name -> " + name1  + "age -> " + age + "amount -> " + amount);
+	}
+
+	public static void main(String[] args) {
+
+		BreakingStmt b1 = new BreakingStmt("suresh", 25, 7444);
+		BreakingStmt b2 = new BreakingStmt("ramesh", 25, 7444);
+		BreakingStmt b3 = new BreakingStmt("ramu", 25, 7444);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+		
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+	 	
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
