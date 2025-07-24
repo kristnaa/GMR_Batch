@@ -1,0 +1,717 @@
+
+String s1  = "hi";   //1
+String s2 = "hi";	// 1
+String s3 = "hello"; 	// 2
+
+String s4 = new String("hi");	//3
+
+String s5 = new String("hello"); //4
+String s6 = "hi";		 //4
+
+String s6 = new String("bye");	//5
+String s7 = "apple";		//6
+
+------------------------------------------------------------------------
+
+class
+-------
+-> blue print or a template to write variables  ,methods, constructors
+-> its a key word to declare any class in java
+-> To create object class is must and should
+-> a project is a group of classes
+
+Object 
+------
+-> Object is used to allocate some memory in jvm
+-> memory -> in the heap memory location 
+-> NEW key word is used to create the object
+-> and for one class we can create any number of objects
+-> with the help of object refernace we can access all class components.
+-> if there are any un used objects are present java , those objects can be removed by garbage    collector.
+-> and objects created at the runtime only by jvm
+-> clean up activities performed by garbage collector.
+-> Programmer dont have any controll on this garbage collector.
+-> its completely taken care by the JVM.
+
+  User u = new User();
+
+
+OOps
+----
+
+-> Object oriented programme
+-> there are 2 types of programmes 
+	 - procedural based 
+	 - object based
+-> procedural based languages examples 
+	 ex : C , cobal , pascal..
+2) Object Oriented
+	 ex: Java , C# , Python etc..
+-> so to develop any thing first ne need to focus on creating the functions and procedures
+-> Maintaining Procedure based application is very complex 
+-> the data is exposed globally and less secured When compared with opps languages
+-> almost 20 years back companies are used to develop the application with this procedure based    languages
+
+-> OOPS -> 
+-> any language that used this oops principles than that language we can call it as opp language.
+-> it provides more security and code re-usability.
+
+
+Steps to install and run Sts 
+------------------------------
+-> STS for windows
+-> sprting tools for eclips 
+-> zip -> extract -> SpringToolSuit4.exe
+-> double click that .exe file
+-> right click on icon -> pin to your task bar.
+
+
+Priciples of OOPS
+------------------
+
+1) Encapsulation 
+2) Abstraction 
+3) Polymorphism 
+4) Inheritance
+
+----------------------------------------------------------------------
+
+1) Encapsulation 
+   -------------
+
+-> in real time we used to call encapsulation class as Entity class.
+-> One Entity class will represent one table in db.
+-> so Entity class is used to Map with actual db tables
+
+-> Binding or wrapping the private variables and methodes (getter & setter) into a one class or an    entity class.
+
+-> specify all variables with private modifier
+-> for every variable it should contains 2 methods.
+
+-> why private -> To resetrict the access to modify the original field values.
+
+Entity class
+-------------
+
+package com.gmr.java;
+
+public class StudentEntity {
+
+	private String name;
+	private int age;
+	private long mobileNo;
+	private String gender;
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public long getMobileNo() {
+		return mobileNo;
+	}
+	public void setMobileNo(long mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
+
+}
+
+
+
+Test class
+-----------
+
+package com.gmr.java;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		StudentEntity s = new StudentEntity();
+
+		s.setName("mahesh");
+		s.setAge(25);
+		s.setMobileNo(857945145);
+		s.setGender("male");
+
+		int age = s.getAge();
+		String name = s.getName();
+		long mobileNo = s.getMobileNo();
+		String gender = s.getGender();
+
+		System.out.println(age + "---" + name + "--- " + mobileNo + "--- " + gender);
+	}
+
+}
+
+
+Inheritance :
+------------
+
+-> The process of extending the properties from one class to another class we can call it as Inheritace.
+-> we can achieve inheritance with key word called "extends".
+->The class which extending the properties , that class we can termed as  Parent or Super orBaseclass
+->The class which receiving the properties form the parent that class we can call it as Child or sub class or derived class
+->For the code re-usability
+->Always the relation is from Parent to Child only.
+
+
+Inheritance with respect to varibles
+-------------------------------------
+
+Parent
+-------
+package com.gmr.java.oops;
+
+public class Parent {
+
+		String name;
+		int age;
+		
+}
+
+Child
+------
+package com.gmr.java.oops;
+
+public class Child extends Parent {
+
+	int rank;
+	String collegeName;
+
+	public static void main(String[] args) {
+
+		Child c = new Child();
+
+		c.rank = 2;
+		c.collegeName = "GMRIT";
+		c.age = 15;
+		c.name = "veeramallu";
+
+		System.out.println(c.rank + "----" + c.name + "----" + c.age + "----" + c.collegeName);
+
+	}
+
+}
+
+Inheritance with respect to the methods
+----------------------------------------
+
+package com.gmr.java.oops;
+
+public class Parent {
+
+	void m1() {
+		System.out.println("M1 METHODE executed from parent class");
+	}
+		
+}
+
+
+
+package com.gmr.java.oops;
+
+public class Child extends Parent {
+	
+	void m2() {
+		System.out.println("M2 methode executed form Child class");
+	}
+	
+
+	public static void main(String[] args) {
+
+		Child c = new Child();
+		
+		c.m1();
+		c.m2();
+
+	}
+
+}
+
+Inheritance with respect to Constructors
+-----------------------------------------
+
+package com.gmr.java.oops;
+
+public class Parent {
+		
+	Parent(){
+		System.out.println("Parent constructor -------Called");
+	}
+		
+}
+
+
+
+
+package com.gmr.java.oops;
+
+public class Child extends Parent {
+	
+	Child(){
+		System.out.println("Child class Construcor --------called");
+	}
+	
+	public static void main(String[] args) {
+
+		Child c = new Child();
+
+	}
+
+}
+
+Note :
+------
+
+Creating object means callning the constructor, so here in child class we created object for that child class only
+but it is already extendindg all the properties form the parent so it will give the first priority to the parent class constructor only and than only child class constructor will execute.
+
+
+Inheritance behavior after adding Parameterised constructor
+-------------------------------------------------------------
+
+-> If we add any parameterised constructor in Parent than it will element default or 0 param constructor automatically 
+-> we ll get an compilation error in child class , to remove those errors again we need to add one default or 0 param constructor in side of the parent class
+
+
+Parent
+------
+
+package com.gmr.java.oops;
+
+public class Parent {
+	
+	int age;
+	String name;
+
+	void m1() {
+		System.out.println("M1 METHODE executed from parent class");
+	}
+	
+	Parent(int i){
+		System.out.println("Parent constructor -------Called");
+	}
+	
+	Parent(){
+		System.out.println("Parent constructor -------Called");
+	}
+		
+}
+
+
+Child 
+------
+
+
+package com.gmr.java.oops;
+
+public class Child extends Parent {
+
+	int rank;
+	String collegeName;
+
+	void m2() {
+		System.out.println("M2 methode executed form Child class");
+	}
+
+	Child() {
+		System.out.println("Child class Construcor --------called");
+	}
+
+	public static void main(String[] args) {
+
+		Child c = new Child();
+
+		c.rank = 2;
+		c.collegeName = "GMRIT";
+		c.age = 15;
+		c.name = "veeramallu";
+
+		c.m1();
+		c.m2();
+		System.out.println(c.rank + "----" + c.name + "----" + c.age + "----" + c.collegeName);
+
+	}
+
+}
+
+
+Types of Inheritance
+--------------------
+
+1) Single level inheritance
+2) Multi level inheritance
+3) Multiple
+4) Hyrarichal inheritance
+5) Hybrid inheritance
+
+
+
+1) Single level inheritance
+-----------------------------
+
+-> Containes only one parent to child relation ship.
+
+ 		Parent
+
+		  |
+		  |
+		  |
+		  
+		Child
+
+2) Multi level inheritance
+-----------------------------
+-> It contains more than 2 classes one class extend from previous class
+
+ -> class A -> class B extends A  -> class C extends B
+
+3) Multiple inheritance
+------------------------
+
+-> when one child class trying to access the properties form more than one parent than there might be a ambiguty situation to take the properties form multiple parents.
+-> this scenario call it as Multiple inheritance 
+-> Java doest support Multiple inheritance
+-> But it can be achived by the interface concept.
+
+->   class A       	class B
+
+	
+	 class c extends A, B;
+
+Not possibel you will get a compilation error.
+
+4) Hirarichal inheritance 
+-------------------------
+
+-> When one parent can able to extend the properties to multiple child { more than one child}
+  we can call it as Hirarichal inheritance
+
+			class A
+
+	class B extends A         class C extends A
+
+		
+
+5) Hybrid Inheritance
+-------------------------
+-> The combination of Hybrid and multiple inheritance we can call it as Hirarichal inheritance"
+-> It forms like a diamond structure and it will supported in java. 
+
+diamond srructure
+
+      Parent
+
+child1        child2 
+
+
+      chils3
+
+----------------------------------------------------------------------------------------------------
+
+Polymorphism
+-------------
+
+-> In Greek Poly -> Many , Phism -> Forms
+
+-> Polymorphism measn we can perform a single task in multiple or many ways
+
+-> Ex : 
+  
+	A person -> in college as a student
+		-> in home as a son or daughter
+		-> in hostel as a roommate or friend
+  	
+-> Types of Polymorphism
+
+	1) Static ->  Compile time Polymorphism
+	2) Dynamic ->  Run time Polymorphism.
+
+-> Static Polymorphism
+--------------------------
+-> A class performs polymorphism at the compile time we can call it as Static polymorphism
+-> Exaample for this is -> Compile time polimorphism and we can achieve with the help of    
+	Over loading  , we can perform for over loading for operators, and constructor,and methode
+
+-> If Operator overloading -> its only work for operator called  ' +  '
+
+  -> Int values of 10 , 20 -> 10 + 20 = 30;
+	           "10" + "20"  => 1020;
+
+  -> overloading with respect to the Constructor
+	
+package com.gmr.java.oops;
+
+public class Student {
+
+	Student(int i){
+		//
+	}
+	
+	Student(int i , int j){
+		//
+	}
+}
+
+Examle 
+------
+
+package com.gmr.java.oops;
+
+public class Student {
+
+	Student(int a, int b) {
+		System.out.println("1st constructor -> " + (a + b));
+	}
+
+	Student(int a, int b, int c) {
+		System.out.println("2nd constructor -> " + (a + b + c));
+	}
+
+	public static void main(String[] args) {
+
+		Student s1 = new Student(10, 20, 30);
+		new Student(50, 50);
+
+		Student s2 = new Student(10, 20, 30, 50);  // it will give compilation error for the 
+								undefined overloaded constructor
+	}
+}
+
+
+ -> Over loading with respect to the method
+
+	-> write the method with same name and with different parameters or with different data types
+	 so we can call it as methode over loading.
+
+ Example 
+---------
+
+package com.gmr.java.oops;
+
+public class Student {
+
+	void add(int a, int b) {
+		System.out.println(a + b);
+	}
+
+	void add(int a, int b, int c, int d) {
+		System.out.println( a + b + c + d);
+	}
+
+	public static void main(String[] args) {
+
+		Student student = new Student();
+
+		student.add(70, 30);
+		student.add(10, 20, 30, 40);
+		
+	}
+}
+
+Dynamic polymorphism
+---------------------
+
+-> A class can perform polymorphism at the run time so we can call it as Run-time polymorphism 
+-> And we can achive with the help of MethodOver riding
+
+
+Method OverLoading -> Writing the same method with same parameters form one class to another class
+                     is called as Method over Loading.
+
+-> If we want to use the original implementation of methode we can use directly or else if we dont want to use original implementation, we can over ride that methode we can write our own implementation
+
+
+Example:
+--------
+
+package com.gmr.java.oops;
+
+public class Aspirant {
+
+	void goal() {
+		System.out.println("he want to become IAS or IPS");
+	}
+}
+
+
+
+
+package com.gmr.java.oops;
+
+public class AspirantTwo extends Aspirant {
+
+	// over riding the methode in Aspirant class
+	@Override
+	void goal() {
+		System.out.println("He wanted to become Sampu fan");
+	}
+
+	public static void main(String[] args) {
+
+		AspirantTwo aspirant = new AspirantTwo();
+		aspirant.goal();
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------
+
+Abstract method:
+----------------
+
+A method it doesn't contain any body or any implementation , its called as Abstract method
+
+	public void goal();
+	public void goalOne();
+
+we need to over ride these methodes to provide method body or implementations.
+
+
+
+Abstraction 
+============
+
+-> Hiding the internal implementations and providind the only required data
+-> -> Seperatingn the ideas from their implementations.
+
+-> we can perform the abstraction in 2 ways 
+ one is with the use of abstract key word 
+ sencond is with the use of interface approach
+
+Abstraction with key word "abstract"
+------------------------------------
+
+-> a class which is declared with the abstract key word that can contains either
+   abstract or concret methods or both[any number of methods we can write inside abstract class]
+-> if a method declared with abstract key word you should not specify any implementation
+-> if atleast one method declared as abstract we should keep class with abstract keyword
+-> we cant create object for the abstract class.
+-> after exteding into child class only for that child class we can create an object
+
+
+Abstraction with the help of Interface
+--------------------------------------
+
+-> Interface is a key word used to create a interface in java
+-> It can contains only abstract methods 
+-> Its not possible to right concret methods inside interface
+-> we cannot create the object for the interface in java
+-> for the created interface we need to create one implemented class and for that class we can create the onject and we can acccess and override the methods and we can right our own implementations for that abstract methods
+-> In java 8 some new features added for the interface changes
+-> in java 8 they introduced default and static method to create concrete mothods inside of interface.
+
+
+Interface
+---------
+
+package com.gmr.java.oops;
+
+public interface Aspirant {
+
+	public void goal();
+
+	public void goalOne();
+
+	public void goalTwo();
+
+	public void goalThree();
+
+}
+
+
+Interface implemented Class
+----------------------------
+
+package com.gmr.java.oops;
+
+public class AspirantTwo implements Aspirant {
+
+	@Override
+	public void goal() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void goalOne() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void goalTwo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void goalThree() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// over riding the method from Aspirant class
+
+	
+}
+
+
+--------------------------     ----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                                          
