@@ -1,0 +1,634 @@
+
+Super key word
+--------------
+
+-> Super key word is used to call the parent class properties immediately.
+-> we can use this key word in child class to accesss parent class properties.
+
+ 	super.m2();
+		
+	super.name = "ramesh";
+
+return 
+------
+-> return key word is used to return something after the method execution 
+-> void -> It doesn't return any thing after method execution.
+-> we can use anyType of data type as a return type while declaring the methods.
+
+
+Parent class
+------------
+
+package com.gmr.java.oops;
+
+public class Placement {
+	
+	boolean isPlaced() {
+		return true;
+	}
+	
+	int salaryPackage() {
+		return 80000;
+	}
+
+}
+
+
+Child class 
+------------
+package com.gmr.java.oops;
+
+public class Students extends Placement {
+	
+	//over riding the salary package method from parent class
+	int salaryPackage() {
+		return 1080000;
+	}
+
+	String campusPlacement() {
+
+		boolean placed = isPlaced();     //true or false
+
+		int salary = salaryPackage();
+
+		if (placed) {
+
+			String msg = "Students are placed with the " + salary + "/-  Salary";
+
+			return msg;
+		} else {
+			return "Students are not placed in the campus placements";
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		Students students = new Students();
+
+		String res = students.campusPlacement();
+
+		System.out.println(res);
+
+	}
+
+}
+---------------------------------------------------------------------------------------------
+
+hashCode
+---------
+
+-> Jvm will provide a unique number for every object created in java
+-> No one hashCode is eqaul to any other hash code in java
+-> To get the hashCode of the object there is a method called  ".hashCode()"
+-> this hashCode() method return a unique number.
+-> We can access the hashCode() from the java.lang.Object class
+
+
+package com.gmr.java.oops;
+
+public class User {
+
+	User(String s) {
+		System.out.println("constructor string -> " + s);
+	}
+
+	public static void main(String[] args) {
+
+		User u1 = new User("balayya");
+		User u2 = new User("balayya");
+
+		if (u1.equals(u2)) {
+			System.out.println("Both are same");
+		} else {
+			System.out.println("Both are not same");
+		}
+
+		 System.out.println(u1.hashCode());
+		 System.out.println(u2.hashCode());
+
+		String s1 = new String("nagarjuna");
+		String s2 = new String("nagarjuna");
+		
+		
+		if(s1.equals(s2)) {
+			System.out.println("Hmmmmmmmmmmmmm");
+		} else {
+			System.out.println("not same");
+		}
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------
+
+Difference between Object class .equals() and String Class .equals()
+
+-> String class .equals() -> Always its going to compare the actual values or content.
+-> Object class .equals() -> Compares the memory location or address location of the objects
+-----------------------------------------------------------------------------------------------
+
+
+
+Arrays
+======
+
+-> To store any value we need to create a varible with some specified data type
+
+	 int num = 10;
+	 String name = "kamal"
+-> if we want to store multiple values we need to create multiple variables
+
+		int s1 = 10;
+		int s2 = 20;
+		int s3 = 30;
+		
+		// if i want to hundred values than we should crete 100 variables.
+
+-> It is not recommended to create more variables in java
+
+   -> To avoid this a concept came and the name is "Arrays"
+		
+		
+
+Arrays -> 
+
+-> Arrays are used to store multiple values or the data into a single variable.
+-> at the time of Array creation we need to specify the size of an array.
+
+ 	syntax
+	------
+
+	-> Array creation / Declaration 
+
+	      Data Type [] varibleName;
+
+	ex : int [] arr;
+
+	-> Intialising the array 
+	
+		variable = new DataType [ size]; 
+
+	ex:   arr = new int[4];
+
+-> Size int[4] means the array can hold or store the values up to 4 elememts.
+
+-> In Arrays values are stored based on the index positions.
+
+-> starting position always start from -> 0
+
+-> The Arrays size is Fixed.
+
+-> Array size is always postive number only , if you specify any negative number it will throw an exception.
+
+Disadvantages :
+---------------
+-> Once array size is specified we cant modify the size of an Array.
+
+-> At run time its not possible to modify the array size.
+
+-> It store only Homogenious data [same Data type of elemets].
+
+-----------------------------------------------------------------------------------
+
+int[] a;   // creating an array
+		
+a = new int[5];	  // instializing array with size
+		
+		
+int[]  arr = new int[5];  // Declaring and intializing the Array in the same line
+		
+
+
+package com.gmr.java.oops.arrays;
+
+public class Arrays {
+
+	public static void main(String[] args) {
+
+		int[] arr = new int[5]; // Declaring and intializing in the same line
+
+		// size means -> 0 , 1 , 2 , 3 , 4
+
+		arr[0] = 12;
+
+		arr[1] = 25;
+		arr[3] = 121;
+
+		arr[4] = 11;
+		arr[2] = 131;
+		
+		System.out.println(arr[2]);
+
+	}
+}
+
+
+-> Array Index out of position
+-------------------------------
+
+-> If we are going to store or going to access the out of bouded index number from the speciefied size of an array we ll get this AIOB.
+
+package com.gmr.java.oops.arrays;
+
+public class Arrays {
+
+	public static void main(String[] args) {
+
+		int[] arr = new int[5]; // Declaring and intializing in the same line
+
+		// size means -> 0 , 1 , 2 , 3 , 4
+
+		arr[0] = 12;
+
+		arr[1] = 25;
+		arr[3] = 121;
+
+		arr[4] = 11;
+		arr[2] = 131;
+                arr[7] = 22;
+		
+		System.out.println(arr[6]);  // ArrayIndexOutOfBoundsException
+
+	}
+}
+
+update or re instialise idex value
+----------------------------------
+
+arr[0] = 12;
+arr[0] = 1000;  // its going update the value 
+
+
+
+NegativeArraySizeException: 
+----------------------------
+If you specify the size of an array with any negative value at the run time we will get
+the exception called ->  NegativeArraySizeException: -4
+
+
+find the Legth of an Array
+--------------------------
+
+-> there is a predefined method called .length to get the length or size of any array
+-> it return a integer valus that give the size of an array.
+  
+	=>   arr.length
+
+	System.out.println("array size is -> "  + arr.length);
+
+Creating and intialising and assigning the values in single line
+------------------------------------------------------------------
+
+		int[] arr = {10,20,50,70,90,60,999};
+		
+			
+		System.out.println("array first element -> " + arr[0]);
+		
+		
+		System.out.println("array last elemet is  -> "  + arr[arr.length-1]);
+
+
+-----------------------------------------------------------------------------------------
+Ways to print or get the elements from the arrays
+-------------------------------------------------
+1) for
+2) for each
+3) toString
+4) while loop
+5) do while loop
+
+
+1) for loop
+-------------
+Print all the array elements with the help of for loop
+------------------------------------------------------
+
+package com.gmr.java.oops.arrays;
+
+public class Arrays {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 10, 20, 50, 70, 90, 60, 999 };
+
+		for (int i = 0; i <= arr.length - 1; i++) {
+			System.out.print(arr[i] + " ");
+		}
+
+	}
+}
+
+2) for each loop
+------------------
+
+int[] arr = { 10, 20, 50, 70, 90, 60, 999 };
+	
+ -> 		for (int res : arr) {
+			System.out.print(res + " ");
+		}
+
+3) while loop
+--------------
+  
+ int i = 0;
+		while(i<=arr.length-1) {
+			System.out.println(arr[i]);
+			i++;
+		}
+
+4) do while loop 
+----------------
+
+int i = 0;
+		do {
+			System.out.println(arr[i]);
+			i++;
+		} while (i <= arr.length - 1);
+
+
+5) toString()
+--------------
+
+  int[] arr = { 10, 20, 50, 70, 90, 60, 999 };
+
+		System.out.println(Arrays.toString(arr));
+
+------------------------------------------------------------------------------------
+
+->Finding the Min and Max elements in the given array without using any predefind methods
+
+Example 
+-------
+package com.gmr.java.oops.arrays;
+
+public class MinMax {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 1099, 202, 50, 707, 90, 60, 999 };
+
+		int min = arr[0];   //202  < 1099
+		int max = arr[0];   // 202 > 1099
+
+		for (int i = 1; i <= arr.length - 1; i++) {
+			
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+
+		System.out.println("minimum number -> " + min);
+		System.out.println("maximum number -> " + max);
+	}
+
+}
+
+------------------------------------------------------------------------------------
+
+-> Array with boolean type
+
+
+package com.gmr.java.oops.arrays;
+
+public class Demo {
+	
+	public static void main(String[] args) {
+		
+		
+		boolean[] arr = new boolean[3];
+		
+		arr[1] = true;
+		
+		for(boolean b : arr) {
+			System.out.println(b);
+		}
+	}
+
+}
+
+-------------------------------------------------------------------------------------
+
+-> Reverse the given array
+
+ note -> reverse the entire structure on an array , dont just print the eliments in reverse order.
+
+----->
+
+
+  package com.gmr.java.oops.arrays;
+
+public class ReverseAnArray {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 1099, 202, 50, 707, 23, 56, 78, 999 };
+		for (int re : arr) {
+			System.out.print(re + " ");
+		}
+		System.out.println();
+
+		// System.out.println(arr);
+
+		int start = 0;
+		int end = arr.length - 1; // 3
+
+		while (start < end) {
+
+			int temp = arr[start];
+			arr[start] = arr[end];
+			arr[end] = temp;
+
+			start++;
+			end--;
+
+		}
+
+		for (int res : arr) {
+			System.out.print(res + " ");
+		}
+
+	}
+}
+
+-----------------------------------------------------------------------------------------
+
+Types of Arrays
+---------------
+
+There are 2 types 
+
+1) one dimentional array 
+2) Two dimentional array 
+
+1) one dimentional array 
+-------------------------
+ 
+  int[]  arr = new int[5]; 
+
+Data type[ ]   variabel name  = new   DataType  [ size];
+ 
+
+Data type[ ]   variabel name  = { values separated by commas} ;
+
+2) Two dimentional array
+-------------------------
+
+-> Used to represent the data or elements in the form of rows and columns
+-> 2 Dimentional meanas Arrya inside an Array
+
+    
+	Data Type [][]   variable name  =  new DataType [size ] [size ];
+
+		int[][] arr = new int[2][2];
+
+
+Example:
+
+package com.gmr.java.oops.arrays;
+
+public class TwoDimen {
+
+	public static void main(String[] args) {
+
+		int[][] arr = new int[2][2];
+
+		arr[0][0] = 100;
+		arr[0][1] = 50;
+		arr[1][0] = 150;
+		arr[1][1] = 250;
+		
+		System.out.println(arr[0][]);
+	}
+
+}
+
+
+Note-> 
+-------
+
+-> the length method of array will consider only the rows elemets size only
+-> In real time these 2 dimentional arrays no where used.
+
+
+To Print all the 2 dimentional array elemets the following are the approaches
+
+1) nested for loop
+2) Nested for Each loop
+3) for Each with toString()
+
+1) nested for loop
+--------------------
+
+package com.gmr.java.oops.arrays;
+
+public class TwoDimen {
+
+	public static void main(String[] args) {
+
+		int[][] arr = new int[2][2];
+
+		arr[0][0] = 100;
+		arr[0][1] = 50;
+		arr[1][0] = 150;
+		arr[1][1] = 250;
+
+		for (int i = 0; i <= arr.length - 1; i++) {
+
+			for (int j = 0; j <= arr.length - 1; j++) {
+
+				System.out.print(arr[i][j] + " ");
+
+			}
+		}
+
+	}
+
+}
+
+
+3) for Each with toString()
+----------------------------
+
+package com.gmr.java.oops.arrays;
+
+import java.util.Arrays;
+
+public class TwoDimen {
+
+	public static void main(String[] args) {
+
+		int[][] arr = new int[2][2];
+
+		arr[0][0] = 100;
+		arr[0][1] = 50;
+		arr[1][0] = 150;
+		arr[1][1] = 250;
+
+		for (int[] ar : arr) {
+			System.out.println(Arrays.toString(ar));
+		}
+
+	}
+
+}
+
+--------------------------------------------------------------------------------
+
+Declaring and assigning the array elements in a single line 
+
+
+example : 
+
+package com.gmr.java.oops.arrays;
+
+import java.util.Arrays;
+
+public class TwoDimen {
+
+	public static void main(String[] args) {
+
+		int[][] arr = { { 12, 45, 56 }, { 67, 78, 89 } };
+
+		for (int[] ar : arr) {
+			System.out.println(Arrays.toString(ar));
+		}
+
+	}
+
+}
+
+
+example 2:
+
+package com.gmr.java.oops.arrays;
+
+import java.util.Arrays;
+
+public class TwoDimen {
+
+	public static void main(String[] args) {
+
+		int[][] arr = { { 12, 45, 56 }, { 67, 78, 89 } , { 67, 78, 89 } , { 67, 78, 89 } };
+
+		for (int[] ar : arr) {
+			System.out.println(Arrays.toString(ar));
+		}
+
+	}
+
+}
+
+
+----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
