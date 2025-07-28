@@ -1,0 +1,705 @@
+
+
+variables --> to store the data
+
+data type --> type of data that we can store in variable
+
+		1) primitive data types (byte, short, int, long, float, double, char, boolean)
+
+		2) Non primitive/ referenced data types (Array, String, Class).
+
+
+
+Using primitive 	int   a = 10;
+
+			int   b = 20 ;
+
+			int   c = 30 ;
+
+
+So here we are able store only 1 object in a one varibale
+
+I want to store 1000 values ? ---- 1000 variables we need
+
+I wan to store 1 lakh values ? ----> 1 lakh variables ---> Not recommended (1 class having 1lack vbls )
+
+-> To overcome this problem we are using Arrays concept in java.
+
+
+
+================== 
+Approach-1 : Arrays  (Non prmitive / reference data type)
+==================
+
+-> We can store group of values in single variable
+
+			int [ ]  a  = new int [ 5000 ] ;
+
+			arr[0] = 100;
+			arr[1] = 200;
+			arr[2] = 300;
+				....
+			arr[4999] = 7799;
+
+----------------
+Limitations
+-----------------
+
+1) Array size is fixed
+
+2) We can store only homogenious values (same type of values)
+
+--------------------------------------------------------------------------
+
+-> Creating Arrays with referenced data types  // or pre defined class
+
+1) String []  
+--------------
+
+public class Demo {
+
+    public static void main(String[] args) {
+        
+        String[] s = new String[3];
+
+        s[0] = "Zero";    
+        s[1] = new String("One");
+        s[3] = 124;			//Compile time error
+       
+    }    
+}
+
+
+2) Create an Array for user defined class
+-----------------------------------------
+
+public class Student {
+
+    Student(String name){
+        System.out.println("Student class names" + " "+ name);
+    }
+    
+    public static void main(String[] args) {
+        
+        Employee[] e = new Employee[5];
+
+        e[0] = new Employee("krishna");		// valid
+        e[1] = new Employee("ramu");		// valid
+
+        e[2] = new Student("aksjnaksjn");	// Error/ CTE
+
+	e[3] = new Employee("krishna");		// valid
+        e[4] = new Employee("ramu");		// valid
+
+    }
+
+}
+
+Creating an Array with Object class to overcome the disadvantage of 
+Homogenius elements adding in Array
+
+Employee class 
+-------------
+
+public class Employee {
+    
+    Employee(String name , int age){
+        System.out.println("Employee class name & age " + " " + name + " " + age );
+    }
+}
+
+Student class
+-------------
+
+public class Student {
+
+    Student(String name, int age){
+        System.out.println("Student class names & age -> " + " "+ name  + "--" + age);
+    }
+    void m1(){
+            System.out.println("Student class m1() method");
+    }
+    
+}
+
+
+Management class
+----------------
+public class Management {
+    
+    Management(String name){
+        System.out.println(name);
+    }
+
+    public static void main(String[] args) {
+        
+        Object[]  ob  = new Object[5];
+
+        ob[0]  = new Management("managemement");   
+        ob[1]  = new Management("managemement_ two");
+
+        ob[2] = new Student("Student one", 25); 
+        ob[3] = new Student("remo", 26);
+
+        ob[4] = new Employee("Drama chari", 30);
+        ob[5] = new Employee("Drama chari", 30);
+    }
+}
+
+
+-> With the object class array we are able to add the heterogenius values
+  elements but still the array is size is fixed.
+
+---> Size is fixed
+
+---> Insert, update, retrieve, sort the data  -- for all this the          progammer has to write our OWN logic 
+
+	{ there is no methodes to sort the data based on ID, iF inserting in 1st index ,existing object go to next position so i will loose previous data so there is No alternative for that).
+
+-------->>>>   To overcome the problems of Arrays we are going to use Collections.
+
+
+-> Collections are used to store group of objects/values.
+
+-> SIZE --   Collections are growable in nature.
+ 		(dynamically collection size can be increased and decreased based on data).
+
+-> TYPE --   We can store any type of data in Collection
+		(homegeneuous & heterogeneuous)
+
+-> METHODES--  Collections providing predefined methods to insert,update, delete, retrieve, sort etc....(READY 		made methodes - example cloths for birthdy).
+
+-> Collections is a entity / container which is used to store group of Objects.
+
+Collections ----> Collections Framework.
+
+Framework means ready made software
+
+Collections is called as framework because it is providing predefined """"Interfaces, classes and (redymade) methods"""" to perform operations on data.
+============
+
+1) What is Collection Framework ?
+
+2) Collection Hierarchy
+
+	0) Iterable (I)
+	1) Collection (I)
+
+	2) List (I)
+	3) Set (I)
+	4) Queue (I)
+
+	5) Map (I)
+
+
+List :  It is used to store group of objects ( duplicates are allowed )
+
+			1) ArrayList
+			2) LinkedList
+			3) Vector
+			4) Stack
+
+Set : It is used to store group of objects ( duplicates are not allowed )
+
+			1) HashSet
+			2) LinkedHashSet
+			3) TreeSet
+
+Queue : It is used to store group of objects ( FIFO )
+
+			1) PriorityQueue
+
+Map : It is used to store group of objects ( Key - Value pair )
+
+			1) HashMap
+			2) LinkedHashMap
+			3) Hashtable
+			4) TreeMap
+			5) IdentityHashMap
+			6) WeakHashMap
+
+
+==============================================================================================================
+
+
+
+Cursors
+========
+
+-> Cursors are used to iterate collections (retreive data from collections)
+
+1) Iterator
+2) ListIterator
+3) Enumeration (Legacy cursor for Vector legacy class)
+
+
+-> Collections framework related classes & interfaces are part of java.util package
+
+
+=================
+Collection interface
+=================
+
+-> It is super interface for List, Set and Queue.
+
+-> Collection interface providing several methods to store and retrieve objects.
+
+ex: add , get , remove, set, indexOf, lastIndexOf, listIterator,....
+
+
+============
+List Interface
+============
+
+-> Exetending properties from Collection interface
+
+-> Allow duplicate objects
+
+-> It will maintain objects insertion order
+
+-> It is having 4 implementation classes
+
+		1) ArrayList   -  implements --> List, RandomeAcces, Clonable, Java.io.Serializable. 
+		2) LinkedList
+		3) Vector
+		4) Stack
+
+
+Creating Object //
+
+		List l = new List ( );   // IN-VALID because we cannot create Obeject for the Interface
+
+		List l = new ArrayList ( ) ; // VALID**** Interface refeance variable can Hold Implementation Object  
+
+		List l = new LinkedList ( ) ;  // VALID**** Interface refeance variable can Hold Implementation Object    
+
+========
+ArrayList
+========
+-> Implementation class of List interface
+-> Not only from List but also from 
+	
+	implements List<E>, RandomAccess, Cloneable, Serializable
+
+-> Internal data structure of ArrayList is growable array.
+-> Default Capacity is 10.(but the Size is not fixed, if it reaches MAX capacity, size will increase(new array created  with new size & all data copied to +10 ,,,,so onn).
+
+
+
+-> Duplicate objects are allowed.
+-> null values are accepted.
+-> Insertion order preserved.
+-> we can add & retrive the data based on insertion order.
+
+-> Not Synchronised.
+-> Slower than Linked List , due to lot of shiftings required while inserting , removing.
+
+Note:
+-----
+-> We cannot create ArrayList for Prmitive Data type, Instead of we have to use Wrapper classes.
+
+=====================
+ArrayList Constructors
+=====================
+
+1) ArrayList al = new ArrayList ( ) ; 				// if i dont know the capacity
+
+2) ArrayList al = new ArrayList (int capacity);			// if i know the capacity go for this
+
+3) ArrayList al = new ArrayList (Collection c);			// If i want to conavert the 1 type of collection(ex: Set) to the another type of collection(ex: List)
+
+So we can pass the collection as a Parameter 
+
+=========================================================================
+
+add(),
+remove(),
+size(),
+removeall(),
+removefirst(),
+removelast(),
+get();
+
+Array List Exmaple:
+-------------------
+
+import java.util.ArrayList;
+
+public class ArrayListExmp {
+    
+    public static void main(String[] args) {
+        
+        ArrayList al = new ArrayList<>();
+
+        al.add("GMR_it");
+        al.add(1245);
+        al.add(true);
+        al.add('H');
+        al.add(748.777);
+	al.add("GMR_it");
+        al.add(1245);
+        al.add(true);
+        al.add('H');
+        al.add(748.777);
+
+        System.out.println("size of an array list" + " " + al.size());
+
+        al.remove(0);
+        al.removeAll(al);
+
+        System.out.println("size of an array list" + " " + al.size());
+    }
+}
+
+
+
+
+Retrive the Collection object data 
+----------------------------------
+
+1) for loop 
+ -----------
+	
+       for(int i = 0; i < al.size() ; i++){
+            System.out.println(al.get(i));
+       }
+
+2) for Each() Loop
+------------------
+Note : If we are not giving any specific wrapper class object as a generic type 
+         our Array list objet consider only Object type.
+
+-> ArrayList al = new ArrayList<>();
+	
+   for(Object obj :   al) {
+        System.out.println( obj );
+       }
+
+-> ArrayList<Integer> al = new ArrayList<>();
+
+	for(int x :   al) {
+        System.out.println( x );
+       }
+
+
+3) Iterator
+-----------
+
+-> Intially we need to convert the collection object into Interator
+-> than use method called "hasNext()"     -> To find out wether any data or      elements present in the iterated object or not ? 
+-> Than use method called "Next()" to retrive the actual data
+
+Note : Only forward iterations will happen
+
+-> starting from the 0th index to the last index
+	
+
+	Iterator iter = al.iterator();
+       while (iter.hasNext()) {
+        System.out.println(iter.next());
+       }
+
+
+4)List Iterator
+-----------------
+
+Note : We can use ListIterator for both Forward and Backward direction
+
+Forward
+-------
+-> Intially we need to convert the collection object into ListInterator
+-> than use method called "hasNext()"     -> To find out wether any data or      	elements present in the iterated object or not ? 
+-> Than use method called "Next()" to retrive the actual data
+
+	  ListIterator  listIter = al.listIterator();
+       		while (listIter.hasNext()) {
+        System.out.println(listIter.next());
+       }
+
+Backward:
+---------
+-> Intially we need to convert the collection object into ListInterator
+-> than use method called "hasPrevious()"     -> To find out wether any data or      	elements present in the iterated object or not ? 
+-> Than use method called "previous()" to retrive the actual data.
+
+Note  : Always the iteration starts from 0th index position , so here when ever we are using hasPrevious() , it check the index values before 0th index so it not retriving the data . 
+
+	     ListIterator  listIterBw = al.listIterator();
+       while (listIterBw.hasPrevious()) {
+        System.out.println(listIterBw.previous());
+       }
+
+
+-> forEach()     // Java 8 features
+-------------
+
+		al.forEach(x-> {
+       			 System.out.println(x);
+       		});
+
+
+
+
+Example :
+--------
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class ArrayListGeneric {
+        
+    public static void main(String[] args) {
+        
+        ArrayList<Integer> al = new ArrayList<>();
+
+        al.add(12);
+        al.add(15);
+        al.add(85555);
+        al.add(99999);
+
+        System.out.println("--------------------using for Loop---------------------");
+
+       for(int i = 0; i < al.size() ; i++){
+            System.out.println(al.get(i));
+       }
+
+       System.out.println("---------------------for Each Loop-------------------");
+
+
+       for(int x :   al) {
+        System.out.println( x );
+       }
+
+       System.out.println("---------------------using Iterator-------------------");
+
+
+       Iterator iter = al.iterator();
+       while (iter.hasNext()) {
+        System.out.println(iter.next());
+       }
+
+       System.out.println("---------------------using List - Iterator-- Forward-------------------");
+
+
+    //    ListIterator  listIter = al.listIterator();
+    //    while (listIter.hasNext()) {
+    //     System.out.println(listIter.next());
+    //    }
+
+       System.out.println("---------------------using List - Iterator-- Backward-------------------");
+
+       ListIterator  listIterBw = al.listIterator();
+       while (listIterBw.hasPrevious()) {
+        System.out.println(listIterBw.previous());
+       }
+
+
+       System.out.println("-------using java 8 forEach ()-------------------");
+
+       al.forEach(x-> {
+        System.out.println(x);
+       });
+
+    }
+}
+    
+
+
+
+	
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
