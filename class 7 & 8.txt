@@ -1,0 +1,1087 @@
+LIMITATIONS of Array List:
+=========================
+1) ArrayList class is not recommended for insertions because it has to perform lot of shiftings( after 10 elements new array created & all previous data stored 
+	in to NEW array, if this also filled agian new Array created with the new size again all previous data copied & pasted in NEW Array)Performance ISSUE
+	if it for 1000 elements its so difficlut.
+
+2) SO ArrayList class is recommended for retriveal operations because it will retrieve based on index directley.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+===========
+LinkedList
+===========
+
+-> Implementation of List interface
+
+-> Internal data structure is "Double linked list" (Index position not available)***************SOO there is NO Default Capacity for the Linked List.
+
+-> Linked list means a Node strucutre,(when 1st element added a Head & a 1st node created with(3 blocsk- ref to previous, value, ref to Next node)this head refer 1st       obj,if 2nd element add a new 2nd node created,,,, these both nodes will refer each other(SO Double linked List)
+
+-> insertion order preserved
+
+-> duplicate objects are allowed
+
+-> null objects also allowed
+
+some predefined methods 
+----------------------
+
+add() , add(index , object) , addAll(), get(index), getFirst() , getLast()..,
+
+
+Example:
+--------
+
+import java.util.LinkedList;
+
+public class LinkedListExmp {
+    
+    public static void main(String[] args) {
+
+        LinkedList<Integer> li1 = new LinkedList<>();
+
+        li1.add(10);
+        li1.add(30);
+
+        
+        LinkedList<Integer> li = new LinkedList<>();
+
+        li.add(10);                 // 1 node
+        li.add(20);                 //  2 node
+        li.add(1, 900);
+        li.add(30);                 // 3 node
+        li.add(40);                 // 4 node
+
+        li.addAll(li1);
+
+        System.out.println(li.get(1));
+
+        System.out.println(li);
+
+        System.out.println(li.getFirst());
+        System.out.println(li.getLast());
+
+    }
+}
+
+
+
+Note: 
+------
+-> If we add an element in Linked List object between based on Index, we get the   output same as the arayList,  
+-> But in array list "elements SHIFTING is happened"", 
+-> But here in Linked list New Link is recreating i'e,, a new Node is creating   between the existing nodes and just link is RE-Creating by reffereing to the        pre&next nodes. 
+
+
+Re-Shifting indexes in Array List-> 
+--------------------------
+
+-> When we add a new value in between any index positions , It will update the index position & the remaing next all elemets wil shift to the next positions
+ 	-> this process is called as " Re-Shifting"
+
+	-> It will take lot of time while handling the huge data
+	-> So it not recemmended for the inserting the elements with Array list
+
+-> It is recommended for retriving the data
+
+Re-Creating Nodes in Linked list -> 
+----------------------------------
+
+-> When ever we are trying to add a new value or element inside or in between the nodes or indexes of a linked list , instead of updating the old or existing node
+ it will create new node with new link [ refering with previous and next nodes ].
+-> So it will take less time for inserting a objects inbetween the nodes 
+   when compared with Array list.
+
+-> So it recommended for the inserting the data.
+
+
+
+----------------------------------------------------------------------------------
+
+=================
+Exception Handling
+=================
+1) What is Exception  & Why to handle exception
+2) Types of Exceptions
+	-Checked Exceptions // Compile time exp
+	-Un-Checked Exception	// Run time exp
+3) Exception Vs Error
+4) Exceptions Hierarchy
+
+5) Exception Handling Keywords
+			- try
+			- catch
+			- finally
+			- throw
+			- throws
+6) Try with Resources (java 1.7v feature)
+7) User Defined Exceptions
+
+
+Succesful / Graceful Termination :  Termination after executing program successfully
+
+Abnormal Termination :  Termination in middle of program execution
+
+===================
+What is Exception ?
+===================
+
+-> Un-expected and Un-wanted situation in the program execution is called as Exception.
+
+-> Exception will distrub normal flow of the program execution & When It occures program will be terminated.
+
+-> As a programmer/developer we are responsible for programs Succesful termination.
+
+-> To Achive Succesful termination we need to handle the execptions occured while program executing.
+
+==========================
+What is Exception Handling?
+==========================
+
+-> The process of handling Exceptions is called as Exception Handling.
+
+-> The main aim of Exception Handling to achieve graceful termination of the program
+
+
+Note: In java we have so many predefined exceptions
+
+		
+		Ex:
+				ArithematicException
+				NullPointerException
+				FileNotFoundException
+				SQLException
+
+===================
+Exception Hierarchy
+=================
+
+-> In this hierarchy Throwble is the root class
+
+							1.0. Java.lang.Object 
+	
+
+							1. Throwble class     		// is the top most class
+
+								1.1 Exception
+
+									1.1.1  Checked Exception     	-> IO , Compile time excep
+									1.1.2  Un-Checked Exception  	-> Runtime, Null pointer
+									 
+								1.2  Error
+								
+
+What is the difference between Exception and Error ?
+====================================================
+
+-> Exceptions can be handled 
+-> where as Errors can't be handled.
+
+==============
+Exception Types
+==============
+
+-> Exceptions are divided into 2 types
+
+1) Checked Exceptions :: Will be identified at compile time (occurs at run time)
+
+		Ex: IOException, FileNotFoundException, SQLException etc....
+ 
+2) Un-Checked Exceptions : Will occur at Run time ( Compiler can't identify these exception )
+
+		Ex: NullPointerException, ArithematicException etc..., NegativeArraySizeException, ArrayIndexOutOfBondException
+
+
+
+=================
+Exception Handling
+=================
+
+-> Java provided 5 keywords to handle exceptions
+
+1) try
+2) catch
+3) finally 
+4) throws
+5) throw
+
+
+========
+try block
+========
+
+-> It is used to keep risky code , [ the code that will casue the exexption or the error]
+
+syntax:
+
+try {
+	// stmts
+}
+
+Note: We can't write only try block. try block required catch or finally (it can have both also)
+
+
+try with catch ------>  valid 
+
+try  with multiple catch blocks ---->  Valid
+
+try with finally ----->  valid
+
+try with catch & finally ---> valid
+ 
+only try block ----> In-valid
+
+only catch block ---> In-valid
+
+only finally block ---> In-valid
+
+======
+catch 
+======
+
+-> catch block is used to catch the exception which occured in try block
+
+-> To write catch block , try block is mandatory
+
+-> One try block can contain multiple catch blocks also
+
+syntax:
+
+try {
+
+	// logic
+
+} catch ( Exception e ){
+
+	// logic to catch exception info
+
+}
+
+Note: If exception occured in try block then only catch block will execute otherwise catch block will not execute
+
+
+public class Demo {
+
+=============
+finally block
+=============
+
+-> It is used to perform resource clean up activities
+
+		Ex: file close, db connection close etc....
+
+-> finally block will execute always ( irrespective of the exception )
+
+try with finally :  valid combination
+
+try with catch and finally :  valid combination
+
+catch with finally :  invalid combination
+
+only finally : invalid combination
+
+
+
+// java program with try-catch  scenario
+
+package com.gmr.java.oops.exeptions;
+
+public class ExceptionExample {
+
+	public static void main(String[] args) {
+
+		try {
+			int i = 15 / 0; // risky code
+			System.out.println(i);
+		} catch (ArithmeticException err) {
+			System.out.println(err);
+			err.printStackTrace();		
+			System.out.println(err.getMessage());
+		}
+
+		try {
+			String s = null;
+			System.out.println(s.length());
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}
+
+
+Note :
+-----
+
+err.printStackTrace();	
+
+-> It will give the complete information about the casued execption from the try block.
+
+System.out.println(err.getMessage());
+
+-> To get the reason that caused the exeception.
+
+
+Note:
+-----
+
+-> Always the catch block block should maintain the CHILD TO PARENT relatio
+
+Example
+-------
+
+package com.gmr.java.oops.exeptions;
+
+public class ExceptionExample {
+
+	public static void main(String[] args) {
+
+		System.out.println("main method started------------");
+
+		try {
+
+			int i = 15 / 0; // risky code
+			System.out.println(i);
+
+		} catch (ArithmeticException err) {
+
+			System.out.println("-----1st catch block");
+
+			System.out.println(err);
+
+		} catch (NullPointerException err) {
+
+			System.out.println("-----2nd catch block");
+
+			System.out.println(err);
+
+		} catch (Exception err) {
+
+			System.out.println("-----2nd catch block");
+
+			System.out.println(err);
+
+		}
+
+		System.out.println("main method ended -------------------");
+
+	}
+
+}
+
+
+Note 2:  If you write parent to child relation in multiple catch block it will give
+         the Compilation error , "not reachable to the clild catch block"
+
+
+// java program with try-finally scenario
+========================================
+
+package com.gmr.java.oops.exeptions;
+
+public class ExceptionExample {
+
+	public static void main(String[] args) {
+
+		System.out.println("main method started------------");
+
+		try {
+
+			int i = 15 / 0; // risky code
+			System.out.println(i);
+
+		} catch (Exception err) {
+
+			System.out.println("---entered into the catch block");
+
+			System.out.println(err);
+
+		}  finally {
+			System.out.println("Finally always execute irrespective of any error or exception");
+		
+		}
+
+		System.out.println("main method ended -------------------");
+
+	}
+
+}
+
+
+Q) What is the differnece between   final, finalize( ) and finally ?
+
+
+final : it is a keyword  which is used to declare final variables, final methods and final classes
+
+finalize ( ) : It is predefined method available in Object class, & it will be called by garbage collector before removing unused/un referencecd objects from heap area.
+
+finally : it is a block we will use to execute some clean acitivites in exception handling
+
+----------------------------------------------------------------
+try : it is used to keep our risky code
+
+catch : It is used to catch the exception occured try block
+
+finally : to execute clean up activities
+
+-----------------------------------------------
+
+
+throws & throw
+--------------
+
+-> throws
+----------
+ 
+->  its a key word Used to Ignore the Checked Exception.
+->  By giving them to the method which is going to call or run.
+->  we should use this throws key word inside of method declaration.
+
+
+package com.gmr.java.oops.exeptions;
+
+import java.io.File;
+
+public class ThrowsAndThrowExamp {
+
+	public static void main(String[] args) throws Exception {
+
+		File f = new File("new.txt");				//CTE 
+		f.createNewFile();
+		
+
+	}
+}
+
+
+-> In the above case we are ignoring the checked exception by using throws Keyword
+
+throw
+-----
+
+-> It is used to throw the exception manually along with the new keyword.
+-> we can throw predifined exceptions or user defined exceptions manually.
+
+Syntax
+-------
+	
+  throw new Exception("message");
+
+
+		int i = 0;
+		
+		if(i > 0) { 
+			System.out.println("No error ");
+		} else {
+			
+			throw new Exception("Exception occure in the code");
+		}
+		
+User defined exeptions
+=======================
+
+-> we can customise the exeptions by creating our own by extending the Exception class or 
+   Run time exception class
+-> after extending the exception class we need to create zero param and parameterised       constructor inside the user defined exception class.
+-> use super() and pass the parameter of the param constructor to get the error message.
+
+Example : 
+---------
+
+package com.gmr.java.oops.exeptions;
+
+public class MyGMRit_Exception extends RuntimeException {
+
+	public MyGMRit_Exception() {
+
+	}
+
+	public MyGMRit_Exception(String message) {
+
+		super(message);
+	}
+
+}
+ 
+
+Example 2:
+----------
+package com.gmr.java.oops.exeptions;
+
+public class OneMoreException extends Exception {
+
+	public OneMoreException(){
+		
+	}
+
+	public OneMoreException(String message) {
+		super(message);
+	}
+}
+
+
+Using user defined exception classes 
+-----------------------------------------
+
+
+package com.gmr.java.oops.exeptions;
+
+public class ThrowsAndThrowExamp {
+
+	public static void main(String[] args) throws Exception {
+
+		int i = 0;
+
+		if (i > 0) {
+			System.out.println("No error ");
+		} else if (i == 0) {
+			throw new OneMoreException("erroe occured");
+		} else {
+			throw new MyGMRit_Exception("erroe occured");
+		}
+
+	}
+}
+
+
+----------------------------------------------------------------------------------------
+
+
+Stach over flow error
+--------------------
+
+Calling methods each other at a time will cause this error
+
+Example 
+-------
+
+package com.gmr.java.oops.exeptions;
+
+public class Demo {
+
+	void m1() {
+		m2();
+	}
+
+	void m2() {
+		m1();
+	}
+
+	public static void main(String[] args) {
+
+		Demo demo = new Demo();
+		try {
+			demo.m2();
+		} catch (Throwable e) {
+			System.out.println(e);
+		}
+
+	}
+
+}
+
+
+Note : here there is a infinite loop between the both method callings in this type of scenarios we ll get stack over flow error 
+
+
+----------------------------------------------------------------------------------------
+
+File Handling
+-------------
+
+-> File is a predefind class in import java.io package.
+-> we can work work files by creating the object for the File class.
+
+
+	File f1 = new File(String name); 
+	
+	File f2 = new File(File file, String name);
+
+-> File operations
+------------------
+
+-> Creating file 
+-> creating the new directory
+-> read all the files[names]
+-> delete
+
+
+Creating file
+------------------
+
+-> createNewFile(); -> to create the new file 
+
+
+
+		File f = new File("newfile.txt");
+		f.createNewFile();
+
+		File f1 = new File("secondFile.txt");
+		f1.createNewFile();
+
+		File f2 = new File("secondFile.pdf");
+		f2.createNewFile();
+
+
+create new directory
+---------------------
+-> to create ne directory with new file location use the method called - > mkdir();
+
+
+		File f3 = new File("GMRIT_Workspac");
+		f3.mkdir();
+		
+		File f4 = new File("java_Workspac");
+		f4.mkdir();
+
+
+creating file in newly created directory
+----------------------------------------
+
+package com.gmr.java.filehandlings;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Demo {
+
+	public static void main(String[] args) throws IOException {
+
+		File f3 = new File("GMRIT_Workspac");
+		f3.mkdir();
+
+		File f = new File(f3, "newfile.txt");
+		f.createNewFile();
+
+		File f1 = new File(f3, "secondFile.txt");
+		f1.createNewFile();
+
+		File f2 = new File(f3, "secondFile.pdf");
+		f2.createNewFile();
+
+		System.out.println("programme executed");
+
+	}
+
+}
+
+Delete the files or the folders 
+--------------------------------
+
+-> to delete the files or the folders we can use the method called -> .delete();
+
+		File f4 = new File("gmrit\\newFilesLocation");
+		f4.delete();
+
+-> Read the files which are available in the folder
+-----------------------------------------------------
+-> to read all the files available in the given folder by using -> .list();
+-> it will return the all the list objects in the form of String[] ;
+
+Example
+--------
+package com.gmr.java.filehandlings;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Demo {
+
+	public static void main(String[] args) throws IOException {
+
+		File f4 = new File("gmrit\\newFilesLocation");
+		String[] list = f4.list();
+
+		for (String s : list) {
+			System.out.println(s);
+		}
+
+
+	}
+
+}
+
+----------------------------------------------------------------------------------------
+
+isFile(); 		-> To check wether its a file or not 
+isDirectory();		-> To check wether its a Directory/Folder or not
+
+Example:
+--------
+
+package com.gmr.java.filehandlings;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Demo {
+
+	public static void main(String[] args) throws IOException {
+
+		File f4 = new File("gmrit\\newFilesLocation");
+		String[] list = f4.list();
+
+		for (String name : list) {
+
+			File f = new File(f4, name);
+			
+			if(f.isFile()) {
+				System.out.println("File name ->"+ " " +name);
+			}
+			if(f.isDirectory()) {
+				System.out.println("Folder name -> " + " " + name);
+			}
+		}
+
+	}
+
+}
+
+------------------------------------------------------------------------------------
+
+Read the inputs with the help of BufferedReader
+
+Example 
+--------
+
+
+package com.gmr.java.filehandlings;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class User {
+
+	public static void main(String[] args) throws IOException {
+
+		InputStreamReader in = new InputStreamReader(System.in);
+
+		BufferedReader b = new BufferedReader(in);
+
+		String i = b.readLine();
+
+		if (i.equals("A")) {
+			System.out.println("Artifical intelligence");
+		} else if (i.equals("B")) {
+			System.out.println("Block chain development");
+		}
+
+	}
+
+}
+
+
+-----------------------------------------------------------------------------------------
+
+-> To perform any operations with the files we should go for IO streams
+-> IO Streams -> Input output streams
+
+-> IO Streams create or establish a link between the java program and files
+
+-> to perform write or read operation with the files 
+
+	java program --------------> Write operations
+	java program --------------> Read operations
+
+-> There are 2 types IO streams
+
+	1) based on Binary data   [ex: images, audio, vedio, pdf, ,,,]
+	2) based on Charecter data  [text files].
+
+-> Binary data -> 
+	to perform with this binary data IO streams providing 2 strems 
+		
+		1) input realted streams
+		2) output related streams
+
+-> Charecter type 
+ 		
+	-> For read  [File reader]
+	-> for Write [File writer]
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+Write and Read operations with the files in java
+
+-> FileWriter
+-> FileReader
+
+-> File Writer
+---------------
+
+-> We need to create the object for the FileWriter and specify the path of the file along with the directory.
+
+-> new FileWriter -> we are creating the new connection the the file and java
+-> write()  -> to write the data into the file or document
+-> flush()  -> to send the data forcefully into the file or document
+-> close() -> to close the connection between the our java and file.
+
+
+
+Example
+------
+
+package com.gmr.java.filehandlings;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileWriterExamp {
+
+	public static void main(String[] args) throws IOException {
+
+		try {
+
+			FileWriter f = new FileWriter("gmrit\\newFilesLocation\\newfile.txt");
+
+			f.write("Hi, im edited from FileWriter in java");
+
+			f.write("\n");
+
+			f.write("this is the second line edited from the FileWriter");
+
+			f.flush();		
+			System.out.println("done");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("finally block");
+		}
+
+	}
+}
+
+=======================
+-> BufferedWriter
+=======================
+
+-> Using the BufferedWriter to write into the document by using FileWriter
+-> Its having some pre defined methods which are not included in the FileWriter Class.
+
+Example 
+--------
+
+
+package com.gmr.java.filehandlings;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileWriterExamp {
+
+	public static void main(String[] args) throws IOException {
+
+		try {
+
+			FileWriter f1 = new FileWriter("gmrit\\newFilesLocation\\newfile.txt");
+
+			BufferedWriter f = new BufferedWriter(f1);
+
+			f.write("Hi, im edited from FileWriter in java");
+
+			f.newLine();
+
+			f.write("this is the second line edited from the FileWriter");
+
+			f.newLine();
+
+			f.write("THIRD line CREATED  from the FileWriter with Buffered Writer");
+
+			f.flush();
+			System.out.println("done");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+
+
+------------------------------------------------------------------------------------------------------
+
+FileReader
+-----------
+
+-> To perform the read operations we can use FileReader
+-> to Read the actual data or any content of file we can use the .read().
+-> It will read each and every charecter in side the file and return a ASCII value
+-> so again we need to convert that ASCII value in to Char type before printing or before reading.
+
+Example : 
+--------
+
+package com.gmr.java.filehandlings;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileReaderExamp {
+
+	public static void main(String[] args) throws IOException {
+
+		FileReader f = new FileReader("gmrit\\\\newFilesLocation\\\\newfile.txt");
+
+		int ascii = f.read();			//read charecter return int ascii
+
+		while (ascii != -1) {			// check until it reaches -1 
+			System.out.print((char) ascii);
+			ascii = f.read();
+		}
+
+		f.close();
+
+	}
+
+}
+
+
+Note : by using FileReader we able to read only one charecter at a time , and its not possible to read all the charecters at a time, for larger data file it will take lot of time to read the content.
+
+-> if the file size 1 Gb DATA -> lot of time wasted to read all the data 
+
+-> than go for the BufferedReader
+------------------------------------------------------------------------------------------------------
+
+BufferedReader
+==============
+-> This Buffered Reader is having ReadLine() method to read the entire line.
+
+Example:
+--------
+
+package com.gmr.java.filehandlings;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class BufferedReadExp {
+
+	public static void main(String[] args) throws IOException {
+
+		FileReader f = new FileReader("gmrit\\\\newFilesLocation\\\\newfile.txt");
+
+		BufferedReader b = new BufferedReader(f);
+
+		String line = b.readLine();		//  alwasy readLind return a String		
+
+		while (line != null) {		
+			System.out.println(line);
+			line = b.readLine();         // if we dont write this -> infinite loop
+		}
+		f.close();
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------
+
+
+==========================
+Serialization & De-Serialization
+==========================
+
+-> When we store data in the object, that data will be available if our program is running. If our program got terminated then we will loose our objects and data available in the objects.
+
+-> If we don't want to loose the data even after program got terminated then we should go for Serialization.
+
+-> The process of converting java object into file data in the form of bits and bytes is called as Serialization.
+
+-> The process of converting file data back to java object is called De-Serialization.
+
+
+Note: To perform Serialization & De-Serialization we have to implement java.io.Serializable interface which is marker interface
+
+
+// Java program on Serialization & De-Serialization
+
+
+package com.gmr.java.filehandlings;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class SerialiseExp implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 12L;
+	/**
+	 * 
+	 */
+	
+	String name;
+	int age;
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+		SerialiseExp s = new SerialiseExp();
+
+//		s.name;
+//		s.age 100;
+
+//		System.out.println("Serializaition started-------------");
+//
+//		FileOutputStream f = new FileOutputStream("Person.txt");
+//		ObjectOutputStream obj = new ObjectOutputStream(f);
+//
+//		obj.writeObject(s);
+//		obj.flush();
+//		obj.close();
+//		
+//		System.out.println("Serializaition ended-------------");
+
+
+		System.out.println("De-Serializaition started-------------");
+
+		FileInputStream fi = new FileInputStream("Person.txt");
+		ObjectInputStream obi = new ObjectInputStream(fi);
+
+		Object readObject = obi.readObject();
+
+		SerialiseExp s1 = (SerialiseExp) readObject;
+		
+		System.out.println("Student name is -> " + " "+ s1.name);
+		System.out.println("Student age is -> " + " "+ s1.age);
+		
+		obi.close();
+
+		System.out.println("De-Serializaition ended------------");
+
+	}
+
+}
+
+========================
+What is SerialVersionUID ?
+========================
+
+-> For every .class file JVM will assign one random number that is called as serialVersionUID.
+
+-> When we serialize the object, JVM will assign .class file serialVersionUID to serialized file
+
+-> When we de-serialize JVM will compare serialized file UID and .class file UID. If both ids are matching then only de-serialization will happen otherwise it will throw INvalidClassException.
+
+-> To overcome this problem we can write our own custom serialVersionUID then jvm will not assign that.
+
+
+	private static final long serialVersionUID = 12L;
+
+
+
+
+
+
