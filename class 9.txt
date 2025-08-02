@@ -1,0 +1,764 @@
+
+Threads, Runnable Interface, Thread Lifecycle, Synchronization, Thread Pools
+
+Application :
+==============
+Application is a program which is designed to perform a specific task. 
+
+Task means ->  Work
+
+Process :
+==========
+-> Process is an executing instance of an application.
+-> Processes are heavy weight operations that they require their own separate memory in operating system.
+
+Ex : Opening any files of application in Windows operating system.
+
+Single Tasking : 
+==============
+
+Performing only one task at a time is called as Single Tasking
+
+Ex: -> Eating food
+	Singing song
+	Reading book
+
+-> If we perform single tasking then it will take lot of time to complete all our work.
+
+Multi Tasking : 
+=============
+
+Performing multiple tasks at a time is called as Multi Tasking
+
+Ex: -> Singing while bathing 
+	Reading books while eating 
+
+
+-> If we perform multi tasking then we complete multiple works at a time.
+
+-> Multi Tasking we can achieve in 2 ways
+
+1) Process Based Multi Tasking
+
+	Ex: Windows OS
+
+2) Thread Based Multi Tasking
+
+-> To execute our program logics paralelly then we need to go for Thread Based MultiTasking
+
+-> Using Thread Based Multi Tasking our program can complete the work quickly
+
+-> To implement Thread Based Multi Tasking we will use Multi Threading
+
+Note: The main aim of Multi Tasking is used execute our program logic paralelly so that we can complete more work in less time.
+
+Thread means -> 
+--------------------
+-> Imagine youre organizing a big event. You dont do everything yourself you delegate tasks to multiple helpers so everything runs smoothly and quickly. 
+-> In a Java program a thread is like one of those helpers. Its a path that allows the program to do different tasks at the same time, rather than waiting for one to finish before starting the next.
+
+Main Thread ->   // default thread   -->> given by the jvm
+============
+-> For Every Java program execution, JVM will create one thread by default. 
+-> That thread is called as Main thread.
+
+-> Thread is a predefined class available in java.lang package. 
+-> In Thread class we have a static method currentThread( ).
+
+Syntax
+
+		 Thread.currentThread().getName();
+
+
+````````````````Java Program to get the details of Main thread
+
+package com.gmr.java;
+
+public class ThreadsExamp {
+	
+	public static void main(String[] args) {
+		
+		System.out.println("my programm");
+		
+		Thread currentThread = Thread.currentThread();
+		
+		System.out.println(currentThread.getName());
+	}
+
+}
+
+-> Calling curretThread() and getName() in a single line
+
+package com.gmr.java;
+
+public class ThreadsExamp {
+
+	public static void main(String[] args) {
+
+		System.out.println("my programm");
+
+		System.out.println(Thread.currentThread().getName());
+
+	}
+
+}
+
+  
+Simple example for Thread usage:
+----------------------------------
+
+-> While you type a message, the app is also receiving new messages from your friends.
+
+-> If it waited for the receiving to finish before you start type, typing would feel lag and time waste also.
+
+
+How Java Makes This Happen:
+---------------------------
+
+-> Java creates a Thread object to represent a task.
+
+-> You tell Java what to do inside the run() method.
+
+-> Starting the thread (start()) tells Java to run that task independently of the main program flow.
+
+Note  :  
+-------
+-> Starting a thread is like telling a helper, hey helper You Go & do this job while I continue with my work.
+
+===================
+User Defined Threads
+===================
+
+-> In Java we can create Thread in 2 ways
+
+1) By extending Thread class
+
+2) By Implementing Runnable interface
+
+
+// Java program to create user defined thread using Thread class
+
+package com.gmr.java;
+
+public class ThreadsExamp extends Thread {
+
+	public void run() {
+
+		System.out.println("run() started");
+
+		String name = "TASK ONE";
+
+		System.out.println("My code given to run method" + " " + name);
+
+		System.out.println("run() ended");
+
+	}
+
+	public static void main(String[] args) {
+
+		ThreadsExamp obj = new ThreadsExamp();
+
+		Thread t1 = new Thread(obj);
+
+		t1.start();
+
+	}
+
+}
+
+// Java program to create the thread using Runnable interface
+
+package com.gmr.java;
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() {
+
+		System.out.println("run() started");
+
+		String name = "TASK ONE";
+
+		System.out.println("My code given to run method" + " " + name);
+
+		System.out.println("run() ended");
+
+	}
+
+	public static void main(String[] args) {
+
+		ThreadsExamp obj = new ThreadsExamp();
+
+		Thread t1 = new Thread(obj);
+
+		t1.start();
+
+	}
+
+}
+
+==================================================================================================
+Q) What is the difference between extending Thread class and implementing Runnable interface, which is recommended ?
+==================================================================================================
+
+-> If we extend properties from Thread class then we can't extend properties from any other class because java doesn't support mulitple inheritence. (We are closing gate for Inheritence)
+
+-> If we implement Runnable interface then in future we can extend properties from any class based on requirement. (Our gate is open for inheritence)
+
+Note: Implementing Runnable interface is always recommended.
+
+=======================
+What is Thread Schedular
+=======================
+
+-> Thread Schedular is a program in the JVM which is responsible to schedule Threads execution and resources allocation  required for the thread.
+
+-> When we call start( ) method then Thread Schedular will start its operation.
+
+			1) Allocating Resources
+
+			2) Thread Scheduling
+
+			3) Thread Execution by calling run( ) method
+
+
+start()
+=========
+
+-> To start thread execution we will call start ( ) method
+
+			t.start ( )
+
+-> once start( ) method is called then Thread Schedular will come into picture to execute    our thread
+
+-> start ( ) method will call run ( ) method internally
+
+-> inside run ( ) method we will write the logic which should be executed by the thread.
+
+
+=======================================================
+Can we call run ( ) method directley without calling start ( ) method
+========================================================
+
+-> Yes, we can call run ( ) method directley but it will execute like a normal method (there is no use) by "main" thread.
+
+-> If we want to execute run ( ) method as a thread  method then we should call start ( )    method then internally it will call run ( ) 
+  (Thread Schedular will take care of thread execution)
+
+================================
+start( ) method  vs run( ) method
+================================
+
+Calling run() directly = You bake cookies yourself, blocking everything else until youre done with bake cookies.
+
+Calling start() = You hire a helper to bake cookies in their own kitchen while you do other tasks
+
+Example 
+--------
+
+```````````````````programme
+
+package com.gmr.java;
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() {
+
+		System.out.println("run() executed");
+		
+		System.out.println(Thread.currentThread().getName());
+	}
+
+	public static void main(String[] args) {
+
+		ThreadsExamp obj = new ThreadsExamp();
+
+		Thread t1 = new Thread(obj);
+		t1.start();				// with help of thread mtd
+		obj.run();       			// manually		
+	}
+
+}
+
+=> If we call start ( ) method then run ( ) method will be executed by our user defined thread (we can see thread name as Thread-0)
+
+=> if we call run ( ) method then run ( ) method will be executed by "main" thread (we can see thread name as main)
+
+======================
+What is Thread Life Cycle
+======================
+
+-> Thread Life cycle contains several phases of Thread execution
+
+1) New
+
+2) Runnable
+
+3) Running
+
+4) Blocked
+
+5) Terminated
+
+
+New: A thread begins its life cycle in the new state. Thread remains in the new state until we will call start ( ) method.
+
+Runnable : After calling start ( ) method, thread comes from new state to runnable state.
+
+Running : A thread comes to running state when Thread Schedular will pick up that thread for execution.
+
+Blocked  : A thread is in waiting state if it waits for another thread to complete its task.
+
+Terminated : A thread enters into terminated state once it completes its task.
+
+
+
+// Java Program on Thread Sleep
+
+Example
+=======
+
+package com.gmr.java;
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() { // runnig state
+
+		System.out.println("run() executed");
+
+		try {
+
+			Thread.sleep(4000); // Blocked state
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(Thread.currentThread().getName());
+		// terminated
+	}
+
+	public static void main(String[] args) {
+
+		ThreadsExamp obj = new ThreadsExamp();
+
+		Thread t1 = new Thread(obj); // new state
+		t1.start(); // runnable state
+
+	}
+
+}
+
+
+Note:
+-----
+
+Every thread in Java is assigned a priority, which is an integer value between 1 and 10:
+
+
+Constant		Value	Meaning
+-------------------------------------------------------------------
+Thread.MIN_PRIORITY	1	Lowest priority (least important)
+Thread.NORM_PRIORITY	5	Normal/default priority
+Thread.MAX_PRIORITY	10	Highest priority (most important)
+
+-> Java thread scheduler uses these values as a hint to decide which thread to run next
+-> but it doesn’t guarantee that higher-priority threads will always run before lower-priority ones.
+
+Real time example 
+-------------------
+
+-> A person with normal priority waits in line.
+
+-> A VIP (max priority) might be allowed to skip the queue.
+
+-> A casual visitor (min priority) waits longer.
+
+But if only one agent/doctor is available, and they’re busy, even a VIP has to wait. Thats like how the JVM handles scheduling 
+
+note ->  priority is a suggestion, not a rule.
+
+
+// Java program to start mutliple threads to perform same activity
+
+
+package com.gmr.java;
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() { // runnig state
+
+		System.out.println(Thread.currentThread().getName()+ " " + "-> Started");
+
+		try {
+
+			Thread.sleep(50000); // Blocked state
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(Thread.currentThread().getName()+ " " + "-> Ended");
+		// terminated
+	}
+
+	public static void main(String[] args) {
+
+	
+		Thread t1 = new Thread(new ThreadsExamp());
+		t1.setPriority(Thread.MAX_PRIORITY);		// range 10
+		t1.setName("1st Thread");
+			
+		Thread t2 = new Thread(new ThreadsExamp());
+		t2.setPriority(Thread.NORM_PRIORITY);		// range 5 
+		t2.setName("2nd Thread");
+		
+		Thread t3 = new Thread(new ThreadsExamp());
+		t3.setPriority(Thread.MIN_PRIORITY);		// range 1 
+		t3.setName("3rd Thread");
+		
+		t1.start(); 
+		t2.start();
+		t3.start();
+		
+	}
+
+}
+
+
+Note: We shouldn't start one thread more than one time.
+
+// Programe that give java.lang.IllegalThreadStateException while callign start() with common thread
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() { 
+
+	System.out.println(Thread.currentThread().getName()+ " " + "-> Ended");
+		
+	}
+
+	public static void main(String[] args) {
+
+		ThreadsExamp obj = new ThreadsExamp();
+
+		Thread t1 = new Thread(obj); 			
+		t1.start(); 
+		t1.start();
+
+	}
+
+Note -> If we try to start the thread more than one time we'll get an exception called java.lang.IllegalThreadStateException 
+
+------------------------------
+
+-> Interrupt the Thread fo causing Interupted Exception
+
+
+
+package com.gmr.java;
+
+public class ThreadsExamp implements Runnable {
+
+	public void run() { // runnig state
+
+		System.out.println(Thread.currentThread().getName()+ " " + "-> Started");
+
+		try {
+
+			Thread.sleep(50000); // Blocked state
+			System.out.println(Thread.currentThread().getName()+ " " + "-> Executed");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(Thread.currentThread().getName()+ " " + "-> Ended");
+		// terminated
+	}
+
+	public static void main(String[] args) {
+
+	
+		Thread t1 = new Thread(new ThreadsExamp());
+		t1.setPriority(Thread.MAX_PRIORITY);		// range 10
+		t1.setName("1st Thread");
+			
+		Thread t2 = new Thread(new ThreadsExamp());
+		t2.setPriority(Thread.NORM_PRIORITY);		// range 5 
+		t2.setName("2nd Thread");
+		
+		Thread t3 = new Thread(new ThreadsExamp());
+		t3.setPriority(Thread.MIN_PRIORITY);		// range 1 
+		t3.setName("3rd Thread");
+		
+		t1.start(); 
+		t2.start();
+		t3.start();
+		
+		try {
+			Thread.sleep(2000);
+		} catch(InterruptedException e ) {
+			System.out.println(e.getMessage());
+		}
+		
+		t1.interrupt();
+		
+	}
+
+}
+
+Functional Interface
+--------------------
+-> Its an important feature in one of the features in JAVA 8
+-> If the interface contains only one abstract method than it's called as Functional interface
+
+ public interface Demo {
+
+	public void m1();		// abstract method 
+
+}
+
+-> we can use @FunctionalInterface annotation to declare a interface
+-> If the interface with @FunctionalInterface declaration provide Compile time error when 
+   it contains more than one Abstract method.
+
+@FunctionalInterface 
+ public interface Demo {
+
+	public void m1();		// abstract method 
+	
+	public void m2();		// CTE compile time error
+
+}
+
+Note : 
+-> If a class implements any interface [which contains abstract methods] it should provide the    body or implementation for all the abstract methods present in interface 
+-> we can achive by using overriding the abstract methods from  Interface to implemented class
+
+abstract method 
+--------------
+-> The method it doesn't contains any implementation or body , it said to be Abstract method.
+
+	public void m1();
+-----------------------------------------------------------------------------------
+
+Callable interface
+===================
+
+-> Its a Functional Interface in java 
+-> It was introduced in java 1.5 
+-> it contains only one method, i.e's -> call()
+-> its available in java.concurent
+
+	public Object call();
+
+
+Difference between runnable and callable interfaces
+===================================================
+
+-> Runnable is a functional interface -> run()
+-> Callable is a functional interface -> call()
+
+-> Runnable interface introduced in -> 1.0 version
+-> Callable interface introduced in -> 1.5 version 
+
+-> Runnable interface available in -> Java.lang package
+-> Callable interface available in -> java.util.concurent
+
+-> The return type of run() is -> VOID [won't return anything]
+-> The return type of call() is -> Object type.
+
+
+Excecutor-Services :
+====================
+-> Executor - service is an Interface extends from Executor Interface.
+-> Executor service is like a Thread scheduler in the Thread class.
+-> All the interfaces and classes present in the package called "java.util.concurrent".
+-> It was introduced in the java 1.5 version 
+-> By using Executors class we can create threads in java classes
+-> by calling the static method newFixedThreadPool() 
+-> All create threads we are going to store in a ThreadPool
+-> We can reUse the Threads which are present/created in the thread pool
+   to perform any number of tasks.
+-> use Submit() method to start the thread execution , internally it calls the      call() method to    run our program
+-> to terminate the thread we can use shutDown().
+
+
+package com.gmr.java.threads;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Demo implements Callable{
+
+	@Override
+	public Object call() throws Exception {
+		
+	System.out.println(Thread.currentThread().getName() + "   ---------->>Train tickedbooked");
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		ExecutorService pool = Executors.newFixedThreadPool(2);
+		
+		for(int i= 1 ; i<=20 ; i++) {
+		pool.submit(d);
+		}	
+		pool.shutdown();
+	}
+}
+
+
+Note : 
+-------
+-> Print the return value of the call method.
+
+package com.gmr.java.threads;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class Demo implements Callable {
+
+	@Override
+	public Object call() throws Exception {
+
+	System.out.println(Thread.currentThread().getName() + "   ---------->>Train ticked booked");
+		return "Return type of call() method";
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+		Demo d = new Demo();
+		ExecutorService pool = Executors.newFixedThreadPool(2);
+
+		for (int i = 1; i <= 5; i++) {
+			Future submit = pool.submit(d);
+			System.out.println(submit.get().toString());
+
+		}
+
+		pool.shutdown();
+	}
+
+}
+
+--------------------------------------------------------------------------------------------
+Daemon Threads :
+================
+
+Types of Threads 
+-----------------
+
+1) Default Threads [given by the JVM -> main]
+2) User defined Threads 
+	-> extending Thread class
+	-> implementing 	
+		-> Runnable interface  or
+		-> Callable interface with Executor service
+3) Daemon Thread
+
+
+-> Thease Threads always run in the background , those threads we can call them as Daemon threads
+-> Example ->   Garbage collector 
+		-> Perform the clean up activities like removing the un-used objects..
+
+-> We can set a normal thread as a Daemon thread using a method called setDaemon();
+
+	Syntax ;   
+		
+		setDaemon(boolean);
+ 
+Example : 
+----------
+
+package com.gmr.java.threads;
+
+public class User implements Runnable {
+
+	@Override
+	public void run() {
+
+		if (Thread.currentThread().isDaemon()) {
+			System.out.println("run() method called by the DAEMON Thread");
+		} else {
+			System.out.println("run() methode called by NORMAL Thread");
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		Thread t = new Thread(new User());
+		t.setDaemon(true);
+		t.start();
+	}
+
+}
+
+Note : To check wether a Thread is Daemon or not we can use a method called isDaemon();
+	It will return true or false value.
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Generic Classes, Generic Methods, Type Wildcards, Built-in Annotations, Custom Annotations
+
+
+
+
+
+
+
+
+
