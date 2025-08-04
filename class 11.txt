@@ -1,0 +1,622 @@
+
+
+Synchronization
+-----------------
+
+Synchronized   ->  Thread Safe
+
+-> Only one can able to access the resource or object at a time
+
+Not Synchronized   -> Not a Thread Safe
+
+-> Multiple threads are accessing the common resource at a time is called as a not synchronized.
+
+Note:
+When multiple thread accessing a common object or resource at a time there is a chance of getting Data inconsistency.
+
+-> To avoid such condition we should go for the Synchronization
+
+-> we can achieve synchronization with the help of one key word called 
+   "synchronized".
+
+
+  public class TrianTickets implements Runnable{
+
+	int totalTickets  = 200;    //199 , 
+	
+	public void run(){
+		
+			//logic to book tickets
+		
+ 		--totalTickets;
+	};
+
+
+  psvm{
+
+		Thread t1 = new Thread(new Tickets());       // 199
+		Thread t2 = new Thread(new Tickets());		// 199
+  		t3 thread object;				//199
+		t4 thread object;				//199
+		t5 thread object;				//199
+		t6 thread object  				//198
+		t7 thread object 				// 199
+		t
+                 200 thread are available			--
+                
+	}
+}
+
+Ways to implement the Synchronization
+--------------------------------------
+
+there are 2 ways we can provide the synchronization
+
+1) in the block level
+2) in the method level
+
+1) Block level synchronization
+-------------------------------
+
+public void methodOne(){
+
+	synchronize(object obj){
+	}
+}
+
+2) Method level
+----------------
+
+public synchronized void methodTwo(){
+
+
+}
+
+Some examples for synchronized classes
+
+-> String -> is Immutable 
+
+-> We can make String as Mutable by using the following classes or approaches
+
+1) String Buffer class  -> Thread safe
+2) String Builder class-> Not a Thread safe
+
+
+How synchronization will work 
+----------------------------
+
+Example
+-------
+
+package com.demo.java;
+
+public class User implements Runnable {
+
+	@Override
+	public synchronized void run() {
+
+		for (int i = 1; i <= 10; i++) {
+			System.out.println(Thread.currentThread().getName() + "-----> " + i);
+
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		User u = new User();
+
+		// First Thread
+		Thread t1 = new Thread(u);
+		t1.setName("First Thread");
+		
+		// Second Thread
+		Thread t2 = new Thread(u);
+		t2.setName("Second Thread");
+		
+		//Third Thread
+		Thread t3 = new Thread(u);
+		t3.setName("Third Thread");
+		
+		t1.start();
+		t2.start();
+		t3.start();
+
+	}
+
+}
+
+
+Notes
+-----
+ 
+Case 1 : Without Synchronization
+--------------------------------
+
+-> All Threads can access a run() method at a time , when ever we are calling the  start() method for each and every thread
+
+-> while accessing a common resource at a time by multiple thread there might be a chance of getting data inconsistency in the future
+
+-> And we can observe the output how the multiple Threads accessing the common resource called "run()" logic.
+
+-> Its not a Thread safety.
+
+code exp;
+---------
+
+@Override
+	public void run() {   		// no synchronized
+
+		for (int i = 1; i <= 10; i++) {
+			System.out.println(Thread.currentThread().getName() + "-----> " + i);
+
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+output:
+-------
+
+Third Thread-----> 1
+Second Thread-----> 1
+First Thread-----> 1
+
+Second Thread-----> 2
+Third Thread-----> 2
+First Thread-----> 2
+
+Second Thread-----> 3
+First Thread-----> 3
+Third Thread-----> 3  .............and so on...
+
+
+ 
+Case 1 : With Synchronization
+------------------------------
+
+-> when we are using Synchronization in a method declaration , it wont allow all the thread to access a common resource at a time.
+
+-> we can see the output deference , how the Synchronizad key word providing the thread safety.
+
+-> It is allowing only one thread can able to access the resource at a time
+-> after completing first thread execution only the next thread sill start its 
+  execution.
+
+Code ex;
+----------
+@Override
+	public synchronized void run() {
+
+		for (int i = 1; i <= 3; i++) {
+			System.out.println(Thread.currentThread().getName() + "-----> " + i);
+
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+Output:
+--------
+First Thread-----> 1
+First Thread-----> 2
+First Thread-----> 3
+
+Second Thread-----> 1
+Second Thread-----> 2
+Second Thread-----> 3
+
+Third Thread-----> 1
+Third Thread-----> 2
+Third Thread-----> 3
+
+------------------------------------------------------------------------------
+
+
+
+Generics
+=========
+
+-> These are introduced in java 1.5
+-> By Using generics we can write Classes, variables or fields, methods and constructor which are independent of data.
+-> means all of these are not depends on what type data that we are giving or passing.
+
+Uses
+-----
+-> It provides Type safety  [when we are writing the they provide compilation errors].
+-> A class can access any Type of data with the use of generics
+-> Its not required to type caste the elements.
+
+
+Example:
+
+package com.demo.java.exp;
+
+public class Demo {
+	
+	int age;
+	
+	
+	public static void main(String[] args) {
+		
+		Demo demo = new Demo();
+		demo.age = 12;
+		demo.age= "rock";   // CTE because adding string in int
+		demo.age= 'H';	     // CTE , storing char into int
+		
+		System.out.println(demo.age);
+	}
+}
+
+Using Generic <T>  in the class and field level 
+
+
+package com.demo.java.exp;
+
+public class Demo<T> {
+	
+	T obj;
+	
+	
+	public static void main(String[] args) {
+		
+		Demo demo = new Demo();
+		
+		demo.obj = 78;
+		demo.obj = "jack";      // re-initialized with new String
+		demo.obj = true;	// re-initialized with Boolean value
+	
+		System.out.println(demo.obj);
+	}
+}
+
+
+Use Generic in method level 
+----------------------------
+
+package com.demo.java.exp;
+
+public class Demo<T> {
+	
+	
+	public void print(T a) {
+		
+		System.out.println("Argument recieved --> " + a);
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		
+		d.print(12);
+		d.print("Linda");     //String value
+		d.print('G');		// Character value
+		d.print(true);		//boolean
+		d.print(678.987);	//Double
+		d.print(987654141);	//Long
+		
+	}
+}
+
+
+Note:
+------
+We can give Generic type at class level or else the method level by ignoring the class generic declaration 
+
+public class Demo {				// removed <T> in class
+	
+	
+	public <T> void print(T a) {			// Method declaraion
+		
+		System.out.println("Argument recieved --> " + a);
+	}
+
+Generic type with Constructor
+-----------------------------
+
+Example1
+--------
+
+package com.demo.java.exp;
+
+public class Demo<T> {
+
+	Demo(T arg) {
+		System.out.println(arg);
+	}
+
+	public static void main(String[] args) {
+
+		Demo d = new Demo(567);
+		Demo d1 = new Demo("name");
+		Demo d2 = new Demo(false);
+
+	}
+}
+
+
+Example 2:
+-----------
+
+package com.demo.java.exp;
+
+public class Demo<T1, T2> {
+
+	T1 obj1;
+	T2 obj2;
+
+	Demo(T1 obj1, T2 obj2) {
+		this.obj1 = obj1;
+		this.obj2 = obj2;
+	}
+
+	public void print() {
+		System.out.println(obj1 + " & " + obj2);
+	}
+
+	public static void main(String[] args) {
+
+		Demo<Integer, Boolean> d1 = new Demo(12345, false);
+		d1.print();
+
+		Demo<String, Integer> d2 = new Demo("GMRIT", 9898);
+		d2.print();
+
+		Demo<Long, Character> d3 = new Demo(12345678, 'Z');
+		d3.print();
+	}
+}
+
+
+Note:
+-----
+
+-> Generics always accept Wrapper classes 
+-> They will not allow to store the values which are permetive type;
+-> So even if we try to add primitive types it will give compile time error.
+ 
+
+		Demo<Integer, Boolean> d1 = new Demo(12345, false);
+		d1.print();
+		
+		Demo<int, boolean> d2 = new Demo(12345, false);   // CT Error
+		d1.print();
+
+
+-> Example for Generic Type Array []
+-------------------------------------
+
+package com.demo.java.exp;
+
+public class Demo<T> {
+
+	public void print(T[] arr) {
+
+		for (T res : arr) {
+			System.out.print(res + " ");
+		}
+		System.out.println();
+
+	}
+
+	public static void main(String[] args) {
+
+		Integer[] a = { 1, 4, 7, 8, 45, 3 };
+		String[] s = { "one", "two", "three", "four" };
+		Character[] c = { 'A', '4', '*', '%', '$', 'd' };
+
+		Demo d = new Demo();
+		d.print(a);
+		d.print(s);
+		d.print(c);
+
+	}
+}
+
+Generics with Wild Cards:
+------------------------
+We can use wild cards with the generics when we don't know what type data in advance.
+
+use the symbol ->    ?     -> any type of data we don't know in advance
+
+-> use of Generic with extends
+
+Example
+--------
+->so here the generic type T is extending the properties from Number class
+->we are giving some restriction to the generic type T than can able to allow 
+Numbers only.
+
+<T extends Number>
+===================
+
+package com.demo.java.exp;
+
+public class Demo {
+
+	public <T extends Number> void print(T arg) {
+		System.out.println(arg.intValue());
+		System.out.println(arg.longValue());
+		System.out.println(arg.floatValue());
+		System.out.println(arg.doubleValue());
+
+	}
+
+	public static void main(String[] args) {
+
+		Demo d = new Demo();
+		d.print(2444.19999999999);
+
+	}
+}
+
+
+Output:
+--------
+
+2444			// int
+2444			//long
+2444.2			// float
+2444.19999999999	//double
+
+
+Example2:
+---------
+public class Demo {
+
+public <T extends String> void printString(T s) { 
+		System.out.println(s.toUpperCase());
+		System.out.println(s.length());
+	}
+
+	public static void main(String[] args) {
+
+		Demo d = new Demo();
+		d.printString("springboot");
+
+	}
+}
+
+Same above Exmaple with Static method 
+-------------------------------------
+
+
+package com.demo.java.exp;
+
+public class Demo {
+
+	public static <T extends String> void printString(T s) {
+		System.out.println(s.toUpperCase());
+		System.out.println(s.length());
+	}
+
+	public static void main(String[] args) {
+
+		Demo.printString("springboot");
+
+	}
+}
+
+
+Example: List type with Wild Card
+---------------------------------
+
+may be list can get the data of double type or integer type or any number type so there we can use Wild card  -   ? 
+
+Syntax :
+		
+class-> 	Demo<? extends Number>
+Interface-> 	List<? extends Number>	
+
+package com.demo.java.exp;
+
+import java.util.List;
+
+public class Demo {
+
+	public void Print(List<? extends Number> list) {
+		for (Number res : list) {
+			System.out.print(res + "  " );
+		}
+		System.out.println();
+	}
+	
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		
+		d.Print(List.of(1,2,3,4,6.8,8,9,78));
+		d.Print(List.of(12.23,9.456,9.11,789678.99));
+	}
+}
+
+
+InBuilt Annotations
+--------------------
+
+-> These are the annotations provided by the java to which are used to declare classes , interfaces , Methods , or fields.
+
+-> we can write or declare with the help of symbol ->    @
+
+
+@Override
+@FunctionalInterface
+@Interface
+@SuppresWarning
+@Documented
+@Target
+@Retention
+
+
+
+Custom Annotations
+------------------
+
+
+-> We can create our own annotations
+
+
+package com.demo.java;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface GMRIT_Annotation {
+	
+	
+}
+
+
+usage :
+@GMRIT_Annotation
+
+
+package com.demo.java;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Students_New_Annotation {
+	
+	
+}
+
+usage:
+
+@Students_New_Annotation
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
