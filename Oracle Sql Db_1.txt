@@ -1,0 +1,533 @@
+
+			  DATA BASE
+-------------------------------------------------------------------------------------
+Data, DataBase, DBMS
+
+Data :
+-----
+
+-> Its a small piece of information/ raw information /any unprocessed data.
+
+-> name - Kiran , age - 30 , city - Mumbai
+
+
+All small data combined to form as some useful Information
+
+-> Kiran is a employee & he is 30yrs old , living in Mumbai.
+
+
+Data Base
+---------
+
+-> A Place where we can store the group of data in Organized way
+-> Group of data storing some where is called Database
+
+Ex:
+
+Our Mobile -> small data base -> Contacts list
+
+-> stores -> Names  ,Numbers, Email address and etc...
+
+
+DBMS 
+----
+
+-> DBMS stands for Data Base Management System
+
+-> It is used to Manage the data which is present inside the data base.
+
+-> Its a Software to manage the data , we can easily perform adding , removing , modifying,   searching data.
+
+
+Ex : BookS Library -> it contains lot of  books and managed by the person 
+
+
+Softwares for Data bases
+--------------------------
+
+-> Oracle data base  -  oracle corpo
+-> My Sql data base  - oracle corp
+-> MongoDb   		- Mongodb
+-> SQl server data base	- Microsoft corp
+-> DB2 Data base -> IBM corph
+
+
+Types of Data bases Management Systems
+-------------------------------------
+
+There are 2 types available 
+
+1) RDBMS
+2) NRDBMS
+
+
+1) RDBMS / SQL data base
+--------------------------
+
+-> Relational - DBMS
+-> 
+	
+  -> If a person wants to communicate with another person they need a language 
+		-> English , Hindi, telugu ....
+
+  -> If a User wants to communicate with Data base management system / software
+     they need a language
+
+		->  Language -> SQL -> [ Structured Query Language].
+
+-> So we can call RDBMS as a SQL data base.
+
+-> By Using this language SQL we can communicate or work with any type of software       which comes under "RDBMS".
+
+-> In RDBMS all data managed in Relational forms so we are calling this as Relational data base management system
+
+-> All the data is stored or represented in the form Structure format or 2 dimentional format [rows & columns] 
+  
+   Structured -> Consists of ->  Tables , Columns , rows
+
+	
+			Tables -> Relations
+
+			Columns -> Fields  / Attributes
+		
+			Rows -> Tuples / Records
+
+->   customers  - > table
+
+ customer_id		customer_name		customer_city
+--------------		---------------		---------------
+	1		Hari			Hyderabad         -> Tuples / rec
+	2		Paul			Mumbai		  -> Tuples 	
+	3		Praveen			Annavaram
+
+
+Fields/ Attributes -> customer_id  , customer_name ,customer_city
+
+Examples -> Oracle , Sql server , MySQL...
+
+
+2) NRDBMS / No-Sql database
+----------------------------
+
+-> Non - RDBMS
+
+-> Non Relationsl means -> No tables
+
+-> It don't use any SQl language to store and maintain the data
+
+-> So we can call this as No - SQl Data base.
+
+-> It wont follow any Structure format [ Tables ] , and stores and maintains the data in several forms
+
+Ex :  -> It stores the data in the form of JSON format [Java script object notation]
+		->  ex for MongoDb
+
+      -> {
+	
+	"name"  : "Hari",
+	"city"  : "Hyderabad",
+	"occupation" : "software engineer"
+		
+	}
+
+	-> Cascandra -> key and value pairs
+	-> neo4j , GrpahQL -> Graphs data base
+	-> Hbase -> columns data base
+	 
+
+------------------------------------------------------------------------------------
+
+SQL 
+===
+-> Structured Query Language
+
+-> It is used to communicate with any type of RDBMS software.
+
+-> In this we can write some statements and able to run inside the database those statements called as "SQL Statements or Queries".
+
+-> The Queries can be anyform means it can be uppercase , lowercase because SQL is 
+  a case insensitive programming language.
+
+-> Its required to maintain semicolon  [ ; ] at the end of every statement
+
+-> At a time its possible to run only one query / statement
+
+-> If we want to run multiple statements or group of queries to perform any task base on the requirmenet than we can go for  PLSQL
+ 	
+	PLSQL -> Procedural Language SQL
+
+-> All the data will be stored or represented in the form of STRUCTED Format [Table] .
+
+
+
+->   customers  - > table
+
+ customer_id		customer_name		customer_city
+--------------		---------------		---------------
+	1		Hari			Hyderabad         -> Tuples / rec
+	2		Paul			Mumbai		  -> Tuples 	
+	3		Praveen			Annavaram
+
+
+Query 1:
+--------
+
+select * from customers;   		//we can get all data at a time
+
+output
+------
+
+customer_id		customer_name		customer_city
+--------------		---------------		---------------
+	1		Hari			Hyderabad         
+	2		Paul			Mumbai		 	
+	3		Praveen			Annavaram
+
+
+Query 2:
+--------
+
+select * from customers where customer_name='paul';
+
+
+output : 
+-------
+
+customer_id		customer_name		customer_city
+--------------		---------------		---------------
+	2		Paul			Mumbai	
+
+
+Query 3
+--------
+
+select customer_city from cusomers where cusotmer_id = 3;     // SQL Query
+
+Output:
+-------
+
+customer_id		customer_name		customer_city
+--------------		---------------		---------------
+	3		Praveen			Annavaram
+
+
+------------------------------------------------------------------------------------
+
+	
+Oracle data base
+----------------
+
+-> It is one of the software comes under RDBMS softwares.
+
+-> It use Structured format of data means tables format
+
+-> SQL is used to work with Oracle to manage and storing and for retrieval operations in this data base.
+
+-> There are 2 things are available
+
+ 	1) SQL 
+
+	2) PLSQL  
+
+-> PLSQL -> Procedural language SQL, used to run or execute the group of statements or queries.
+-> when we want to execute some logics in data base we can use Stored Procedures or Stored functions.
+
+-> The latest version of oracle is 23ai.
+
+-------------------------------------------------------------------------------
+
+
+Set up environment for the oracle data base
+-------------------------------------------
+
+-> Access the link and download the zip file "OracleXE112.zip" , so this version is light weight.
+	
+ https://www.mediafire.com/file/ungqk8ggwof4h1h/OracleXE112_Win64.zip/file
+
+-> AfterDownloading > Extract the zip file into any directory > 
+
+	right click > Extract All > select Location directory > click Next 
+	
+-> In the specified installed location directory we can see One folder > DISK1
+
+-> check for the file name -> "setup.exe" [Executable file].
+
+-> Run or double click the file -> setup.exe file 
+
+-> and give all permissions
+
+-> Next > Next > .......  now it ask you enter or Give the PASSWORD
+
+-> [Remember the password that you give]
+
+->Store Current installation Settings:
+
+Destination Folder: C:\oraclexe\
+Oracle Home: C:\oraclexe\app\oracle\product\11.2.0\server\
+Oracle Base:C:\oraclexe\
+Port for 'Oracle Database Listener': 1521
+Port for 'Oracle Services for Microsoft Transaction Server': 2030
+Port for 'Oracle HTTP Listener': 8080
+
+-> Now Click "Install" -> Button.  > After Installing > Click ->  Finish.
+
+
+--------------------------------------------------------------------------------
+
+Work with Oracle db;
+--------------------
+3 Approaches
+-------------
+1) SQL* plus CLI [Command line interface] 
+2) Web page - Get Started
+3) GUI -Graphical user interface
+
+
+1) Approach 1 -> Run SQL Command Line  [] 
+-------------------------------------
+
+-> Windows -> Search for -> "SQL" -> you can find the file > "Run SQL Command Line"
+
+-> After opening cmd prompt of Run Sql command -> 
+
+-> Give the command as -> connect
+
+-> give the user name as -> system
+
+-> give the password -> Its not visible to us while typing > click Enter
+
+-> we will get a statement of -> Connected
+
+
+cmd> 	SQL> connect
+	Enter user-name: system
+	Enter password:  			// we cant see password
+	Connected.
+
+-> To see the current user of the db
+
+  > give command as -> show user
+	
+cmd> 	SQL> show user
+	USER is "SYSTEM"
+
+-> Oracle db contains some inbuilt tables to see all the tables present use the below command
+
+cmd>  select * from all_users;
+
+-> To Erase or to Clear entire screen , use the following command 
+
+cmd>   cl scr      -> To clear the screen
+
+-> To close the connection or to close the data base connection use the below command
+
+cmd> exit
+
+
+
+2) Approach 2 -> Using Web Page
+--------------------------------
+
+-> At the time of installation by default a file with the name of "Get Started" will create on the desktop.
+
+-> Run or open that file -> It enrouted to Oracle web page
+
+-> There you can find multiple options 
+	
+	Home, Storage , sessions, Parameters, Application Express
+
+-> In This to create or to use any existing data bases we can use Application Express option 
+
+-> After click on that option it ask us to provide username and password
+
+-> After Log in ->>> again it will ask you to create WORK SPACE or Use Existing Work space
+
+->  User name -> $$$$$$$$$
+->  Express user name -> $$$$$$$
+-> password -> *************
+-> confirm password -> ***********
+
+-> It creates a new work space with the above given credentials
+
+-> Successfully created workspace "name". To begin, click here to login.
+
+-> Now log in into WorkSpace dashboard with newly created username and password.
+
+-> Go to SQL WorkShop option >>> and there we can see options like 
+
+	1) Object Browser
+	2) SQL Commands
+
+-> 1) Object Browser
+
+ -> It Contains all the inBuilt tables information in the data base
+ -> In the dropdown -> Tables -> able to find all the tables information
+ -> Ex : 
+
+	EMP table
+	DEPT table
+	DEMO CUSTOMERS table
+	DEMO USERS table
+
+-> APex$ -> related tables contains only structure they dont contain any dummy data
+-> apart from these tables remaining tables contains with some dummy data.
+
+-> 2) SQL Commands
+  
+  -> This is the place where exactly we write SQL queries / statements 
+     and able to run .
+
+select * FROM EMP;
+select * from dept;
+
+
+Note :
+
+-> by using web page approach if user already having the work space credentials 
+-> Right of side home page of oracle you can find the Getting started option 
+-> there you can enter your existing credentials to open existing work space.
+
+
+3) Approach 3 
+--------------
+-> We can communicate the data base with the help of GUI [Graphical user interface].
+
+->  To work with GUI we should download a tool called "Oracle sql developer"
+
+step1:
+-----
+->  go to the following site and download the required Oracle sql developer zip 
+   file based on your system configuration.
+
+https://www.oracle.com/in/database/sqldeveloper/technologies/download/
+
+step2:
+-----
+-> Extract the zip file in any directory location.
+
+-> After extract go to the file >> sqldeveloper >> sqldeveloper.exe
+
+-> Now run this executable file & right click pin to task bar.
+
+Creating Connections
+---------------------
+
+-> After opening user can see a ui page contains Connections and reports at the left side of that page
+
+-> Create a New Connection
+---------------------------
+-> Click on + [Plus icon] -> give Name of a connection > give User name & password > keep hostname & port numb & SID as same.
+
+-> To check wether the user is present by doing validation with the TEST button
+
+  -> If the user details are correct ->   Status --- Success
+  -> If the user details are incorrect -> 
+
+	Status -> Status : Failure -Test failed: ORA-01017: invalid username/password; logon denied
+https://docs.oracle.com/error-help/db/ora-01017/
+
+-> To create Work sheet -> work sheet is for writing our SQL queries
+   
+	Right click on Connection > Open SQL work sheet
+
+-> Toggle Line numbers -> To show the numbers for each and every query or line
+
+-> To Close the connection -> 
+
+	Right click -> DisConnect
+-> for there few options for Re-connect options to refresh and re-connect data base
+
+
+1st Connection
+--------------
+
+-> Connection name : DBA-Connection
+
+	username : system
+	
+	password : oracle
+
+	port num/ local host -> same only
+	
+	test > create connection.
+	
+2nd Connection   [Existing connection -> already created by using web page]
+----------------
+
+-> Connection name -> users-connection
+	
+	username : username // your username
+	
+	password : oracle // your own password
+
+	remaining all are same
+	
+	test -> create connection.
+
+Note 
+=====
+
+-> we can connect multiple schemas or the connection at a time.
+-> when user wants to retrieve the data by using existing table as a Query value 
+   we should maintain case original sensitive format
+
+	select * from emp where job='MANAGER';   // it will work 
+
+	select * from emp where job='manager';   // it won't work 
+	
+	* because -> in table MANAGER is in Uppercase letters
+
+-> Always use single quotes [ ' ' ]to compare the values 
+   if we use  [ " " ] , the query wont run and give error.
+
+-> for the numbers its not required to enclose the value inside single quotes
+
+	select ENAME, JOB from EMP where empno = 7521;	  // work
+
+-> Its an optional to use Single quotes for the number values
+	 
+	select ENAME, JOB from EMP where empno = '7521';   // work
+
+------------------------------------------------------------------------------------
+	
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
