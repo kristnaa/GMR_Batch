@@ -1,0 +1,584 @@
+
+					Today session -2 
+---------------------------------------------------------------------------------------------------
+
+-> Data base / user / workspace -> all are same
+
+
+-> Always to create new work space / user / data base it can be possible with the DBA ACCOUNT only 
+	ex : system , manager , ..
+
+-> we can connect with any user initially while using CLI approach.
+
+-> but to work with Web page -> Initially its mandatory to log in with DBA account.
+
+Oracle Accounts
+================
+
+1) DBA ACCOUNT -> Data base Administrator account . ex ; system.
+   
+	-> we login into this DBA ACCOUT by using all interactive / communicative approaches
+
+2) Created multiple users / data bases using web page approach 
+
+	user 1
+	-------
+       -> username : krishna
+	  password : oracle 
+
+	user 2
+	------
+	-> username : murari
+	   password : oracle
+
+3) Lets create User  /data base by using CLI -> SQL* Plus
+
+	-> to create a new data base/ user use the following statement
+
+  step 1
+  ------
+
+	command>   -> create user user_name identified by password;
+
+-> identified by means , what ever the user which we creating that can be login/ or    accessed or     
+	identified by the given password.
+
+Commands & response
+ -----------------
+	SQL> create user raju identified by oracle;
+
+	User created.
+
+
+ step 2
+ ------
+
+	-> As a Administrator he has to give grant or permissions to access the resources in the data base.
+	
+	Resources : Tables , views , indexes, packages, procedures, functions , operators....
+
+Commands & response
+ ------------------
+
+     SQL> grant resource, connect to raju;
+
+     Grant succeeded.
+
+
+NOTE :
+======
+-> To Create or delate any user / data base it possible with the DBA account only.
+	
+	
+to delete or to drop the data base use the following command
+	
+Commands & response
+ -----------------
+
+	SQL> drop user batman cascade;
+
+		User dropped.
+
+
+------------------------------------------------------------------------------------------------
+
+SQL Commands :
+=============
+
+There are 5 types of SQL commands/statements are there
+
+1) DDL 
+
+-> Data definition language 
+-> It deals with data creation/ modifications/...of the data in data base
+-> Commands > Create, alter, drop , truncate
+
+2) DML
+
+-> Data Manipulation Language
+-> It deals with the data base objects by performing Manipulations like inserting, updating..
+-> Commands > insert, delete, update
+
+3) DRL
+
+-> Data Retrieval Language 
+-> It deals with the retrieval or rendering the data from the data base objects.
+-> Commands> select
+
+4) DCL
+-> Data Control Language
+-> It deals with giving and revoking the permissions
+-> Commands> grant/ revoke.
+
+5) TCL 
+-> Transactional control language
+-> It deals with the data transaction in the data base
+-> Commands> Commit/rollback/savepoint.
+
+
+Data base Objects
+=================
+
+-> We can create data base objects with the help of DDL commands 
+
+-> ex : Tables, procedures, scripts ....
+
+-> Create a data base object by using DDL command. -> Create
+
+
+Student data
+-------------
+
+Table -> Students_data
+	
+Fields/Attributes/ Columns names 
+	
+		-> Student_Id,   --> always Number
+		-> Student_Name , --> Varchar(size)
+		-> Student_age ,  --> always Number
+
+Note:
+-----
+-> To create data base object we are using DDL command - create
+-> To store or to insert some data into the data base object we can use DML command - insert
+-> To get or to retrieve the data we use the DRL command - select
+	
+Create student table 
+=====================
+Command Syntax:
+
+cmd> create table <table_name> (colmn_name1  typeOfColumn, colmn_name2  typeOfColumn, .... );
+
+
+SQL command
+-> SQL> create table students_data (student_id  Number, student_name varchar(30), student_age Number);
+
+insert student data
+=====================
+
+Command syntax
+
+1) cmd> insert into <table_name > (colmn_name1 	, colmn_name2  , .... ) values (value1, value2..);
+	
+2) cmd> insert into <table_name> values (value1, value2..);
+
+3) cmd> insert into <table_name> values(&colmn_name1 	, &colmn_name2  , .... );
+
+4) cmd> writing the command in multiples lines until and unless complete the command followed by semicolon ";";
+
+
+
+Command 1: use case
+
+-> SQL> insert into students_data (student_id, student_name, student_age) values(1,'Rakesh', 20);
+-> SQL> insert into students_data (student_id, student_name, student_age) values(2, 'anusha', 25);
+
+Command 2: use case
+
+-> SQL> insert into students_data values(3, 'mahesh', 25);
+-> SQL> insert into students_data values(4, 'manisha', 29);
+
+Command 3: use case
+
+-> SQL> insert into students_data values(&student_id, &student_name, &student_age);
+Enter value for student_id: 6
+Enter value for student_name: 'anuska'
+Enter value for student_age: 45
+
+Command 4: use case
+
+SQL> insert into
+  2  students_data
+  3  values
+  4  (
+  5  8,
+  6  'remo',
+  7  34
+  8  )
+  9  ;
+
+1 row created.
+
+Retrieve Student data 
+=======================
+
+-> Using the DRL command -> select 
+
+Syntax : select * from <table_name>
+
+cmd> 	select * from students_data;
+
+
+response:
+
+STUDENT_ID STUDENT_NAME                   STUDENT_AGE
+---------- ------------------------------ -----------
+         1 Rakesh                                  20
+         2 anusha                                  25
+         3 mahesh                                  25
+         4 manisha                                 29
+         5 prabhas                                 47
+         6 anuska                                  45
+         7 chiru                                   56
+         8 remo                                    34
+
+8 rows selected.
+
+
+------------------------------------------------------------------------------------------------
+
+Alter 
+-----
+-> example to modify the table column type 
+
+	alter table <table_name> modify column_name tyepe<new>
+
+
+Notes for commands:
+--------------------
+
+SQL> cl scr
+     clear screen
+
+	-> To clear or remove or erase the data in the CLI screen.
+
+SQL> conn username/password
+     connect username/password
+
+SQL> desc students_data  
+	
+	-> for describe table structure
+
+SQL> select table_name from user_tables;
+
+Note -> In SQL * plus / Run SQL Command line interface its not possible to access multiple data bases or multiples users at a time
+
+     -> In Web page approach also -> we need to maintain multiple windows to interact or work with 
+the multiple data bases.
+
+     ->  GUI / Oracle sql developer -> Its possible to connect and work with multiple data bases or users at a time.
+
+
+------------------------------------------------------------------------------------------------
+
+Naming Conventions
+===================
+
+-> As a programmer we should follow some standard while writing the code or commands or statements
+
+-> We have some Naming conventions to write queries in data base same like other programming languages.
+
+->	a-z
+	A-Z
+	0-9
+	$
+	_
+	#
+	@
+
+-> These are group of characters we can use while writing statements or commands.
+
+Rules
+------
+-> Do not start with the number
+-> No symbol is allowed to start the identifier [data base objects] declaration.
+-> Always use Alphabets to write the statements
+-> Write multiple words separated by underscore "_"
+
+How to Modify the data in the tables
+====================================
+
+-> By using DML statements -> update statement we can modify the existing data in the tables based on the conditions.
+
+-> Conditions means -> It tell weather user wants to update/modify all records of data or only particular record of data.
+
+->  If you ignore or omit the where condition than all records of date is going to modify or update.
+
+Example 1:
+========
+SQL command to update the students details without where condition
+
+
+Syntex:
+-------
+
+	update <table_name> set <columnName = value>
+
+use case
+--------
+	-> SQL> update students_data set student_age = 50;
+
+	8 rows updated.
+
+
+Example 2:
+========
+Update the table data based on the condition by using where 
+
+-> update student name to "jack" where the id = 5;
+
+
+Command
+--------
+
+SQL> update students_data set student_name = 'jack' where student_id = 5;
+
+1 row updated.
+
+
+Example 3:
+-------
+update the student_age to 37 where name is jack.
+
+command
+--------
+SQL> update students_data set student_age = 37 where student_name = 'jack';
+
+1 row updated.
+
+Example 4:
+--------
+
+update age to 77 where give 2 conditions name is chiru and id is 7
+
+command -> 
+
+SQL> update students_data set student_age = 77 where student_id = 7 and student_name = 'chiru';
+
+1 row updated.
+
+Example 5:
+-------
+
+update name and age where id is 2
+
+
+Command
+-------
+
+SQL> update students_data set student_name = 'shivagami' , student_age = 85 where student_id = 2;
+
+1 row updated.
+
+Note :
+------
+-> In this table only we can see only one row is updated, because we are having one unique data with that particular condition
+
+-> but in real time so many records will update based on the condition we are giving when if table contains duplicate values 
+
+-> It is highly recommended to update the records with the help of Id only or else ID with some other attributes or fields.
+
+-> because Id is always unique.
+
+note:
+	
+	set  -> to modify the particular column data
+	where -> condition we are giving to validate the query 
+
+How to remove data from the data base tables
+=============================================
+
+-> By using DML statements -> delete statements we can remove the data from the tables based on the condition.
+
+-> Conditions means -> It tell weather user wants to delete all records of data or only particular record of data.
+
+->  If you ignore or omit the where condition than all records of date is going to removed or deleted.
+
+
+Example 1:
+-------
+
+Remove data from the table without giving where condition 
+
+-> In this case if we don't use where condition entire table data will be removed or deleted.
+
+syntax :
+
+	delete from <table_name>;
+
+-> The entire data will get removed from the table.
+-> data means only values present inthe table not the entire table structure.
+
+Command -> SQL> delete from students_data;
+
+	8 rows deleted.
+
+Example 2:
+---------
+
+delete the data or record based one condition i.e's where id is 8
+
+command
+-------
+
+	SQL> delete from students_data where student_id = 8;
+
+	1 row deleted.
+
+Example 3:
+---------
+
+delete data based on the 2 conditions 
+
+command
+-------
+
+SQL> delete from students_data where student_name = 'chiru' and student_age = 56;
+
+1 row deleted.
+
+Example 4:
+-----------
+
+delete the records with common name present in table data
+
+command:
+--------
+
+SQL> delete from students_data where student_name = 'mahesh';
+
+2 rows deleted.
+
+Example 5:
+----------
+
+delete multiple rows of data by using multiple where conditions with "or" 
+-> here and is not work 
+
+command
+-------
+
+-> with ID'S
+
+SQL> delete from students data where student_id = 8 or student_id = 6 or student_id = 7;
+
+3 rows deleted;
+
+-> with Names
+
+SQL> delete from students_data where student_name = 'Rakesh' or student_name = 'anusha';
+
+2 rows deleted.
+---------------------------------------------------------------------------------
+
+Data types :
+===========
+
+-> To define the variable name what type of data it can accept
+
+-> following are the different types of data in oracle sql
+
+
+1) Number
+=========
+
+-> It is used To store the numerical values 
+-> It can hold or store both whole numbers and decimal numbers as well.
+ 	
+	whole numbers : 10, 20,50, 67, 789, 900, 23000;
+
+	Decimal numbers : 3.45 , 5.66, 9.9, 77.8,  999.99
+
+    -> Number(size):
+   ===================
+	
+	-> we can give size for the numbers at the time of creating the tables.
+
+	Ex : Number(5)   
+	
+	->  12345
+	->  89003
+
+    -> Number(precision , scale):
+    ============================
+	
+	-> To hold the floating points of decimal values we can give the sizes   		for the both decimal and floating values.
+	-> used to store the decimal values for examples in real time analogy to 	store Student percentages , BANK intereset amounts , interest 	percentages , Employee salary or any Amounts in banking related.
+
+	Ex : Number(3,2)
+	
+	-> 233.22
+	-> 45.78
+	-> 111.44
+	
+	Ex: Number(5,4)
+	
+	-> 58788.78
+	-> 78999.7777
+
+Char
+=====
+
+-> Character is a data type used to store any values in the form of character
+-> we can give any size while defining the char(size).
+-> The max size of char we can give as 2000
+
+	char(size)
+	----------
+
+	Ex : char(1) 
+		
+ 	-> 'A' 
+	-> 'Y'
+	
+	Ex: Char(5)
+	
+	-> 'Apple'
+	-> 'mango'
+
+
+Varchar / Varchar2 (size)
+==========================
+-> Varchar is given by SQl
+-> Varchar2 is given by Oracle
+
+-> the maximum limit we can pass as 4000
+
+Note: String type in other languages
+
+date
+=====
+
+-> By using this date data type we can pass the date related values into the 
+   table columns 
+
+ 	Ex : dateOfBirth   date
+
+		-> '20-May-2025'
+		-> '15-7-2024'
+
+timestamp
+=========
+
+-> By using this we can give get the date and the time values by giving a sysdate as a value to the variable with timestamp type
+
+Note: clob , blob ....
+
+
+--------------------------------------------------------------------------------
+
+-> Create a new table with the above data types >>>>>
+
+cmd> 
+
+	SQL> create table employee (
+		id number(3)  ,
+		name varchar(30), 
+		gender char(1) ,
+		percentage number(3,2), 
+		dob date, 
+		createdon timestamp);
+
+response
+--------
+Table created.
+
+
+-> Insert data into the above table
+
+cmd>   SQL> insert into employee values (107, 'rani', 'F', 8.5, '25-dec-2025', 	sysdate);
+
+1 row created.
+
+
+--------------------------------------------------------------------------------s
