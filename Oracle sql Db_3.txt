@@ -1,0 +1,591 @@
+Today session 07-08-2025
+------------------------
+
+
+
+Last session
+------------
+Oracle accounts -> DBA ,  multiple user accounts created using 
+			
+			  SQL * plus CLI, Web page , GUI - Oracle sql developer
+
+Creating Users/Data base/Work bench- using CLI
+
+DML Commands -> Insert , update and delete 
+
+DDL Commands -> Create command
+
+Naming conventions
+
+Data Types  - Oracle SQL
+		
+		Number(size) 
+		Char(size)
+		Varchar(size) 
+		date
+		timestamp
+		
+-> clob -> Charaters large object - which is extension of Varchar -> 1GB to 4GB
+-> blob ->Binary large object -Which is used to store files,Audios,Videos.etc->1GB to 4GB
+-> Bfile -> Binary Files - To store external files -> -> 1GB to 4GB.
+
+----------------------------------------------------------------------------------------
+
+Today's topics
+----------------
+
+Working with DDL Commanads 
+==========================
+
+DDL -> Data definition language
+
+->Always It deals with the Data base structure of data base objects -> Tables , views, indexes , Procedures, Functions,......
+
+-> Commands/Statements used in DDL are
+	
+	Create 
+	Alter
+	Drop
+	Truncate
+	Rename
+	flashback
+======
+Create 
+======
+
+-> By using this Create statement we can can create any type of data base object.
+
+-> syntax :
+	
+	create table <name> (column1 type1, column2 type2, ......);
+
+-> cmd>   
+		create table Customers (
+			id int primary key  , 
+			name varchar(30), 
+			gender char(10), 
+			dept varchar(20)
+			); 
+
+primary key -> to maintain a unique key or value for that particular column 
+	    -> It dont allow duplicate keys or values into that column.
+
+Note -> Ctrl + Enter   -> these keys are used to run the command 
+
+
+`````````````To create user / db in Oracle Sql :
+
+> create user name identified by password 
+
+> grant resource, connect to user
+
+> connect username/password
+
+```````````````To get all the tables information in Oracle sql
+
+> select * from tab;
+
+`````````````My sql -> from Microsoft Commands
+
+>  show databases ;
+> create database db_name;
+> use db_name;
+> show tables;   -> To get the all tables present in the current data base
+
+
+======
+Alter
+======
+-> Its DDL command used to work with the data base object structure.
+-> By using this Alter statement we can Add, remove , modify the data base object structures.
+
+  	-> Used to add the columns in the table structure
+	-> To remove the columns we can use this Alter statement
+	-> Used to Rename the Columns or tables in the data base	
+	-> We can modify the types of the columns at any time when ever we want.
+
+```How to add New columns in Existing table ?
+---------------------------------------------
+ -> By using this ALTER and ADD statemets we can add one or more number of columns in the existing table.
+
+systax :   
+		
+->	Alter table <tableName> add Column type;
+
+->	Alter table <tableName> add (Column1 type1, Column2 type2, ......);
+
+Usecase:    (Alter - add) 
+--------
+
+1) adding only one column 
+
+cmd>	alter table employee add state varchar(15);
+
+2) adding more than one column (>1)
+
+cmd>	alter table employee add (city varchar(15), pincode int4);
+
+
+Notes:
+------
+-> Its Not possible to create new columns at the required position inside the table structure.
+-> The Newly created Columns will always gets created at the End of the Existing columns.
+
+
+```How to remove Existing columns in Existing table ?
+-----------------------------------------------------
+
+-> By Usinng Alter and drop commands we can remove the or delete the Columns permanently from the data base tables.
+
+Syntax :
+
+	Alter table <Table_name> drop Column_name;
+
+	Alter table <Table_name> drop (Column_name1, Column_name2);
+
+UseCase :	(Alter - drop ) 
+
+	alter table employee drop state;
+
+	Alter table employee drop (state, pincode);
+
+```How to Rename the Columns in the existing table structure
+-------------------------------------------------------------
+
+-> By Using Alter with rename we can change or modify the Names of the columns and name of the table in the existing table.
+
+Syntax :
+
+-> to change columns names
+
+	Alter table <Table_name> rename column Old_Column_name to New_Column_name;
+
+-> to change table name
+	
+	Alter table <Table_name> rename to <New_table_name>
+	
+Usecase :  (Alter - rename - to)
+--------
+
+cmd1>	alter table employee rename column city to state;
+	
+cmd2>   alter table employee rename column pincode to address;
+
+cmd3> 	alter table employee rename to emp;
+
+
+````How to change or Modify the columns data types
+--------------------------------------------------
+-> By using Alter & Modify we can change or modify the data types of the Columns or Fields or attributes in the data base tables
+
+Syntax:
+
+	Alter table <Table_name> Modify Column1 New_type1;
+		
+	Alter table <Table_name> Modify (Column1 New_type1, Column2 NewType2,..);
+
+UseCase:	(Alter - modify )
+
+	alter table employee modify state varchar(35);
+		
+	alter table employee modify (state varchar(15),dept varchar(30));
+
+--------------------------------------------------------------------------------
+
+Notes :
+
+Orale and MySql differenaces of executing the statements:
+
+-> The All queries above mention which is going to work for Oracle SQL
+   only few cases some scenarions are not able to run inthe MySQl
+
+-> Alter with drop and modify -> for Multipl columns always work in oracle DB.
+
+---------------------------------------------------------------------------------
+
+========
+Truncate
+========
+	
+-> By Using this DDL Truncate commad/ statement we can remove or delete all rows of data Permanently from an existing table at a time.
+
+-> As of now All DDL commands -> Create , Drop , Alter , Rename always focus on the 
+   Data base object or table Structure only .
+
+-> This Truncate focus on the entire data / all roecords of the table.
+
+Sysntax:
+-------
+
+	Truncate table <Table_name>
+
+Command>: 
+-------
+	
+	select * from student;
+
+Result : The complete rows or data is deleted permanently.
+
+Note : It delete only data not the Table or Table structure.
+
+
+---------------------------------------------------------------------------------
+
+=====
+drop
+=====
+
+-> By using this DDL Commad -> Drop -> we can delete the entire Table structure.
+-> Even though if the data present or not.
+
+Syntax:
+-------
+
+	Drop table <table_name>
+
+Command>
+--------
+
+	drop table student;
+
+result:  Entire table structe along data will  get delete
+
+-> If you try to retrive the data from the student table, you will get the following error.
+
+Error ->  select * from student
+ LIMIT 0, 1000	Error Code: 1146. Table 'gmrit.student' doesn't exist	0.000 sec.
+
+---------------------------------------------------------------------------------
+
+============
+recyclebin ?
+============
+
+-> Its the location where all deleted Tables by the Drop statements or command.
+
+-> We can retrieve the table which are deleted paremanently from the database.
+
+-> To Retrive all the tables from the recyclebin use the following command.
+
+Command>
+
+	Select * from recyclebin;
+
+
+Note : This will not work for MySql data base. Only work for oracle db.
+
+-> To Re-Store the tables which are present in the recyclebin use the following command.
+
+=========
+flashback
+=========
+-> By using this command or statement we can re store the required tables.
+
+
+Syntax:
+ 	
+	flashback table <Table_name> to before drop;
+
+Command:
+
+	flashback table student to before drop;
+
+---------------------------------------------------------------------------------
+
+Important points 
+------------------
+
+DDL -> All DDL commands bydefault they  will perform -> Auto Commit
+	
+	Create 
+	Alter
+	Drop
+	Truncate
+	Rename
+	
+DML -> insert , delete , update commands by default these will not perform -> Auto commit
+
+Note : 
+
+-> That is the reason we cannot perform rollback function on the operations performed by DDL commands.
+-> But we can rollback the changes of data which perfomed by the DML commands.
+
+
+Q) What is the difference between Drop , Delete  &  Truncate
+
+ 1) Truncate  [DDL]
+  ------------------
+
+  -> It deletes all the rows  ** Pemanently    >> Not delete the Table
+	
+  -> No Manual Commit is required
+
+ 2) Delete  [DML]
+ -----------------
+
+  -> It deletes all the rows or only selected rows , Not Permanantly.	  >> Not delete the Table
+   
+   -> Additionally need to use Commit;
+
+
+  3) Drop  [DDL] 
+  ---------------
+
+   -> It delete Comlete TABLE Structure .  Permanently.
+   
+
+-----------------------------------------------------------------------------------------------
+==========================
+Working with DML Commanads 
+==========================
+
+-> Data Manipulation languages 
+-> it delas with Actual data of the tables or data base objects -> Commnads -> insert , delete and update.
+
+Note : refer previous class notes for ur refera
+
+---------------------------------------------------------------------------------------------------
+
+===============================
+Working with DRL/DQL Commanads 
+===============================
+
+-> Data retrieval Language commands or Data Query Language Commands.
+-> It Deals with the retrievel of the data from the data base.
+-> Commands -> select
+
+Systax:
+
+>	select * from <Table_name>
+>	select * from <Table_name> where <Conditions> 
+
+Commnads 
+
+> select * from employee;  
+> select * from employee where id = 4;
+
+-> Selection 
+=============
+
+-> It means to Retrive the data from the data base tables Completely or Partially based on the given condition .
+
+-> We can use * for selecting Complete data
+
+-> we can use WHERE condition for retriving only Partial data.
+
+Systax 1:
+
+	-> select * from <Table_name>;
+
+	Command:
+
+	 -> select * from employee; 
+
+Systex 2:
+	
+	-> Select * from <Table_name> where <Condition> 
+
+	Command: 
+
+	Select * from employee where id  = 5;
+	
+``````````  here symbol * [star] represents all the Columns from the data base table
+
+-> Projection 
+==============
+	
+->It Used to Retrive the Some Particular data Only from the data base tables.
+
+-> In this we cant use * Symbol and we need to use only Particular Column names from the tables
+	
+Systax 1:
+
+	-> select columnName1 from <Table_name>;
+
+	Command:
+
+	 -> select name from employee; 
+	
+
+Systax 2:
+
+	-> select columnName1 , columnName2 ,...  from <Table_name>;
+
+	Command:
+
+	-> select name, gender from employee; 
+
+	 -> select name, gender , dept  from employee; 
+
+Output
+======
+
+name   gender   dept
+----	-----	-----
+rakeh	male	java
+mukesh	male	python
+manasa	female	python
+shekar	male	dotnet
+
+Note:
+-----
+In Projections we are not going to use the  * Symbols;
+
+
+-----------------------------------------------------------------------------------------------
+
+==========================
+Working with DCL Commands
+==========================
+
+DCL -> Data Controll language commads
+
+-> It is used by DBA account to Give/Grant and revoking the permission from the User/ Data base.
+
+-> Commnads -> 
+	
+	Grant , 
+	Revoke
+
+```` Create a table using DBA account
+
+	command -> Create user <User_name> identified by <Password>
+
+	
+	Username : javaDeveloper_one
+	password : oracle1234
+	
+  1) Grant :
+  ----------
+
+-> Grant command/ statement used to give all permissions to the created user/ data base.
+
+Syntax:
+
+	Grant resource , Connecto to <user_name>;
+	
+Command:
+
+	Grant resource , connect to javaDeveloper_one;
+
+ 
+  2) Revoke : 
+  ----------- 
+ 
+-> This Revoke command/ statement used to TakeOut all the permissions from the user/ data base.
+
+Sysntax:
+	
+	Revoke resource , from <User_name>;
+
+Commmand:
+
+	Revoke resource , from javaDeveloper_one;
+
+==========================
+Workign with TCL commnads
+==========================
+
+-> Transaction controll language commands
+
+-> It deals with the Transactions made by the programmer to the database.
+
+-> Commands are -> 
+	
+	commit;
+	rollback;
+	savepoint;
+
+-> Transaction
+===============
+
+-> When a User performs any operation with the help of DML commands [ insert , delete , update ] to the data base objects we can call it a Transaction.
+
+-> Session / Transactions 
+==========================
+
+-> Session means its an amout time given to the user to perform some activities or Transactions.
+
+-> The User form Log in to the Log out , what ever the operations performed by him , we call it as 
+   Transactions.
+
+
+1) Commit 
+===========
+-> By using this command/ statement we can save the data permanenlty into the data base after performing any transaction.
+
+-> It is Mandatory to save the data by running this command manually when we are dealing with 
+   DML commnads . because of  DML commands dont perform Auto Commit.
+
+ Command:
+	    Commit;
+
+
+2) rollback
+=============
+
+-> By Using this Roll back command we can getback all the changes or transaction made by the user to the bata base objects Before Commit.
+
+-> If you once commit any transaction its not possible to revert back those changes again with the help of rollback command.
+
+Command : 
+
+	rollback;
+
+3) savepoint
+=============
+
+-> It is used to Save some Transactions under a name.
+
+Systanx :
+
+	Savepoint <savepoint_name>;
+
+Command: 
+	
+	savepoint insertsavepoint;
+
+Example : 
+---------
+
+-> User 	
+	
+	created >>> Table 
+
+	
+	inserted(2) -> savepoint insertSavePoint  -->>>  insert(2) transactions stored in insertSavePoint 
+	
+	updated (2) -> savepoint updateSavepoint  -->>> update(2) transactions stored in updateSavepoint  
+
+-> User
+
+	-> I want to do commmit ->  insert(2) , updated(2) transactions will stored into database.
+
+
+  	-> I want to do rollback ->    insert(2) , updated(2) transactions will  discarded from the database.
+
+	
+	-> Now Rollback only with one Savepoint
+
+	Commad>  rollback to insertSavePoint  >> only insert(2) transactions discarded from the data base.
+			
+	Command> rollback to updateSavepoint  >> only update(2) transactions discarded from the data base.
+
+
+-> Commmit; 		-> No data is there so nothing is going to be saved into the data base.
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+
+	
+
+	
+
+
+
+	
+
+
+
