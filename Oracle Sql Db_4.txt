@@ -1,0 +1,455 @@
+
+Today session - 8/8/2025
+-------------------------
+
+========
+Order by:
+======== 
+
+-> What ever the present inside of the table it should not follow any particular or specified order .
+
+-> It follows only the way we are inserting followed by the Primary key columns
+
+-> If we want to retrieve the data in some specific order we can use the ORDER BY clause in the Relation data bases along with asc / desc.
+
+-> By default If we Retrieve the data Only with the help of Order by , It retrieve is Ascending order.
+
+-> If the user wants to retrieve the in descending order, need to mention "desc" along the Order by.
+
+-> We can use Order by clause for the Columns of the table to retrieve complete data or partial data based on the condition.
+
+Syntax:
+-------
+
+  Select * from <table_name> order by <Column_name > ASC/DESC;
+
+Command:
+-------
+
+select student_name from students_data order by student_name ASC;
+
+
+Examples:
+=========
+
+Q) Retrieve the name_columns in ascending order using name_column?
+
+-> select student_name from students_data order by student_name ASC;
+
+
+Q) Retrieve name_column , age_column in descending order using name_column?
+
+-> select student_name , student_age from students_data order by student_name desc;
+
+
+Q) Retrieve Complete data in descending order using name ?
+
+-> select * from students_data order by student_name desc;
+
+Q) Retrive Complete data in Descending order with some condition age is 25	?
+
+->  SELECT * FROM students_data where student_age = 25 order by student_name desc;
+
+
+
+================================
+Null [ is null & is not null ]  :
+================================
+
+-> Its a special type of element in the data base system, used to represent the missing information of the table  data.
+
+-> Special type means its not a type of any data type in SQL like number , varchar , date , timestamp ,....and not a value also.
+-> Types of Null elements we can use to perform retrieval transaction.
+
+	1) is Null
+
+	2) is not Null
+
+
+-> is Null :
+ -----------
+
+-> Used to check if there is any Null elements are present in side database tables.
+
+-> By using this we can retrieve the data which are Null.
+
+Syntax : 
+
+-> select * from <table_name>  where <column_name> is null;
+
+Example:
+--------
+
+-> SELECT * FROM students_data where student_name is null;
+
+-> SELECT * FROM students_data where student_age is null;
+
+
+-> is not Null :
+ ---------------
+
+-> Used to retrieve the data which is not null in any specific column.
+
+Syntax : 
+
+-> select * from <table_name>  where <column_name> is not null;
+
+Command:
+
+-> SELECT * FROM students_data where student_name is not null;
+
+
+------------------------------------------------------------------------------------
+
+============
+Alias usages
+============
+
+-> Its a duplicate name or for the data base object like tables , columns , expressions...
+
+-> To provide brief information about the data base object we can use this alias with the tables , columns , expressions.
+
+
+Usecases :
+----------
+		1) Column level
+		2) Table level
+		3) Expression level
+
+-> Columns with alias
+ ---------------------
+
+-> we can give alternative name or duplicate names for particular or all columns in  a data base table
+
+-> While retrieving data it renders the data with new name given to the columns 
+
+Example 1: 
+
+	select student_name as "class_student_name" from students_data;
+
+ 
+output :
+
+class_student_name
+------------------
+rakesh
+anusha
+mahesh
+manisha
+prabhas
+anuska
+ram
+
+Example 2: 
+
+	select student_name "class_student_name" from students_data;
+
+// removed "as" from the above command
+
+// same response we will get as above.
+
+Exmaple 3:  
+
+	select student_name class_student_name from students_data;
+
+// removed ""  String format from the above command
+
+// same response we will get as above.
+
+
+Exmaple 4 :
+
+-> Alias with multiple columns
+
+Command>
+
+ select student_name as "class_student_name" , student_age newAge ,student_id "new_Id" from students_data;
+
+
+Output 
+------
+
+class_student_name     newAge      new_Id
+
+rakesh			20	1
+anusha			25	2
+mahesh			25	3
+manisha			29	4
+prabhas			47	5
+anuska			45	6
+ram			56	7
+(null)			34	8
+
+
+Alias with table
+------------------
+-> Giving alias names for the table level and using that alias as a reference for the columns as well.
+
+Examples:
+---------
+
+select * from students_data;		// without alias to the table 
+
+select * from students_data s;       // using alias name for table i.e,, s
+
+select s.student_name from students_data s;  // using alias name to get column name
+
+select s.* from students_data s;     //  using table alias name with *
+
+select data.student_name from students_data s;
+	
+````````ERROR -> Invalid data.student_name   is a Invalid identifier.
+
+select s.student_name , s.student_age from students_data s;  // uniag alias to access multiple columns.
+
+Alias with expression level 
+---------------------------
+
+We can use alias along with expression while retrieving the columns data.
+
+Example:
+
+Cmd> select student_name , student_age , student_age*5 "Amount" from students_data;
+
+Cmd> select student_name , student_id, student_id*15 "Code" from students_data;
+	
+
+------------------------------------------------------------------------------------
+
+
+Session terminations :
+---------------------
+
+Termination of our data base or user or work space.
+
+
+There are 2 Types of termination.
+
+1) Normal termination
+2) Abnormal termination
+
+
+1) Normal termination -> 
+
+	-> User should use the below statements or commands to terminate the database
+
+		"Exit"  or "Quit"
+
+ -> In this normal termination all the transactions or the changes made by the user will be Auto saved.
+
+
+2) Abnormal Termination -> 
+S
+	-> possibilities of this case are like ' sudden closing the data bases, shout downs , power offs, ...
+ -> The transactions or changes made by the users will not be auto saved.
+
+
+------------------------------------------------------------------------------------
+
+=============
+Constraints:
+=============
+
+-> Constraints are nothing but the rules which we can give to the columns of the tables along with Data types at the time of creating the data base object [tables].
+
+-> With the use of Constraints it ensures the Accuracy and improves the readability of the table structure and the data.
+
+-> there are 6 types of Constraints are available.
+
+ 	1) unique
+
+	2) not null
+
+	3) check
+	
+	4) default
+
+	5) Primary key
+
+	6) foreign key
+
+1) Unique
+-----------
+
+-> By using this 'Unique' constraint we can able to add some restriction to the table column which do not allows the duplicate values means the same type values while inserting data.
+
+-> The columns declared with Unique , Always accept or allows Null elements.
+
+ Syntax : 
+
+	Student_id <Data_type>  Unique
+
+ Example :
+
+	Student_id  Number unique
+
+2) Not Null 
+------------
+ 
+-> By using this Not null constraint it will not allow the missing information OR Empty values in any columns while inserting data into the table.
+
+-> It always allow duplicate values 
+
+Example :
+
+
+	Student_name Varchar(20) not null
+
+
+3) Check 
+---------
+
+-> With the help of check constraint we can add some restriction to the particular columns by checking what type of values being inserted to the table before.
+
+-> use case 1:
+
+	->check with in 
+	
+Cmd> 	Company_name varchar(20) check ( Company_name in ('TCS' , 'WIPRO'))
+
+
+-> use case 2:
+
+	-> check between
+
+Cmd>   Company_profit  varchar(20) check between 100000 and 1000000;
+
+
+
+5) Default:
+------------
+
+-> We can use this default to assign the default values to the tables when there is no value provided/given explicitly by any programmer or user...
+
+-> for missing information null is going to represent the empty columns but now this default  constraint is assigning some default data or values 
+
+Example :
+
+	Amout_trsfd Number default 0
+
+	Created_date timestamp default sysdate
+
+
+6) Primary key :
+ ============== 
+
+-> This Primary key is a Combination of 2 constraints [Unique & not null].
+
+-> It should not allow Duplicate values and Null elements for missing values
+
+-> Every table must and should contain only One Primary key.
+
+-> We can declare or create Primary key columns in 2 scenarios 
+
+	1) Column level
+	2) table level
+
+  	a) Column level
+    	--------------
+
+	Syntax :
+
+	create table <table_name> (
+
+		column1 type1 Primary key,      // Column level 
+		column2 type2 datatype, 
+		column3 type3 datatype,
+		column4 type4 datatype
+
+		);
+
+	b) Table level
+	---------------
+		
+	create table <table_name> (
+
+		column1 type1,
+		column2 type2,
+		column3 type3,
+		column4 type4,
+	
+		constraint <constraint_name > Primary key <Column_name>
+		
+		);
+
+
+Example for all above Constraints :
+-----------------------------------
+
+Create table Student with all above constraints
+
+
+Commad to create the STUDENT table>
+
+	
+CREATE TABLE STUDENT (
+
+        ID NUMBER PRIMARY KEY,
+        NAME VARCHAR(20) NOT NULL,
+        COURSE VARCHAR(15) CHECK (COURSE IN ('java', 'python','dotnet', 'angular', 'react')),
+        FEES VARCHAR(10) CHECK (FEES BETWEEN 10000 AND 20000),
+        CONTACT NUMBER(15) UNIQUE,
+        JOINEDON TIMESTAMP DEFAULT SYSDATE
+        );
+
+
+Multiple records adding or inserting into the STUDENT table:
+-------------------------------------------------------------
+
+INSERT INTO STUDENT values(01, 'mallesh','java', 12000, 9191919191, sysdate);
+INSERT INTO STUDENT values(02, 'mallesh','java', 12000, 9191919192, '');
+INSERT INTO STUDENT values(03, 'naresh','python', 10000, 9191919193, sysdate);
+INSERT INTO STUDENT values(04, 'harish','java', 12000, 9191919194, sysdate);
+INSERT INTO STUDENT values(05, 'mahesh','dotnet', 19000, 9191919195, sysdate);
+INSERT INTO STUDENT values(06, 'satish','angular', 12000, 9191919196, sysdate);
+INSERT INTO STUDENT values(07, 'mukesh','python', 17000, 9191919197, sysdate);
+INSERT INTO STUDENT values(08, 'suresh','java', 19000, 9191919198, sysdate);
+INSERT INTO STUDENT (id, name, course, fees, contact) values(09, 'ramesh','react', 12000, 9191919199);
+INSERT INTO STUDENT (id, name, course,contact) values(10, 'ramesh','react', 9191919188);
+
+
+------------------------------------------------------------------------------------------------------
+
+============
+Foreign key
+============
+
+-> To establish the parent and child relation between the tables
+
+-> A table can have multiple foreign keys
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
