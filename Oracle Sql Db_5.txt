@@ -1,0 +1,285 @@
+				Today session 
+				11/8/2025
+----------------------------------------------------------------------------
+
+Primary key - Table level  :
+----------------------------
+
+-> We can assign a primary key constraint at the table level with or with out Constraint declaration.
+
+-> create table organisation (
+            id number primary key,			// column level
+            name varchar(10)	
+            );
+
+-> Assigning Primary key for the column - without user Constraint 
+
+	create table organisation (
+            id number,
+            name varchar(10),
+            
+            primary key(id)				// table level
+
+            );
+
+-> Assigning Primary key for the column - With user Constraint 
+
+
+Syntax : 
+
+	constraint <constraint_name>  Primary key <column_name>
+
+Query / command:
+
+
+	   create table organisation (
+               id number,
+               name varchar(10),
+                
+               constraint id_pk primary key(id)     // PK with user constraint
+
+                );
+
+Note :
+-------
+
+-> Our system will generate a unique or a separate name or id for the pre defined constraints in the data base
+
+	EX: 
+
+ORA-00001: unique constraint (MURARI.SYS_C007190) violated
+
+here SYS_C007190 -> is the system generate name for Primary key.
+
+	Ex-> primary key(id);
+
+	here Constraint name for Primary key is -> SYS_C007190
+
+
+-> We can give our own name for any Constraint in data base
+
+
+	Ex-> constraint id_pk primary key(id);
+
+	here Constraint name for Primary key is -> id_pk
+
+
+SQL commands 
+------------
+
+`````````To remove the constraint name for the existing table
+
+cmd> 	alter table student drop CONSTRAINT contact_is_unique;
+
+
+`````````To Add the constraint name for the existing table
+
+Cmd1>	alter table student Add CONSTRAINT contact_is_unique  Primary key (emp_id) ;
+
+Cmd2> 	alter table student add CONSTRAINT contact_is_unique UNIQUE(contact);
+
+
+``````````To Add the Primary key for the existing table
+
+Cmd>   Alter table Student Add primary key ( Column_name);
+
+
+``````````Command to check all constraints for particular data base/ schema/ user/ work space
+
+Cmd> 	select * from user_constraints;
+
+-------------------------------------------------------------------------------------
+
+
+Foreign key:
+============
+
+-> Foreign key constraint used to establish the Parent and Child relation between Data base tables.
+
+-> We can define Multiple foreign key's in a data base tables.
+
+-> In Real time there are multiple tables establish their parent and child relations with the help of Foreign key only.
+
+->  The Table which contains Only Primary key columns we can call it as Parent table.
+
+-> The table which refers the Primary key column from another table is called as Child table.
+-> So here this CHILD table refer the Parent table Primary key column with the help of FOREIGN KEY.
+
+Example :
+---------
+
+-> A Parent table contains Companies information.
+
+-> A Child table contains Products information.
+
+Note : Making parent and child relation between the above two tables using foreign key 
+
+Create 2 Tables:
+---------------
+
+
+1st TABLE -> company_details
+-----------------------------
+
+Cmd>
+
+	create table company_details (
+                company_code varchar(10),
+                company_name VARCHAR(20) not null,
+                country varchar(15) UNIQUE not NULL,
+                
+                CONSTRAINT comp_code_pk primary key (company_code)   
+		);
+
+Output :
+
+	Table COMPANY_DETAILS created.
+
+
+2nd TABLE -> product_details :
+------------------------------
+
+Cmd>
+
+	create table product_details (
+    
+            pro_id Number Primary key,
+            pro_name varchar(15) not null,
+            pro_price number not null,
+            pro_warrenty varchar(15),
+            Manufacture_year DATE,
+            company_code varchar(10),
+            
+            CONSTRAINT comp_code_fk foreign key (company_code)
+            REFERENCES company_details(company_code)
+);
+
+
+output:
+-------
+
+Table PRODUCT_DETAILS created.
+
+
+
+
+Insert queries for company table
+=================================
+
+Cmd>
+
+insert into company_details values('coo1','samsung', 'korea');
+insert into company_details values('coo2','apple', 'america');
+insert into company_details values('coo3','infinix', 'india');
+
+
+
+Parent table -> Company details Output
+----------------------------------------
+
+Company_code		Company_name    Country
+===========		===========	========
+
+coo1			samsung		korea
+coo2			apple		america
+coo3			infinix		india
+
+
+Insert queries for product table
+=================================
+
+insert into product_details values (1, 'mobile', 20000 , '2 years', '12-jan-2023' , 'coo1');
+insert into product_details values (2, 'laptop', 56000 , '2 years', '13-jan-2023' , 'coo2');
+insert into product_details values (3, 'mobile', 25000 , '2 years', '12-jan-2023' , 'coo1');
+insert into product_details values (4, 'tab', 18000 , '2 years', '19-jan-2023' , 'coo3');
+insert into product_details values (5, 'desktop', 8000 , '2 years', '12-mar-2023' , 'coo1');
+insert into product_details values (6, 'keyboard', 2000 , '2 years', '12-dec-2023' , 'coo2');
+insert into product_details values (7, 'desktop', 9000 , '2 years', '12-dec-2023' , 'coo3');
+
+
+Output:
+========
+
+pro_id		pro_name  	pro_price 	pro_warrenty 	Manufacture_yea 	company_code
+
+
+1		mobile		20000		2 years		12-JAN-23		coo1
+2		laptop		56000		2 years		13-JAN-23		coo2
+3		mobile		25000		2 years		12-JAN-23		coo1
+4		tab		18000		2 years		19-JAN-23		coo3
+5		desktop		8000		2 years		12-MAR-23		coo1
+6		keyboard	2000		2 years		12-DEC-23		coo2
+7		desktop		9000		2 years		12-DEC-23		coo3
+
+
+Error causing insert query
+==========================
+
+
+insert into product_details values (8, 'desktop', 9000 , '2 years', '12-dec-2023' , 'coo4');
+ 
+
+Error:
+-----
+
+
+Error starting at line : 44 in command -
+insert into product_details values (8, 'desktop', 9000 , '2 years', '12-dec-2023' , 'coo4')
+Error report -
+ORA-02291: integrity constraint (MURARI.COMP_CODE_FK) violated - parent key not found
+
+
+Note : The Child Foreign key column always accepts the prima key columns values from the parent table only.
+
+Some queries
+==============
+
+Q) How to add foreign key for the existing table
+
+Cmd> 
+
+alter table product_details add CONSTRAINT comp_code_fk foreign key (company_code)
+            REFERENCES company_details(company_code);
+
+Q) Add two foreign keys in existing table
+
+Cmd>
+
+-> alter table product_details add CONSTRAINT comp_code_fk foreign key (column1 , column2 )
+            REFERENCES company_details(column1 , column2code);
+
+-> alter table product_details add check ( pro_price  between 4567 and 78788);
+
+-> alter table product_details add Primar key (column_1);
+
+-> alter table product_details add Constraint Table_1_pk Primar key (column_1);
+
+Q) Drop constraint from the existing table
+
+-->> alter table product_details Drop  CONSTRAINT comp_code_fk;
+
+Q) Enable constraint from the existing table
+
+-->> alter table product_details Enable  CONSTRAINT comp_code_fk;
+
+
+Q) Disable constraint from the existing table
+
+-->>    alter table product_details disable CONSTRAINT comp_code_fk;
+
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
