@@ -1,0 +1,563 @@
+
+			JOINS
+------------------------------------------------------------------------------------
+
+-> As of now we discussed establish the connection between multiple tables with the help of foreign key.
+
+-> Joins are used to retrieve the data from the one or multiple data bases tables.
+
+-> Basically we can extract the data from Multiple tables based on the COMMON Column between the multiple tables.
+
+-> Its not possible to Retrieve data from multiple tables if there is No Common column.
+
+-> So To Extract data from multiple tables we can Use Join commands to Joining the multiple tables
+
+-> JOIN or JOINING Tables means ->  A Primary key column from one table AND Foreign key column form another table.
+
+Types of Joins 
+==============
+
+1) Inner Join
+
+2) Left / Left Outer Join
+
+3) Right / Right Outer Join
+
+4) Full Outer Join
+
+5) Cross Join
+
+6) Self Join
+
+7) Natural Join
+
+
+=====> Create table Departments  , Managers , Employees 
+
+-> Departments contains -> all the departments names information
+
+-> Managers -> Managers information along with their respective department
+
+-> Employee tables -> Employee information along with Managers and departments
+
+
+Department table ->  
+
+	Department No [Primary key]
+
+	Department Name 
+
+Manager table -> 
+
+	Manager No [ Primary key ]
+
+	Manager name
+
+	Department No [ Foreign key ]
+
+Employee table ->
+
+	Employee No  [ Primary key ]
+
+	Employee Name 
+
+	Employee Salary 
+
+	Department No  [ Foreign key ]
+
+	Manager No   [ Foreign Key ]
+
+
+-> Create department_details
+-----------------------------
+
+create table department_details (
+
+        dept_id varchar(5),
+        dept_name varchar(20),
+        
+        CONSTRAINT dept_id_pk primary key (dept_id)
+);
+
+
+response - Table DEPARTMENT_DETAILS created.
+
+
+-> Create managers_details
+--------------------------
+
+
+create table managers_details (
+        
+        manager_id varchar(5) primary key,
+        manager_name varchar(20),
+        dept_id varchar(5),
+        
+        CONSTRAINT dept_id_fk FOREIGN KEY (dept_id)
+        REFERENCES department_details (dept_id)
+);
+
+response -> Table MANAGERS_DETAILS created.
+
+
+-> Create employee_details
+-----------------------------
+
+
+note :
+======
+
+-> A Foreign key always refers 
+
+	1) A Primary key column in the parent table
+	2) A Unique key column in the parent table
+
+
+-> Scenario 1 for Foreign Key's -> 2 Foreign keys referring primary keys from 2 different tables
+    ------------------------------------------------------------------------------------------
+
+Cmd>
+
+	create table employee_details (
+
+        emp_id varchar(5) PRIMARY key,
+        emp_name varchar(20),
+        emp_salary number,
+        
+        dept_id varchar(5),
+        manager_id varchar(5),
+
+        
+        CONSTRAINT emp_details_fk FOREIGN KEY (dept_id)
+        REFERENCES department_details (dept_id),
+        
+        CONSTRAINT emp_details_fk FOREIGN KEY ( manager_id)
+        REFERENCES managers_details (manager_id)
+);
+
+Noet : 	
+
+-> We can add n number of foreign keys in a one table.
+
+-> But we cannot add more than one primary key for one table.
+
+
+-> Scenario 2 for Foreign Key's -> 2 Foreign keys referring  Only 1 table.
+    ----------------------------------------------------------------------
+
+create table employee_details (
+
+        emp_id varchar(5) PRIMARY key,
+        emp_name varchar(20),
+        emp_salary number,
+        
+        dept_id varchar(5),
+        manager_id varchar(5),
+        
+        CONSTRAINT emp_details_fk FOREIGN KEY (dept_id, manager_id)
+        REFERENCES managers_details (dept_id, manager_id)  
+);
+
+
+Important note :
+
+->If you want to refer 2 foreign keys from the same parent table, then you need to make those 2   columns as a unique constraints explicitly.
+-> even though one column is already primary key.
+
+Cmd>  -> alter table managers_details  add unique (dept_id,manager_id);
+
+-------------------------------------------------------------------------------------------
+
+Inner Join / EQUI Join :
+=======================
+
+-> Inner join used to get the Matched rows data from the left and right hand side table.
+
+-> To retrieve Common data between the 2 tables.
+
+-> Inner Join giving equal priority for both Left & Right side tables.
+
+
+Commands>
+=========
+
+// Legacy old approach to retrive a common data between 2 tables. 
+
+->  select * from department_details d , managers_details m where d.dept_id = m.dept_id; 
+
+
+// Above query with the WHERE Clause
+
+-> 	select m.manager_id,m.manager_name, d.dept_name  
+	from department_details d , managers_details m 
+	where d.dept_id = m.dept_id and d.dept_name = 'admin';  
+
+--out put -> m1	venkat	admin
+
+
+
+// Latest approach by using Join explicitly
+
+-> When ever you are going to use the key word called "JOIN" , we need to use "On" statement while writing the query.
+
+->   ex 1: 
+
+	----- after "on "  2 condition separated by and key word
+
+
+Cmd>    select m.manager_id,m.manager_name, d.dept_name  
+	from department_details d join managers_details m 
+	on d.dept_id = m.dept_id and d.dept_name = 'admin'; 
+
+
+->    ex 2:
+
+	----- after "on" equating columns "where" condition
+
+Cmd> 	select m.manager_id,m.manager_name, d.dept_name  
+	from department_details d join managers_details m 
+	on d.dept_id = m.dept_id where d.dept_name = 'admin';
+
+
+// Latest approach by using Inner Join explicitly
+
+Cmd>
+
+	    select m.manager_id,m.manager_name, d.dept_name  
+      	    from department_details d inner join managers_details m 
+            on d.dept_id = m.dept_id where d.dept_name = 'admin'; 
+
+
+
+Cmd> To retrieve complete columns data from 2 tables
+
+	select *
+    	from department_details d inner join managers_details m 
+    	on d.dept_id = m.dept_id where d.dept_name = 'admin'; 
+
+Cmd>  Query without any condition
+
+      	select *
+    	from department_details d inner join managers_details m 
+    	on d.dept_id = m.dept_id; 
+
+Left Join / Left Outer Join 
+============================
+
+-> Left Join give the more priority to Left side table only.
+
+-> It give the complete rows information from Left side table and 
+	Only Matched rows information from the right side table
+
+-> It performs 
+		
+	 Inner join  +  Additional records or rows from the Left side Table.
+
+-> left join also called as Left Outer join.
+
+
+Command>
+--------
+
+left join
+----------
+    select *
+    from department_details d left join managers_details m 
+    on d.dept_id = m.dept_id order by d.dept_id;
+
+left outer join 
+---------------
+
+    select *
+    from department_details d left outer join managers_details m 
+    on d.dept_id = m.dept_id order by d.dept_id;
+
+
+right join / right outer join
+==============================
+
+-> Right Join give the more priority to Right side table only.
+
+-> It give the complete rows information from Right side table and 
+	Only Matched rows information from the left side table
+
+-> It performs 
+		
+	 Inner join  +  Additional records or rows from the Right side Table.
+
+-> Right join also called as Right Outer join.
+
+Command>
+---------
+
+Right join -> 
+	
+	select *
+    	from department_details d right join managers_details m 
+    	on d.dept_id = m.dept_id order by d.dept_id; 
+
+
+Right outer join ->
+
+    select *
+    from department_details d right  join managers_details m 
+    on d.dept_id = m.dept_id order by d.dept_id; 
+
+
+Full join / Full outer join :
+----------------------------
+
+-> Full join also called as Full outer join 
+
+-> It is used to get ALL the information form Left side table and Right side table.
+
+-> It performs 
+	
+	Inner Join   +  Left Outer join  +  Right Outer join
+
+Command >
+---------
+
+-> Using department table and manager table
+
+
+full join 
+
+    select *
+    from department_details d full join managers_details m 
+    on d.dept_id = m.dept_id order by d.dept_id; 
+
+full outer join
+
+    select *
+    from department_details d full outer join managers_details m 
+    on d.dept_id = m.dept_id order by d.dept_id; 
+
+
+
+-> Using department table and employee table
+
+Cmd>
+
+    select * from department_details d join employee_details e on 
+    d.dept_id = e.dept_id order by d.dept_id; 
+
+
+	
+Cross join
+==========
+
+-> It used to retrieve the data from the multiple tables by using CROSS joining
+
+-> It combines all columns information while retrieving 
+
+-> Cross join means -> Each row in the first table is going to map with every row in the next table. 
+
+Ex ->  
+
+	Left side table contains -> 7 rows
+
+	Right side table contains -> 8 rows
+
+ here it gives total 7 * 8 -> 56 rows combinations
+
+
+Cmd >
+
+-> Without using Cross join 
+
+
+	 select * from department_details d, managers_details m; 
+
+
+-> With Using Cross join
+
+	 select * from department_details d cross join managers_details m;
+
+
+Notes >
+
+-> Cross join work for the tables maintaining common columns on both tables.
+-> means table are in relation of parent and the child with the help of foreign key [ common column]
+
+   select * from department_details d cross join managers_details m;
+
+department_details   -> Parent
+
+managers_details     -> Child
+	
+
+or 
+
+-> Cross join work for even though if there's no common columns present in both the tables
+
+	  select * from department_details d cross join students_data m;
+
+-> There is no Parent and Child relation among the above two tables.
+
+
+Natural Join :
+==============
+
+-> Natural join is used to retrieve or get the data from multiple tables even though if we not equating the common columns of the data base tables
+
+-> It will equate the Common columns by checking both the table whether if there any common columns present or not.
+
+->  * If We don't have any common columns between the database tables oracle engine will perform cartesian product (cross join)
+
+Examls ->
+
+
+select * from employee_details e natural join managers_details m;
+
+
+Self join  :
+============
+
+ A self join is a join in which a table is joined with itself.
+
+* To join a table itself means that each row of the table is combined with itself and with every other row of the table.
+
+* The table appears twice in the FROM clause and is followed by table aliases that qualify column names in the join condition.
+
+* The self join can be viewed as a join of two copies of the same table. The table is not actually copied, but SQL performs     the command as though it were.
+
+* To perform a self join, Oracle Database combines and returns rows of the table that satisfy the join condition.
+
+Ex:
+-----
+
+select e.emp_name, m.manager_name
+as "Manager of the Employee" from employee_details e inner join managers_details m 
+on e.manager_id = m.manager_id;
+
+babu	venkat
+mohan	rahul
+hari	krishna
+giri	rocky
+
+Ex: 
+
+select e.emp_name || ' working under Mr. ' || m.manager_name
+as "Manager of the Employee" from employee_details e inner join managers_details m 
+on e.manager_id = m.manager_id;
+
+
+
+output
+------
+babu working under Mr. venkat
+mohan working under Mr. rahul
+hari working under Mr. krishna
+giri working under Mr. rocky
+
+
+Note :
+========
+
+In real time the most used joins are inner , right , left , full join .
+
+-------------------
+
+
+Clauses :
+---------
+
+
+from
+
+order by 
+
+where
+
+having
+
+group by
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Used Commands:
+==============
+
+create table department_details (
+
+        dept_id varchar(5),
+        dept_name varchar(20),
+        
+        CONSTRAINT dept_id_pk primary key (dept_id)
+);
+
+select * from department_details;
+
+insert into department_details values('d1', 'admin');
+insert into department_details values('d2', 'accounts');
+insert into department_details values('d3', 'finance');
+insert into department_details values('d4', 'hr');
+
+insert into department_details values('d5', 'placements');
+insert into department_details values('d6', 'maitanance');
+insert into department_details values('d7', 'food');
+
+
+create table managers_details (
+        
+        manager_id varchar(5) primary key,
+        manager_name varchar(20),
+        dept_id varchar(5),
+        
+        CONSTRAINT dept_id_fk FOREIGN KEY (dept_id)
+        REFERENCES department_details (dept_id)
+);
+
+alter table managers_details  add unique (dept_id,manager_id);
+
+select * from managers_details;
+
+insert into managers_details values('m1', 'venkat', 'd1');
+insert into managers_details values('m2', 'venkat', 'd2');
+insert into managers_details values('m3', 'venkat', 'd3');
+insert into managers_details values('m4', 'venkat', 'd4');
+
+insert into managers_details values('m5', 'chandu', NULL);
+insert into managers_details values('m6', 'bindhu', Null);
+insert into managers_details values('m7', 'bandhu', Null);
+insert into managers_details values('m8', 'karthik', Null);
+
+update managers_details set manager_name = 'rocky' where manager_id = 'm4';
+
+
+create table employee_details (
+
+        emp_id varchar(5) PRIMARY key,
+        emp_name varchar(20),
+        emp_salary number,
+        
+        dept_id varchar(5),
+        manager_id varchar(5),
+        
+        CONSTRAINT emp_details_fk FOREIGN KEY (dept_id, manager_id)
+        REFERENCES managers_details (dept_id, manager_id)  
+);
+
+select * from employee_details;
+
+insert into employee_details values ('e1', 'babu' , 25000, 'd1' , 'm1');
+insert into employee_details values ('e2', 'mohan' , 25000, 'd2' , 'm2');
+insert into employee_details values ('e3', 'hari' , 25000, 'd3' , 'm3');
+insert into employee_details values ('e4', 'giri' , 25000, 'd4' , 'm4');
+
+--department_details
+--managers_details
+--employee_details
+
+select * from department_details d , managers_details m where d.dept_id = m.dept_id); 
+
+
+
+
+
+
+
