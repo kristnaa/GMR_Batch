@@ -1,0 +1,590 @@
+					Today Session
+					13/08/2025
+------------------------------------------------------------------------------------------------------
+
+====================
+Aggregate functions :  
+====================
+
+-> Aggregate functions can also called as multi row functions.
+
+-> These functions can perform some operations or calculations on entire table information & give a single output value as a result.
+
+Types of Aggregate functions 
+
+		-> min()
+
+		-> max()
+
+		-> sum()
+		
+		-> avg()
+
+		-> count() 
+============
+-> min():
+============
+
+-> min() -> minimum function , it is used to find the minimum value from the particular column in a given table 
+
+Ex: min( column_name )
+
+	select min(sal) from emp;   // sal -> numeric values   // output -> 10
+
+	select min(job) from emp;   // job -> alpha bate 	// output -> Analyst
+
+	select min(date) from emp;  // date -> normal date 	//output->least starting date dd/mm/yyyy
+
+note -> even though if there is any null value it wont consider null.
+
+
+============
+Max() :
+============
+
+-> max() -> maximum function , it is used to find the maximum value from the particular column in a given table.
+
+Ex : max(Column_name)
+
+	select max(sal) from emp;   //  ll get max salary
+
+	select max(job) from emp;	// highest order alpha bate as a output //last ele from asc orde
+
+	select max(hiredate) from emp;	// latest date or highest date [if future data present]
+
+	select max(deptno) from dept;	 // highest value from the department number
+===========
+sum()
+===========
+
+-> sum() -> Sum function , it is used to find the sum of all the values from the particular column in a given table.
+
+-> we can able perform of addition of values with the help of sum() and the values must be Numeric only.
+
+-> If you try to sum any other values other then numeric you will get errors after executing query.
+
+Ex : 	sum (column_name) 
+
+
+Cmd>	select sum(sal) from emp;    //  Valid because of sal -> this column contains only numbers
+
+	output -> 29800
+
+
+Cmd>	select sum(job) from emp;      // Invalid cause of Varchar elements
+	select sum(hiredate) from emp; // Invalid cause of Data value
+	select sum(deptno) from dept;	// Valid cause of Numeric
+
+Error messages :
+--------------
+
+ "unable to convert string value containing %s to a number: %s"  & etc....
+
+============
+Avg() 
+============
+
+-> avg() -> average function , it is used to find the average value of  the particular column values in a given table.
+
+-> we can able perform of average value with the help of avg() and the values must be Numeric only.
+
+-> If you try to average any other values other then numeric you will get errors after executing query.
+	
+
+Ex : avg ( column_name ) 
+
+
+`````Valid cases cause of column contains only numeric type
+
+
+Cmd>	select avg(deptno) from dept;		  	
+	select avg(deptno) as average from dept;
+
+	select avg(sal) from emp;
+
+
+	Output -> Average of salary column -> 2073.214285714285714285714285714285714286
+
+
+`````In - Valid cases cause of column contains other than numeric type
+
+
+Cmd>	select sum(job) from emp;      // Invalid cause of Varchar elements
+	select sum(hiredate) from emp; // Invalid cause of Data value
+	select sum(deptno) from dept;	// Valid cause of Numeric
+
+
+
+=========	
+Count() :
+=========
+
+-> Count function is used to count the number of rows information in a given table.
+
+-> there are some sub count functions are available 
+
+	1) count (*) 
+
+	2) count ( exp ) 
+		
+	3) count (distinct exp) 
+
+ I) count (*)  :
+ -------------
+
+-> count(*) is used to count the number of rows information in a given table including duplicates and the null elements.
+
+Ex : 
+
+		select count(*) from emp;				// 14 
+
+		select count(*) as "records_count" from dept;		// 4
+
+
+
+II) count (exp) 
+---------------
+
+-> count (exp)  -> count (column) .
+
+-> It is used to count the number of rows information in a given table including duplicates and Neglecting or avoid  or Excluding the null elements. 
+
+Ex : 
+
+	select count(deptno) from emp;   // output as 14 because no nulls
+
+	select count(job) from emp;    // output as 14 , still duplicates present but no nulls
+
+	select count(mgr) from emp;    // output as 13 , because only 1 null present
+
+	select count(comm) from emp;   // output as 4 , because remaining all are Null 
+
+
+count (distinct exp) :
+----------------------
+
+-> It used to count the number of rows information in a given table Excludes both duplicates and Nulls
+
+Ex : 
+
+select count(distinct deptno) from emp;  // output -3  -> remaining all are duplicates
+
+select count(distinct comm) from emp;	// output - 4 / no duplicates but nulls present
+
+select count(distinct job) from emp;	// output - 5 / remaining all are duplicates
+
+select count(distinct mgr) from emp;    // output - 6 / 1 null , remaining all are duplicates.
+
+
+
+Clauses :
+---------
+
+from  
+
+order by 
+
+where
+
+group by
+
+having
+
+======
+from 
+======
+
+-> To specify from what location for managing the data 
+
+Ex : from <Table_name>
+
+Cmd>   Select * from <Table_name>;
+
+	Select * from student_data;
+
+============
+Order by
+============
+
+-> For sorting either ascending or descending order
+
+-> if there is any null elements are present in the order by clause column , for descending order it consider Null as a highest element , and Null as a least element in Ascending order.
+
+-> Similarly for data type also it takes latest data as a highest value and old date as a least value.
+
+
+Ex : Order by <Column_name >
+
+Cmd> Select * from <Table_name> Order by <Column_name>;
+
+	select * from student_data order by student_id;
+
+	select * from emp order by join_date desc;
+
+
+
+Note : we can take any column type means numerical type or alpha bate type or Agrégation type followed 
+by "Order by" clause.
+
+============
+Where
+============
+
+-> Where clause used to filter the rows information from the data base tables based on the conditions.
+
+-> at a time it can able to only filter or check the single row condition only.
+
+Ex : 
+	
+	Selectc * from <Table_name> where <Condition>;
+
+	Select * from Students_data where Student_id = 'PIN007';
+
+
+
+
+============
+Group By:
+============
+
+-> This clause can be used in select statements to Group rows in to set of summary rows based on the column values or expressions.
+
+-> We can use this clause often with Aggregate functions like min(), max(), count(), avg(), sum() along with the group by clause.
+ 
+-> Simply we can say Group by clause return a row per set/group of rows.
+
+-> declaring Group by clause after from clause
+
+ 	Select 
+		columns_list
+		
+	from 
+		<table_name > 
+
+	group by
+		
+		columns1 , C2, c3.
+
+-> In the above case Group by clause followed by From clause immediately , If there is no where condition we can follow above syntax
+
+-> If there is any WHERE clause , than Group by has to followed by WHERE clause
+
+	Select 
+		Columns_List
+
+	From
+		<Table_name >
+
+	Where
+		<Condition>
+
+	Group by
+
+		c1, c2, c3..
+
+
+Questions  :
+============
+
+1) Find the Number of Employees working under each department number in the emp table ???
+
+Q)	->  select deptno , count(*) from emp group by deptno;
+
+	-> select deptno , count(*) from emp group by deptno order by deptno;
+
+	
+output  : Correct data
+-------
+DeptNO		Count of Employees 
+----	--------------------------
+10			3
+20			5
+30			6
+ 
+
+-> If you take any count( exp ) , chance of getting false information or data
+
+	Cmd>    select deptno , count(ename) from emp group by deptno;
+
+
+output  :  False data
+-------
+DeptNO		Count of Employees 
+----	--------------------------
+10			3
+20			4    // total count as 4 - Incorrect because of one null name present in nameclm
+30			6
+
+
+Note : If you want to find the total count of any particular column always recommended to take count(*) only , otherwise we will get false or incorrect data if we take count ( any_column).
+
+
+Q) Find the Number of employees working under each job name in a emp table?
+
+A) 
+	-> select job , count(*) from emp group by job;
+
+	-> select job , count(*) from emp group by job order by job;     
+
+	-> select job , count(*) from emp group by job order by count(*) desc;
+
+	-> select job ,  count(*) as total_count  from emp group by job order by count(*);
+
+
+Notes :
+-------
+Order by -> for order by clause we can pass aggregate functions or column name for sorting order
+
+group by -> We cannot pass any aggregate functions for the group  by clause.
+
+
+Q) Find the Maximum salary of employee from each department number in emp table
+
+A) Cmd>
+	-> Select deptno , max(sal) from emp  group by deptno ;
+
+	-> select deptno , max(sal) from emp  group by deptno order by deptno;
+	
+	-> select deptno ,job,  max(sal) from emp  group by deptno ,job order by deptno;
+
+Q) Find the Number of Employees form each job name whose getting salary > 2000 in a emp table?
+
+A) Cmd>
+
+	-> select job , count(*) from emp   where sal > 2000 group by job;
+	
+	-> select job , count(*) from emp   where sal > 2000 group by job order by count(*);
+
+Q) Find the avg() salary of each employee from each dept and job name from emp table
+
+A) Cmd>
+
+	-> select deptno , job , avg(sal) from emp group by deptno;
+
+	-> select deptno , job , avg(sal) from emp group by deptno , job order by deptno;
+
+Q) Display all the aggregate values for the employee who is working under each job name in emp table?
+
+A) Cmd>
+
+	-> select job, min(sal) , max(sal) , count(*) , sum(sal) , avg(sal) from emp
+		group by job order by job ;
+
+	-> select job, min(sal) , max(sal) , count(*) , sum(sal) , avg(sal) from emp
+		group by job having min(sal) > 2000 order by job ;     // with help of having
+
+
+===============
+Having clause:
+===============
+
+-> Having clause is an optional clause in the select statements.
+
+-> It is used to filter the rows information returned by the Group by clause or any Aggregate function.
+
+-> And it usually used to declare after followed by the Group by clause.
+
+With Group by 
+-------------
+	Select 
+		columns...
+	from 
+		<table_name>
+
+	group by 
+		
+		Columns..
+	Having 
+		Condition
+
+	Order By
+
+		Column_name;
+
+Ex without Group by , with Aggregate function
+----------------------------------------------
+	
+	Select 
+		Aggregate_fn()
+	from 
+		table
+	Having
+		Condition of Agg();
+
+Cmd> Ex -> 	select min(sal) from emp having min(sal) <= 1000;
+
+-> Always use Having clause either with Group by or Any Aggregate function.
+
+-> So WHERE clause is used to filter table rows information.
+
+-> and Having clause is used to filter the Group of Rows information.
+
+Note : 
+
+-> Use where before Group  & Use Having after Group or along with aggregate function.
+
+
+Q) Find the Number of employees from each department if the count is minimum employees are 3 [>= 3] from emp table
+
+A) Cmd>
+
+	select deptno , count(*) 
+	from emp 
+	group by deptno 
+	having count(*) >= 1 
+	order by deptno;
+
+Q)Find the Number of employees of each job role from each department if the count of minimum employees are 2 [>= 2] from emp table 
+
+A) Cmd>
+
+	select deptno , job,  count(*)
+	from emp group by deptno , job 
+	having count(*) >= 3 
+	order by deptno;
+
+
+Q) Display all the aggregate values for the employee who is working under each job name and the emp salary is more then 2000  in emp table?
+
+A) Cmd>
+
+	-> select job, min(sal) , max(sal) , count(*) , sum(sal) , avg(sal) from emp
+		group by job having min(sal) > 2000 order by job ;  
+
+
+============
+SUB Queries
+============
+
+-> If a Query in side another Query we can call it as "Sub Query" / "Nested Query" / "Inner Query".
+
+-> In Sub queries the Result of One query Depends on The Result of Another query.
+
+-> Always The Inner Query executes first and based on the result the outer will execute.
+
+Execution process:
+-------------------
+
+	Outer Query  <==========    Inner Query  <============= Inner Query.
+
+
+Sysntax :
+---------- 
+
+	Select * from <table_name> where Column_name [ = or In /Exists/not Exists <Select Query  >];
+
+
+Type of Sub queries
+-------------------
+
+There are 2 types of sub queries.
+
+	1) Single row sub queries
+	2) Multi row sub queries
+
+-> Single row sub quires 
+ ---------------------------
+
+-> If The result of sub query is a single row we can call it as Single row sub querie
+
+-> lets a sub query returns the single row result directly with the help Primary key approach.
+
+-> Or a single row result of Aggregate function based on the table structure and information data.
+
+-> Multi row sub queries
+---------------------------
+
+-> If the result of sub query return a multiple rows we can call it as a multi row sub query.
+
+
+
+Example:
+-------
+
+
+Query-1: find the employee details based on the min salary ?
+
+
+Cmd>   select * from emp where sal  = (select min(sal) from emp);
+
+
+Query-2:find the employee details based on the max salary ?
+
+Cmd>   select * from emp where sal IN (select max(sal) from emp);
+
+
+Query-3: Display employee details whose salary is less than employee id as 7788 ?
+
+SQL >> Select * from emp where sal <=(select sal from emp where empno=7788);
+
+
+Query-4: Display employee details whose salary is less than 7788 and who are getting commission?
+
+SQL >> select * from emp where sal <=(select sal from emp where empno=7788) and comm is not null;
+
+
+Query-5: Display employee details who are working under Blake-Manager?
+
+SQL >> select * from emp where mgr = (select empno from emp where upper(ename) ='BLAKE');
+
+
+Query-6: Display employee details who are working in chicago ?
+
+SQL >> select * from emp where deptno = (select deptno from dept where upper(location) ='CHICAGO');
+
+
+Query-7: Display the employee details for second maximium salary.
+
+SQL  >> select max(sal) from emp where sal < (select max(sal) from emp where sal < (select max(sal) from emp);
+
+Query-8: Display department details of employee smith?
+
+Cmd>    select * from dept where deptno In (select deptno from emp where ename = 'SMITH');
+
+	select * from dept where deptno = (select deptno from emp where ename = 'SMITH');
+
+Query-9: Display employee details who is working under SALES Department
+
+Cmd>   select * from emp where deptno = (select deptno from dept where dname = 'SALES');
+------------------------------------------------------------------------------------------------------
+
+Conversion functions
+====================
+
+These are used to convert one form value to another form of value
+
+ 1) to_char()
+ 2) to_date()
+
+
+1) to_char() ->
+ -----------
+
+-> to char function is used to convert the Oracle date into the Character date
+
+Default format of SYSDATE is -> 13-AUG-25
+
+Examples:
+
+->  select to_char(sysdate , 'DD/MM/YYYY') from dual;   // 13/08/2025
+    select to_char(sysdate , 'YYYY/MM/DD') from dual;	// 2025/08/13
+    select to_char(sysdate , 'DD-MM-YYYY') from dual;	// 13-08-2025
+    select to_char(sysdate , 'DD-MON-YYYY') from dual;	// 13-AUG-2025
+    select to_char(sysdate , 'DAY') from dual;   // WEDNESDAY
+    select to_char(sysdate , 'MON') from dual;  // AUG
+    select to_char(sysdate , 'MONTH') from dual;    //AUGUST
+    select to_char(sysdate , 'DD-MONTH-YYYY-DAY') from dual; //13-AUGUST-2025-WEDNESDAY
+    select to_char(sysdate , 'DD-MM-YYYY HH:MM:SS') from dual;  //13-08-2025 04:08:00
+
+ 2) to_date() :
+---------------
+
+To convert the character date to system date
+
+   select to_date('20/03/2015' , 'dd/mm/yyyy') from dual;  //20-MAR-15
+    
+------------------------------------------------------------------------------------------
+
+
+
+
