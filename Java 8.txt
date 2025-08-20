@@ -1,0 +1,1594 @@
+Java 8 [LTS - Long term support]
+---------------------------------
+
+-> Java 8 version introduced so many features . 
+-> These features changed the complete coding style of java.
+-> Java 8, also known as Java SE 8, was officially released  2014. 
+-> The latest version of java is 25 [LTS] released in the year of 2025.
+
+Java 8 Main Aim :
+-----------------
+-> To simply the coding
+-> To Enable to Functional programming.
+-> To write more readable and concise code.[ by reducing number of lines of code].
+
+Java 8 Feature:
+---------------
+
+1) Interface changes 
+	[ default & static methods ]
+
+2) Lambda Expressions
+
+3) Functional interfaces
+
+	-> Predicate
+	-> Consumer
+	-> Supplier
+	-> Function
+
+4) Stream API
+
+5) Date and Time API changes
+
+6) String Joiner
+
+7) Split iterator
+
+8) Optional classes.
+
+..
+...
+.
+.
+
+
+1) Interface changes
+====================
+
+-> Prior java 8 interface doesn't allow methods with implementation.
+-> It allows only abstract methods. [ the method without logic or body or any implementation ]
+
+a) default methods : 
+   -----------------
+
+-> Created one interface named StartUp , with one abstract method named as " java project"
+
+-> this interface implemented by 4 classes as A , B, C, D  & provided implementation for the interface method.
+
+-> IF there is any new Abstract method added in the interface , the all interface implemented classes are getting effected.	
+
+-> why because of as a class nature if its implements any interface it has to provide the implementation / body for ALL abstract methods present in the interface.
+
+-> In real time there are 100 or 1000 of classes are available , its difficult to maintain or change all classes in the project if we are getting the error cause of interface abstract methods.
+
+-> So they added new feature to write methods along with the implementation USING Default method inside the interface.
+
+
+
+Interface :
+------------
+
+package com.demo.java.version_8;
+
+public interface StartUp {
+
+	void javaProject();     				//  abstract method
+	
+	default void pythonProject() {				// default method
+		System.out.println("PYTHON project Cretaed using Default Method in interface");
+	}
+
+}
+
+// A class implements StartUp 
+
+// B class implements StarUP
+
+// C class implements StartUp
+
+// D class implements StartUp 
+
+// Test class
+
+package com.demo.java.version_8;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		A a = new A();
+		a.pythonProject();
+
+		B b = new B();
+		b.pythonProject();
+
+		// C class object & D class object as well
+
+	}
+
+}
+
+
+Note :
+------
+
+-> Default methods can add in any existing interface along with the method body.
+-> Its not required to implement body in the implemented classes.
+-> if we don't want interface default method body  , we can override and implement out own logic based on our requirement.
+
+Key points:
+-----------
+-> Default method must & should contains body.
+-> The access modifier is implicitly Public.
+-> We can Override where ever we want.
+
+
+
+Static method :
+--------------
+-> There are 2 approaches to write body for the method in interface 
+	1) default
+	2) static
+-> we can use Static key word for the method declaration instead of default.
+
+-> If the interface method with body doesn't allowed to override in the future , in that scenario we can go for static method approach.
+
+
+Interface with static method :
+------------------------------
+
+package com.demo.java.version_8;
+
+public interface StartUp {
+
+		void javaProject();     //  abstract method
+	
+	    static void pythonProject() { 		// Static  method
+
+			System.out.println("PYTHON project Cretaed using START UP interface");
+
+		}
+
+}
+
+
+class A 
+----------
+
+package com.demo.java.version_8;
+
+public class A implements StartUp{
+
+	@Override
+	public void javaProject() {
+	System.out.println("java project created by A");
+	}
+	
+	@Override                                //  Compilation error
+	public void pythonProject() {  
+		System.out.println("python project created BY USER A using MY SQL data base");
+	}
+	
+}
+
+
+Class A:
+---------
+
+package com.demo.java.version_8;
+
+public class A implements StartUp{
+
+	@Override
+	public void javaProject() {
+	System.out.println("java project created by A");
+	}
+	
+	public static void main(String[] args) {
+		
+		A a = new A();
+		a.javaProject();
+		
+		StartUp.pythonProject();
+	}
+	
+}
+
+Key points:
+----------
+-> Static method must & should contains body.
+-> The access modifier is implicitly Public.
+-> We can't Override where ever we want because its a static method.
+-> we can call static method using Interface name.
+
+
+Functional Interface:
+---------------------
+
+-> If the Interface contains only one abstract method we can call it as F.I.
+
+   * Abstract method means method without body.
+
+-> It is used for enabling functional programming with lambda expression.
+
+-> Runnable , callable , Comparable ,,, these are examples of Functional interface.
+
+		Runnable ------>   run();
+
+		Callable --------> call();
+
+		Comparable ---------> CompareTo();
+
+-> By default interface  said to be Functional interface only if it contains only one abstract method.
+
+-> If interface contains more than one abstract method than it's not said to F.I.
+
+-> We can explicitly declare an interface as a functional interface , it will give compilation error if the interface contains more then one abstract method.
+
+Error : Invalid '@FunctionalInterface' annotation; RBIService is not a functional interface
+
+-> A FunctionalInterface can contains any number of default and static method but it should contains only ONE Abstract method.
+
+
+
+
+interface Name{
+
+	void m1();				// Valid FI 
+}
+
+
+interface Name{
+
+	void m1();
+	void m2();				// Not a FI , its a Normal interface
+	
+}
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+	void m2();				//  Invalid - CTE - Not a FI
+
+}
+
+
+@FunctionalInterface
+interface Name{
+
+	void m1();				//  Valid - FI
+
+}	
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+	
+	default void m2();			// In - Valid - FI ,  but default method don't have body
+
+}
+	
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+	default void m2(){
+		// ---logic()			// Valid - FI
+	}
+
+}	
+
+
+interface Name{
+
+	void m1();
+	default void m2(){	
+		// ---logic()			// Valid - FI	
+
+	}
+
+}
+
+
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+	static void m2(){
+		// ---logic()			// Valid - FI	
+
+	}
+
+}
+
+
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+
+	default void m2(){
+		// ---logic()
+	}
+
+	static void m2(){
+		// ---logic()			// Valid - FI	
+
+	}
+
+}
+
+
+@FunctionalInterface
+interface Name{
+
+	void m1();
+
+	default void m2(){
+		// ---logic()
+	}
+
+	static void m2(){
+		// ---logic()
+	}
+	
+	void m2();				// InValid - Not a FI	
+
+
+}
+
+
+
+@FunctionalInterface
+interface Name{
+
+	void m1();				// Valid - FI	
+
+}
+
+@FunctionalInterface
+interface Name2  {  
+						// InValid -  Not a FI
+}
+
+
+@FunctionalInterface
+interface Name2 extends Name  {   // refer above
+			
+}						// Valid - FI 
+
+
+
+@FunctionalInterface
+interface Name2 extends Name  {   // refer above
+
+	void m5();			// InValid - Not a FI
+			
+}
+
+
+
+interface Name2 extends Name  {   // refer above
+
+	void m5();				// InValid - Not a FI
+			
+}
+
+
+@FunctionalInterface
+interface Name2 extends Name {
+
+	void m1();				// InValid - Not a FI
+
+	void m2();
+	
+}
+
+
+
+Example Code for both FI & Default & Static methods:
+============================================
+
+Interface 
+----------
+package com.demo.java.version_8;
+
+@FunctionalInterface
+public interface RBIService {
+	
+	public void m1();
+
+	public default void m2() {					// we can override
+		System.out.println("Common logic for all Banks given by RBI");
+	}
+
+	
+	public static void m2() {					// we cannot override static
+		System.out.println("Common logic for all Banks given by RBI");
+	}
+
+	
+}
+
+Implemented classes:
+------------------
+
+class 1:
+--------
+package com.demo.java.version_8;
+
+public class Sbi implements RBIService{
+
+	@Override
+	public void m1() {System.out.println("m1() method called by SBI BANK");}}
+
+
+	@Override
+	public default void m2() {					// we can override default 
+		System.out.println("logic Changed by using SBI bank");
+	}
+
+class 2:
+---------
+package com.demo.java.version_8;
+
+public class Hdfc implements RBIService{
+
+	@Override
+	public void m1() {
+		
+		System.out.println("m1() method called by HDFC BANK");
+		
+	}
+	
+}
+
+
+Test class :
+-----------
+
+package com.demo.java.version_8;
+
+public class Test{
+	
+	
+	public static void main(String[] args) {
+		
+		Sbi a = new Sbi();
+		a.m1();
+		a.m2();
+		
+		System.out.println();
+		
+		Hdfc b  = new Hdfc();
+		b.m1();
+		RBIService.m2();      // calling static method using Interface name
+	}
+}
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+Lambda Expressions :
+====================
+
+-> To write concise code with the help functional interfaces.
+
+-> To Enable the Functional programming.
+
+------------------------------------------------------------------------------------------
+
+Object oriented and functional programming
+------------------------------------------
+
+-> In objected oriented programming language classes and objects are main components.
+    we can create methods or functions in side a class , and there is no meaning of any method out  side of the class object. and we cant assign these methods to any reference variables.
+
+-> But with a functional programming a function is having scope outside of the class object also.
+  and we can assign functions to a reference variables directly and we can pass them as a function or method parameters.
+
+-> By Using Lambda expressions we can create functions for the abstract methods present in functional interfaces.
+
+-> Lambda expression is nothing but a Anonymous function.
+
+	Anonymous functions means A Function or a Method ---->
+	
+		-> Without Name.
+		-> Without Return type.
+		-> Without Access Modifier.
+
+-> We can create Lambda expressions with the use of anonymous function by using "Arrow Operator".
+
+	Arrow Operator   =========      ' ->  '
+
+-> Convert Normal method or function into Lambda expression
+
+	public void m1() {
+		sop ("hi");
+		sop ("hi");
+	}
+
+	lambda exp :
+	-----------	
+	 () -> {
+	  sop ("hi");
+		};
+
+Note : If the logic or implementation contains only one line expression  '{'  , '}' are optional.
+
+	
+	() -> sop ("hi"); 
+			
+	
+-> 
+		public void m1(int a) {
+			sop (a);
+		}
+
+	lambda exp :
+	-----------
+
+	  
+	(int a) -> {
+			sop (a);
+		};
+
+Note :
+-> type of the variable is not required to mention while writing the lambda expressions.
+-> if there is only one variable than parenthesis symbol also optional. 
+-> If more then one variable exists we need to use parenthesis ( )  for the variables.
+	
+
+	lambda exp for above:
+	--------------------
+
+	(a)-> {
+		sop (a);
+	      };
+
+	(a)-> sop (a);
+
+	 a -> sop (a);
+
+-> Normal method
+
+		public void m1(int a, int b) {
+			sop (a+b);
+			}		
+
+
+	lambda exp :
+	-----------
+
+	 (a,b) ->  sop (a+b); 
+
+	 (a,b) -> { sop (a+b);  };
+
+-> Normal method
+
+		public Integer m1(int a, int b) {
+			return a+b ;
+			}
+
+
+	
+	lambda exp :
+	-----------
+
+	(a,b) -> return a+b ;		// In valid
+
+	
+
+Note : if we want to use return statement in	side the lambda expression it should enclosed by curly brackets.
+
+	(a,b) -> { return a+b; } ;
+	  
+
+ (a,b) -> return a*b;		-> Invalid
+ (a,b) -> {return a*b;};	-> Valid
+ (a,b) -> {return a*b};		-> InValid
+ (a,b) -> {a*b};		-> Invalid
+ (a,b) ->  a*b;			-> Valid
+	
+
+ -> Normal method
+
+	public String m3(String s){
+		return s.lenght();
+	}
+
+lambdaExp:
+
+	s -> s.length();
+
+
+Note :
+
+Where ever Functional interfaces are there we can directly go for the Lambda expressions.
+
+````````` Old approach to work with F.I without using Lambda exp...
+
+
+Interface
+-------------
+
+package com.demo.java.version_8;
+
+@FunctionalInterface
+public interface Program {
+
+	public void m1();
+	
+}
+
+Implemented class 
+---------------
+
+package com.demo.java.eight;
+
+import com.demo.java.version_8.Program;
+
+public class Demo implements Program {
+
+	@Override
+	public void m1() {
+		System.out.println("hello");
+	}
+
+	public static void main(String[] args) {
+		Demo d = new Demo();
+		d.m1();
+	}
+
+}
+
+
+````````` New approach to work with F.I with using Lambda exp...
+
+Example 1:  without any parameters
+=================================
+
+Interface
+-------------
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+	
+	public void m1() ;
+}
+
+// we can able to Write the lambda expression and logic at a time
+ 
+
+
+class User{
+	
+	public static void main(String[] args) {
+		
+		Demo d = () -> System.out.println("hello java 8 ");		// lambda exp
+		d.m1();
+	}
+		
+}
+
+
+Example 2:  with one parameter
+===============================
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public void m1(int a);
+}
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = (a) -> System.out.println("hello java  " + a); // lambda exp
+		d.m1(11);
+
+
+//		Demo d = a -> System.out.println("hello java  " + a); // lambda exp
+//		d.m1(11);
+
+	}
+
+}
+
+Example 3:  with multiple parameter
+===================================
+
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public void m1(int a , int b);
+}
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = (a,b) -> System.out.println("hello java  " + a + b); // lambda exp
+		d.m1(11, 9);
+
+	}
+
+}
+
+Expected -> hello java 20 
+Output -> hello java  119    // cause of concatenating all the values , so enclose int values in (a+b)
+
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public void m1(int a, int b);
+}
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = (a, b) -> System.out.println("hello java  " + (a + b)); // lambda exp
+		d.m1(11, 9);	
+
+	}
+
+}
+
+Example 4:  with return statement
+===================================
+
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public Integer m1(int a);
+}
+
+// 	public Integer m1(int a) {
+//    	return a;
+//    	};
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = a -> {
+			return a;
+		};
+		Integer value = d.m1(100001);
+
+		System.out.println(value);
+
+	}
+
+}
+
+or 
+
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = a -> a;				// It is also correct
+		
+		Integer value = d.m1(100001);
+
+		System.out.println(value);
+
+	}
+
+----with multiplying
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = a -> a*a;
+		
+		Integer value = d.m1(100001);
+
+		System.out.println(value);
+
+	}
+
+	OR 
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = a -> {
+			return a * a;
+		};
+
+		Integer value = d.m1(100001);
+
+		System.out.println(value);
+
+	}
+
+}
+
+Example 5:
+---------
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public String m1(String name);
+}
+
+class User {
+
+	public static void main(String[] args) {
+
+		Demo d = name -> {
+			return name;
+		};
+
+		String value = d.m1("gmrit");
+
+		System.out.println(value);
+
+	}
+
+}
+
+
+
+`````````````````Multiple String return type
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public String  m1(String name , String name2);
+}
+
+class User {
+
+	public static void main(String[] args) {
+
+		 Demo d = (a,b) -> { return a + b; };
+		
+
+		String value = d.m1("gmrit" , "java");
+
+		System.out.println(value);
+
+	}
+
+}
+
+
+
+// one more valid combination
+
+	Demo d = (studentname1, studentname2) -> {
+			return studentname1 + studentname2;
+		};
+
+
+Note : while writing lambda expressions its optional to maintain the exact names of abstract method parameters.
+
+
+
+Example : 6
+-----------
+
+package com.demo.java.eight;
+
+@FunctionalInterface
+public interface Demo {
+
+	public Integer m1(String name); // find the length of a string
+}
+
+class User {
+
+
+	public static void main(String[] args) {
+
+		Demo d = a -> a.length();
+
+		Integer value = d.m1("JAVA_APPLICATION");
+
+		System.out.println(value);
+
+	}
+
+}
+
+
+`````````````````````
+
+To create thread 
+
+either Extends Thread class 
+implement Runnable or Callable
+
+
+---------------------------------
+
+
+Note : 	CTRL + SHIFT + F  -> for re arranging the class syntax in a proper way  [only if there is no errors]
+ 	CTRL + M -> for Maximize & Minimize
+	CTRL + 1 -> to assign result to a new variable automatically. [ when it can able to return a value ].
+
+	Note : place cursor after the semicolon of last and click Ctrl + 1
+
+	CTRL + SHIFT + O -> To import the wanted packages and removes unwanted imports.
+	
+	CTRL + SPACE -> Auto Suggestions after writing some short name
+
+	
+	
+
+-----------------------------------------------------------
+
+package com.demo.java.version_8;
+
+public class UserOne {
+
+	public static void main(String[] args) {
+
+		Runnable r = () -> {
+
+			Thread.currentThread().setName("My Thread");
+			System.out.println(Thread.currentThread().getName());
+
+		};
+
+		Thread t1 = new Thread(r);
+
+		t1.start();
+
+		Thread t2 = new Thread(r);
+		t2.start();
+
+	}
+
+}
+
+
+---------------------------------------------------------------------------
+Q) Is it possible to write the lambda expressions for default and static methods in java ?
+
+Ans ->  NO
+
+-> we cannot write lambda expressions for the default and static methods in java , that too    if these methods are present in functional interface.
+
+-> so always lambda expressions will work only for the Functional interface abstract method.
+
+
+Code :
+------
+
+
+package com.demo.java.version_8;
+
+@FunctionalInterface
+public interface Program {
+
+	public void m1();
+
+	default void m2(int a) {
+		System.out.println("default method");
+	}
+
+	static void m3(int i) {
+		System.out.println("static method");
+	}
+
+}
+
+class Demo {
+
+	public static void main(String[] args) {
+
+		Program p = () -> {
+			System.out.println("interface method called");
+		};
+
+		p.m1();
+		
+
+//		p.m3(); // Not at all possible always call static methods with interface or the method
+				// located class name only
+
+		Program.m3(5);
+
+	}
+}
+
+
+
+
+
+
+
+Functional Interfaces :
+=======================
+
+The following are the types of several Pre defined functional interfaces 
+	
+	1) Predicate
+	2) Consumer	
+	3) Supplier
+	4) Function
+
+
+1) Predicate :
+==============
+-> Its a Functional interface which is used to check conditions and return the output in the form true or false.[ It returns the Boolean value ].
+
+-> Predicate take one argument as a input and produce output as Boolean type.
+
+-> It contains test() method.
+
+-> return type is Boolean.
+
+-> It can only one argument as a input parameter.
+
+
+->    One Argument i/p ------------<checks condition>-------------  Boolean o/p
+
+
+
+@FunctionalInterface
+public interface Predicate<T> {
+
+    boolean test(T t);
+
+}
+
+
+Example with predicate :
+-----------------------
+// check if the age is more than 18 or not by using predicate
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Predicate;
+
+public class UserTwo {
+
+	public static void main(String[] args) {
+
+		// check if the age is more than 18 or not by using predicate
+
+//		boolean test(T t);
+
+		Predicate<Integer> p = a -> a > 18;
+		boolean x = p.test(5);
+		
+		System.out.println(x);
+
+	}
+
+}
+
+
+// Write a program to get student names starting with the letter 'v' using predicate F.I
+  & lambda expressions
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Predicate;
+
+public class UserTwo {
+
+	public static void main(String[] args) {
+
+		// check if the age is more than 18 or not by using predicate
+
+//		boolean test(T t);
+
+		String[] names = { "vikram", "varun", "rajesh", "hari", "varmateja", "remo" };
+
+		Predicate<String> p = a -> a.charAt(0) == 'v';
+
+		for (String name : names) {
+			if (p.test(name)) {
+				System.out.println(name);
+			}
+
+		}
+
+	}
+}
+
+------------------------------------------------------------------------------------------
+
+negate():
+--------
+-> it is used to perform negation for the original predicate.
+
+p1.negate();
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Predicate;
+
+public class UserTwo {
+
+	public static void main(String[] args) {
+
+		// p1 it check conditon returns true for the value of 25
+		Predicate<Integer> p1 = p -> p > 20;
+
+		
+		// changing the original status by negating predicate
+		Predicate p2 = p1.negate();
+
+		System.out.println(p1.test(25));			// true
+		
+		System.out.println(p2.test(25));			// false
+
+	}
+
+}
+
+`````````````
+
+		System.out.println(p1.test(10));			// false
+		
+		System.out.println(p2.test(10));			// true
+
+`````````````
+
+		System.out.println(p1.test(10)); 			// false
+
+		System.out.println(p2.test(25)); 			// false
+
+
+Predicate Joining
+-----------------
+
+-> We can join predicates by using following pre defined methods in predicate functionalinterface.
+
+-> These methods are default methods not a abstract methods methods.
+
+	and()
+	or()
+
+1) p1.and(p2)
+2) p1.or(p2)
+
+Predicate with the and() default method
+---------------------------------------
+
+Student class :
+-------------
+
+package com.demo.java.version_8;
+
+public class Student {
+
+	String name;
+	int age;
+
+	Student(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+}
+
+
+
+Test class :
+---------------
+
+package com.demo.java.version_8;
+
+import java.util.function.Predicate;
+
+public class Test {
+
+	static public boolean checkStudentAge(Student s, Predicate<Student> p) {
+
+		boolean result = p.test(s);
+
+		return result;
+	}
+
+	public static void main(String[] args) {
+
+// Write condition to check the age of a student is greater than 18 
+		Predicate<Student> p1 = a -> a.age > 18;
+
+// Write condition to check the age of a student is Less than 60 
+		Predicate<Student> p2 = b -> b.age < 60;
+
+// Join the predicates to get the eligibility of a student
+		Predicate<Student> p3 = p1.and(p2);
+
+		Student student = new Student("jony", 45);
+
+		boolean res = checkStudentAge(student, p3);
+
+		System.out.println("Student eligibility is -> " + res);
+
+	}
+
+}
+
+Predicate with Or() method 
+--------------------------
+
+package com.demo.java.version_8;
+
+import java.util.function.Predicate;
+
+public class Test {
+
+	static public boolean checkStudentAge(Student s, Predicate<Student> p) {
+
+		boolean result = p.test(s);
+
+		return result;
+	}
+
+	public static void main(String[] args) {
+
+		Predicate<Student> p1 = a -> a.age > 18;
+		Predicate<Student> p2 = b -> b.age < 60;
+
+		Predicate<Student> p3 = p1.or(p2);
+
+		Student student = new Student("jony", 25);
+
+		boolean res = checkStudentAge(student, p3);
+
+		System.out.println("Student eligibility is -> " + res);
+
+	}
+
+}
+
+
+BiPredicate :
+-------------
+
+-> The Predicate only accepts one input argument parameter and return Boolean output.
+
+-> So If we want to pass 2 input arguments as a parameters for the Predicate we can go for BiPredicate.
+
+-> BiPredicate is a predefined functional interface in java.
+
+@FunctionalInterface
+public interface BiPredicate<T, U> {
+
+    boolean test(T t, U u);
+
+}
+
+Example :
+---------
+
+package com.demo.java.version_8;
+
+import java.util.function.BiPredicate;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		BiPredicate<String, Integer> bp = (name, num) -> {
+			return name.length() == num;
+		};
+
+		System.out.println(bp.test("gmrit", 6));
+	}
+
+}
+
+
+
+Supplier :
+---------
+
+-> Its a predefined functional interface
+
+-> It won't take any input argument but it can produce the output.
+
+-> it contains only one abstract method & the name is get();
+
+
+@FunctionalInterface
+public interface Supplier<T> {
+
+        T get();     // Return type is T 
+}
+
+
+
+Example 1:
+----------
+package com.demo.java.version_8;
+
+import java.util.function.Supplier;
+
+public class UserTwo {
+
+	public static void main(String[] args) {
+
+		Supplier<Integer> s = () -> {
+
+			return 243;
+		};
+
+		System.out.println(s.get());
+	}
+
+}
+
+Example 2:
+
+// Generate OTP code with the help of Supplier interface
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Supplier;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		Supplier<String> s = () -> {
+
+			StringBuilder otp = new StringBuilder(" ");
+
+			for (int i = 1; i <= 6; i++) {
+				otp.append((int) (Math.random() * 10));
+			}
+			return otp.toString();
+
+		};
+
+		System.out.println(s.get());
+	}
+
+//	0.123  * 10 -> 1
+//	0.456 * 10 -> 4
+//	0.787 * 10 -> 7
+
+}
+
+Generated output :
+
+45637
+87362
+98737
+67544
+
+=========
+Consumer:
+=========
+
+-> its a predefined functional interface contains only one abstract method called accept(T t);
+
+-> contains only one method called accept();
+
+-> It takes input and performs some operations but won't return any output.
+
+	
+@FunctionalInterface
+public interface Consumer<T> {
+
+    void accept(T t);			// it wont return cause its void
+
+}
+
+->the return type of the accept is void type so it dont return any thing
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Consumer;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		Consumer<String> c = a -> {
+			System.out.println("consuming inputs & added result ->  " + (a + a));
+		};
+
+//		c.accept(45);
+//		c.accept(99);
+		c.accept("Gmrit");
+
+	}
+
+}
+
+
+BiConsumer:
+----------
+
+-> BiConsumer is a predefined functional interface.
+
+-> it can allow 2 input arguments as a parameters for accept method.
+
+-> and remaining all same expect inputs .
+
+
+Example 1:
+
+package com.demo.java.version_8;
+
+import java.util.function.BiConsumer;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		BiConsumer<Integer, Integer> c = (a, b) -> {
+			System.out.println("consuming inputs & added result ->  " + (a + b));
+		};
+
+		c.accept(24, 26);
+
+	}
+
+}
+
+
+Example :
+
+package com.demo.java.version_8;
+
+import java.util.function.BiConsumer;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		BiConsumer<Integer, Boolean> c = (a, b) -> {
+			System.out.println("consuming inputs & added result ->  " + a  + " " + b);
+		};
+		
+		c.accept(24, true);
+
+	}
+
+}
+
+Example:
+
+package com.demo.java.version_8;
+
+import java.util.function.BiConsumer;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		BiConsumer<Integer, String> c = (a, b) -> {
+			System.out.println( a  + " && "  + "Length of the given string is ->  "+ b.length());
+		};
+		
+		c.accept(24, "lenovo");
+
+	}
+
+}
+
+
+Function :
+----------
+
+Is Function interface & Functional interface ? same ? 
+
+-> No - Both are not same. But A Function interface is Functional interface.
+
+-> Until now we have discussed the functional interfaces either they won't return any value [ Consumer ]  , and returns only Boolean values [ Predicate ] and they won't take any input [ Supplier ] .
+
+-> It can take input & give the output.
+
+-> In This Function interface we can specify what is the input type and what is the output type.
+
+-> It contains one abstract method called "apply()" method.
+
+
+Differ
+=======
+
+Interface 		Interface<No of Generics>    	Bi - ?					method s
+----------		--------------------	  	-----------			---------------------
+
+Predicate 		Predicate<T>		   	BiPredicate<T, U>	Boolean test(T t);   &  Boolean test(T t, U u);
+
+Supplier		Supplier<T>		       	-----				T get();
+
+Consumer		Consumer<T>		   	BiConsumer<T, U>		void accept(T t);   &  void accept(T t, U u);
+
+Function		Function<T, R>			-----				R apply(T t);
+
+
+Example :
+
+package com.demo.java.version_8;
+
+import java.util.function.Function;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+		Function<String, Integer> f1 = a -> a.length(); // 12
+
+		System.out.println("length of the string is-> " + f1.apply("CHANDRA_BABU"));
+
+		// write java program to remove all empty spaces
+		Function<String, String> f2 = a -> a.replaceAll(" ", "");
+
+		System.out.println(f2.apply("Hi mY NAME IS KRISHNA"));
+
+		// Write a java program to find the number of spaces in a given string
+		Function<String, Integer> f3 = a -> a.length() - a.replaceAll(" ", "").length();
+		System.out.println("Number of spaces -> " + f3.apply("Hi mY NAME IS KRIS HNA"));
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
