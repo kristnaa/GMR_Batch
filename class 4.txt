@@ -412,7 +412,7 @@ Not possibel you will get a compilation error.
 
 5) Hybrid Inheritance
 -------------------------
--> The combination of Hybrid and multiple inheritance we can call it as Hirarichal inheritance"
+-> The combination of Hirarichal and multiple inheritance we can call it as Hirarichal inheritance"
 -> It forms like a diamond structure and it will supported in java. 
 
 diamond srructure
@@ -686,6 +686,7 @@ public class AspirantTwo implements Aspirant {
 
 
 	
+
 
 
 
