@@ -1534,7 +1534,7 @@ Supplier		Supplier<T>		       	-----				T get();
 
 Consumer		Consumer<T>		   	BiConsumer<T, U>		void accept(T t);   &  void accept(T t, U u);
 
-Function		Function<T, R>			-----				R apply(T t);
+Function		Function<T, R>		BiFunction<T, U, R>			R apply(T t);	&    R apply(T t, U u);		
 
 
 Example :
@@ -1562,6 +1562,7 @@ public class UserFour {
 	}
 
 }
+
 
 
 
