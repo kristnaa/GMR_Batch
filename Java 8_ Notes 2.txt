@@ -1,0 +1,1414 @@
+Note :
+
+-> There is No any default methods are available for Supply functional interface.
+
+-> Similarly there is no BiSupplier also not available because it wont take any single input.
+
+-> We can Join Predicates with the help of "and()" or "or()" methods.
+
+-> We can Join Consumers with the help of "andThen()" method.
+
+
+
+How to Join Consumers :
+----------------------
+
+-> We con join 2 consumers with the help of andThen() method.
+
+-> It is a one & only default method present in both Consumer and BiConsumer functional interfaces.
+
+andThen():
+-----------
+
+UseCase :
+
+a1.andThen(a2)
+
+Example :
+
+a1.andThen(a2).accept(values....);
+
+
+-> For the above example the andThen() First it passes the values for the a1 and then a2.
+
+Code:
+------
+
+package com.demo.java.version_8;
+
+import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class UserFour {
+
+	public static void main(String[] args) {
+
+
+		// Consumer
+		Consumer<Integer> c1 = a -> System.out.println("Consumer 1 output -> " + a);
+
+		Consumer<Integer> c2 = b -> System.out.println("Consumer 2 output -> " + b);
+
+		c1.andThen(c2).accept(30);
+
+
+		//BiConsumer
+		BiConsumer<Integer, Integer> bc1 = (a, b) -> System.out.println("BiConsumer 1 output -> " + (a + b));
+
+		BiConsumer<Integer, Integer> bc2 = (a, b) -> System.out.println("BiConsumer 2 output -> " + (a + b));
+
+		bc1.andThen(bc2).accept(20, 30);
+
+		// System.out.println();
+
+
+		// In-valid case
+		c1.andThen(bc1).accept(34);
+		c1.andThen(bc2).accept(50);		
+
+	}
+
+}
+
+
+output :
+
+Consumer 1 output -> 30
+Consumer 2 output -> 30
+BiConsumer 1 output -> 50
+BiConsumer 2 output -> 50
+
+Note :
+-----
+
+-> We cant join two different consumer types ex  : Cosumer and BiConsumer -> we cant join them.
+
+=============
+BiFunction :
+=============
+
+-> It used to pass the 2 input values as a parameters for the apply () method in this interface.
+
+@FunctionalInterface
+public interface BiFunction<T, U, R> {
+
+      R apply(T t, U u);
+
+}
+
+
+Note : here T & U -> are input parameters type for apply method
+
+	& R is a return type of apply method.
+
+Example:
+-----------
+package com.demo.java.version_8;
+
+import java.util.function.BiFunction;
+
+public class UserThree {
+
+	public static void main(String[] args) {
+
+
+		BiFunction<String, String, Integer> f1 = (a, b) -> a.length() + b.length();
+
+		System.out.println(f1.apply("springboot", "withJava"));
+
+	}
+
+}
+
+
+Note :
+
+BiFunction<String, String, Integer>    ->  1st two strings are Input types for apply method
+
+					-> Integer is a return type of apply method
+
+
+
+Function Chaining
+=================
+
+joining the Functions
+
+-> We can join Function or BiFuncitons by using 2 methods 
+
+	1) andThen()
+	2) compose();
+
+Both are replicate each other or opposite to each other
+
+Ex : 
+
+f1.andThen(f2);
+
+usecase:
+---------
+f1.andThen(f2).apply("any_value");
+
+andThen() -> The value applies for f1 first and then the result will apply for f2.
+
+
+usecase:
+---------
+f1.compose(f2).apply("any_value");
+
+compose() -> The value applies for F2 first and the result of F2 will apply for F1 later.
+
+
+Example for ----andThen ()
+--------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Function;
+
+public class UserThree {
+
+	public static void main(String[] args) {
+
+		Function<String, String> fn1 = a -> a.toUpperCase();
+
+		Function<String, String> fn2 = b -> b.toUpperCase();
+
+		String apply = fn1.andThen(fn2).apply("javascript");
+
+		System.out.println(apply);
+
+	}
+
+}
+
+i/p is ->  javascript   ->>>    fn1      ->   result>>	JAVASCRIPT
+
+i/p is -> JAVASCRIPT  [previous result] ->>>  fn2   -> Final Output>>	  JAVASCRIPT
+
+  
+
+UseCase2:
+---------
+
+
+package com.demo.java.version_8;
+
+import java.util.function.Function;
+
+public class UserThree {
+
+	public static void main(String[] args) {
+
+		Function<String, String> fn1 = a -> a.toUpperCase();  // JAVASCRIPT
+
+		Function<String, String> fn2 = b -> b.toLowerCase();	//javascript
+
+		String apply = fn1.andThen(fn2).apply("javascript");
+
+		System.out.println(apply);
+
+	}
+
+}
+
+i/p is ->  javascript   ->>>    fn1      ->   result>>	JAVASCRIPT
+
+i/p is -> JAVASCRIPT  [previous result] ->>>  fn2   -> Final Output>>	  javascript
+
+useCase:
+------
+
+		Function<Integer, Integer> f1 = (a) -> a;
+
+		Function<Integer, Integer> f2 = (b) -> b;
+
+		Integer res = f1.andThen(f2).apply(2);
+
+		System.out.println(res);
+
+UseCase:3
+----------
+BiFunction Chaining with andThen()
+
+
+Note:  Its Not possible to Join the multiple BiFunctions with the andThen method
+
+
+Compose()
+==========
+
+
+usecase:
+---------
+f1.compose(f2).apply("any_value");
+
+compose() -> The value applies for F2 first and the result of F2 will apply for F1 later.
+
+
+Example :
+-------
+
+
+public class UserThree {
+
+	public static void main(String[] args) {
+
+		Function<String, String> fn1 = a -> a.toUpperCase(); // JAVASCRIPT
+
+		Function<String, String> fn2 = b -> b.toLowerCase(); // javascript
+
+		String apply = fn1.compose(fn2).apply("javascript");
+
+		System.out.println(apply);
+		
+	}		
+}
+
+i/p is ->  javascript   ->>>   fn2    ->   result>>	javascript
+
+i/p is -> javascript  [previous result] ->>>  fn2   -> Final Output>>	  JAVASCRIPT
+
+
+
+Example 2:
+----
+
+package com.demo.java.version_8;
+
+import java.util.function.Function;
+
+public class UserThree {
+
+	public static void main(String[] args) {
+
+		Function<String, String> fn1 = a -> a.toLowerCase(); // javascript
+
+		Function<String, String> fn2 = b -> b.toUpperCase(); // JAVASCRIPT
+
+		String apply = fn1.compose(fn2).apply("javascript");
+
+		System.out.println(apply);
+
+	}
+
+}
+
+i/p is ->  javascript   ->>>    fn2      ->   result>>	JAVASCRIPT
+
+i/p is -> JAVASCRIPT  [previous result] ->>>  fn1  -> Final Output>>	  javascript
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+for(DataType variable : variable ) {
+	//
+}
+
+forEach() method:
+-----------------
+
+-> It is used to iterate the collection of elements .
+
+-> this forEach method present in Iterable interface and introduced in 1.8 version.
+
+
+Example 1:
+---------
+
+
+package com.demo.java.version_8;
+
+import java.util.List;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("mani");
+		list.add("ravi");
+		list.add("veera mallu");
+
+//		System.out.print(list); // [mani, ravi, veera mallu]
+
+		
+// Noraml for each loop
+		for (String res : list) {
+			System.out.println(res);
+		}
+
+		
+// iterable interface forEach() method
+		list.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+Example 2: Student Class details
+--------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentDetails {
+
+	String name;
+	int age;
+	String course;
+
+	StudentDetails(String name, int age, String course) {
+		this.name = name;
+		this.age = age;
+		this.course = course;
+	}
+
+	public static void main(String[] args) {
+
+		List<StudentDetails> list = new ArrayList<>();
+
+		StudentDetails s1 = new StudentDetails("arun", 18, "javaFSD");
+		StudentDetails s2 = new StudentDetails("karthik", 17, "javaFSD");
+		StudentDetails s3 = new StudentDetails("raju", 18, "Python");
+
+		list.add(s1);
+		list.add(s2);
+		list.add(s3);
+		list.add(new StudentDetails("mohan", 19, "Dot net"));
+		list.add(new StudentDetails("rani", 18, "Data science"));
+
+//for each loop 	
+
+		System.out.println("``````````Iterating elements using FOR EACH LOOP");
+
+		for (StudentDetails std : list) {
+			System.out.println("Student name : " + std.name + " ," + "Student age : " + std.age + " ,"
+					+ "Student course : " + std.course);
+		}
+
+		System.out.println();
+
+// forEach() Method
+
+		System.out.println("``````````Iterating elements using forEach() Method");
+
+		list.forEach(std -> System.out.println("Student name : " + std.name + " ," + "Student age : " + std.age + " ,"
+				+ "Student course : " + std.course));
+
+	}
+
+}
+
+Optional<T> Class
+==================
+
+-> It is introduces in 1.8 and present in util package.
+
+-> It is used to avoid the Null Pointer exceptions.
+
+-> In java projects there is a possibility to get a lot of null pointer exceptions while accessing the Null objects.
+
+-> In order to avoid such exceptions we need to provide multiple null checks in project.
+
+-> To simplify and for providing the in support for lambda expressions along with the latest changes with Collections java introduced a new class called Optional class.
+
+Null case :
+------------
+
+package com.demo.java.version_8;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		String s = null;
+		
+		System.out.println(s.length());
+	}
+}
+ 
+// Null check by using if else
+
+package com.demo.java.version_8;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+		
+		String s = null;
+		
+		if(s != null) {					// null check
+			System.out.println(s.toLowerCase());
+		} else {
+			System.out.println("null object is present");
+		}
+		
+		
+	}
+}
+
+
+
+Output:
+-------
+
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.length()" because "s" is null
+	at com.demo.java.version_8.Demo1.main(Demo1.java:9)
+
+
+Example : Null case2 with ARRAY OF STRING Example & Restrict using Optional class
+----------------------------------------------------------------------------------
+
+package com.demo.java.version_8;
+
+import java.util.Optional;
+
+public class Demo1 {
+
+	public static void main(String[] args) {
+
+		String[] arr = new String[5];
+
+		arr[0] = "java";
+		arr[1] = "python";
+
+		Optional<String> checkNull = Optional.ofNullable(arr[2]);
+
+//Normal if else condition
+		if (checkNull.isPresent()) {
+			System.out.println("the length of the string is -> " + arr[2]);
+		} else {
+			System.out.println("no data present in String a variable");
+		}
+
+// using predefined if else related method from Optional class along with enabling lambda expressions
+		
+		checkNull.ifPresentOrElse(i -> System.out.println(arr[1].length()),
+				() -> System.out.println("no data present"));
+
+	}
+}
+
+Note : ifPresentOrElase(Cosumer  , Runnable )
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Example with the following methods in Optional Class
+----------------------------------------------------
+isPresent();
+
+ifPresent()
+
+ifPresentOrElse()
+
+Optional.empt();
+
+Optional.of("values");
+
+Optional.ofNullable(name2);
+
+
+
+Optional.ifPresentOrElse(): 
+----------------------------
+
+-> It takes two input parameters with Consumer and Runnable interface type 
+-> Consumer[accept()] is the 1st parameter It executes like a If condition 
+-> Runnable[run()] is 2nd parameter it executes like else condition.
+
+// void accept(T t);
+
+		t -> sysout(t);
+		
+// void run();
+		
+		() -> sysout("");
+
+
+Example :
+---------
+
+package com.demo.java.version_8;
+
+import java.util.Optional;
+
+public class Demo3 {
+
+	public static Optional<String> getName(boolean value) {
+
+		if (value) {
+			return Optional.of("default Student name is  - Mukesh");
+		} else {
+			return Optional.empty();
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		Optional<String> check = getName(false);
+//
+//		if (check.isPresent()) {
+//			System.out.println("value assigned to a empty string");
+//		}
+
+//		check.ifPresent(result -> System.out.println(result));
+
+		check.ifPresentOrElse(name -> System.out.println(name), () -> System.out.println("NO value present"));
+
+	}
+
+}
+
+
+
+If method returns Null value -> Optional check -> Example :
+------------------------------------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.Optional;
+
+public class Demo3 {
+
+	public static Optional<String> getName(boolean value) {
+
+		if (value) {
+			return Optional.of("default Student name is  - Mukesh");
+		} else {
+			return null;
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		Optional<String> name2 = getName(false);
+
+		Optional<Optional<String>> ofNullable = Optional.ofNullable(name2);
+//
+//		if (check.isPresent()) {	
+//			System.out.println("value assigned to a empty string");
+//		}
+
+//		check.ifPresent(result -> System.out.println(result));
+
+		ofNullable.ifPresentOrElse(name -> System.out.println(name), () -> System.out.println("NO value present"));
+
+	}
+
+}
+
+
+String Joiner :
+==============
+
+
+-> Its a predefined class added in the java 8 feature.
+
+-> By using this we can join the strings by giving delemeter , and we can join by giving prefix and suffix before joining the strings.
+
+Class 
+-----
+
+public final class StringJoiner {
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    private final String prefix;
+    private final String delimiter;
+    private final String suffix;
+
+	----.................. } 
+	
+}
+
+
+Example :1
+-----------
+
+package com.demo.java.version_8;
+
+import java.util.StringJoiner;
+
+public class Joiner {
+
+	public static void main(String[] args) {
+
+		StringJoiner name = new StringJoiner("-");
+
+		name.add("Hello");
+		name.add("welcome to");
+		name.add("JAVA");
+
+		System.out.println(name);
+
+	}
+}
+
+Output - Hello-welcome to-JAVA
+
+
+Example : We can pass any type of value as a String type delimiter while joining the strings
+
+
+package com.demo.java.version_8;
+
+import java.util.StringJoiner;
+
+public class Joiner {
+
+	public static void main(String[] args) {
+
+		StringJoiner name = new StringJoiner("----*&*&*&*&*&-----");
+
+		name.add("Hello");
+		name.add("welcome to");
+		name.add("JAVA");
+
+		System.out.println(name);
+
+	}
+}
+
+Output -> Hello----*&*&*&*&*&-----welcome to----*&*&*&*&*&-----JAVA
+
+Example 3:
+--------
+
+-> Passing prefix & suffix along with the delimiter
+
+package com.demo.java.version_8;
+
+import java.util.StringJoiner;
+
+public class Joiner {
+
+	public static void main(String[] args) {
+
+		StringJoiner name = new StringJoiner("-", "{", "}");
+
+		name.add("Hello");
+		name.add("welcome to");
+		name.add("JAVA");
+
+		System.out.println(name);
+
+	}
+}
+
+
+Output -> {Hello-welcome to-JAVA}
+
+Examp 5:
+-------
+
+Note : We can pass any type of value only in the form of String format for all types like delimiter , prefix , suffix
+
+package com.demo.java.version_8;
+
+import java.util.StringJoiner;
+
+public class Joiner {
+
+	public static void main(String[] args) {
+
+		StringJoiner name = new StringJoiner(" ", "-->", ".");
+
+		name.add("Hello");
+		name.add("welcome to");
+		name.add("JAVA");
+
+		System.out.println(name);
+
+	}
+}
+
+
+Output :  -->Hello welcome to JAVA.
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Stream API:
+===========
+
+-> Collection are used to store the data.
+
+-> Streams are used to process the data which is stored in the collection objects.
+
+-> We can perform only storing and retrieving operations using collections.
+
+-> But with the help of Streams we can perform some more operation on the stored data.
+
+-> Stream not modify the actual structure of the collection object. 
+
+-> Stream<T> is an Interface available in package java.util.stream;
+
+-> Stream is a Normal interface contains different abstract methods.
+
+
+Ways to create a Stream:
+------------------------
+
+We can create Streams in 2 ways:
+
+1) Stream.of(values,.......);
+		
+2) Stream();   method
+
+
+
+
+
+Approach 1) Stream.of(values,.......);
+======================================
+
+Example: Integer type Stream
+---------
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<Integer> numbers = Stream.of(2, 3, 4, 5, 6, 7, 98, 5);
+
+		numbers.forEach(res -> System.out.println(res));
+
+	}
+}
+
+Example 2 :  printing elements by using method reference of System.out.println
+-----------
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<Integer> numbers = Stream.of(2, 3, 4, 5, 6, 7, 98, 5);
+
+	//	numbers.forEach(res -> System.out.println(res));
+
+		numbers.forEach(System.out::println);   // Mehtod referance in java
+
+	}
+}
+
+
+Note :
+
+
+//System.out.println
+
+
+-> //System class/PrintStream variable called out/ PrintStream class println()method
+
+
+
+
+Example 3:  with String type Stream
+-------------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<String> names = Stream.of("java", "python", "c#");
+
+		names.forEach(n -> System.out.println(n));
+	}
+}
+
+
+
+
+Exmaple : Stream with Object type
+----------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<Object> values = Stream.of("java", 22, "python", true, 'H', 78.575, false, 45, 333);
+
+		values.forEach(n -> System.out.println(n));
+	}
+}
+
+
+------------------------------------
+
+Approach 2) Stream();
+=======================
+
+Syntax:
+-------
+Stream<Generic> variable = collectionObj.Stream();
+
+	
+	--->	Stream<Object> stream = list.stream();
+
+
+Example:
+--------
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		List<Integer> list = new ArrayList<>();
+
+		list.add(23);
+		list.add(45);
+		list.add(77);
+		list.add(99);
+		list.add(94);
+
+		Stream<Integer> stream = list.stream();
+
+		stream.forEach(i -> System.out.println(i));
+
+	}
+};
+
+
+Example:2
+----------
+
+-> Understanding the differences of forEach() methods from Iterable Interface & Stream Interface
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		List<Integer> list = new ArrayList<>();
+
+		list.add(23);
+		list.add(45);
+		list.add(77);
+		list.add(99);
+		list.add(94);
+
+// with the help of stream
+		Stream<Integer> stream = list.stream();
+		stream.forEach(i -> System.out.println(i));		// forEach from Stream interface
+
+		System.out.println();
+
+//without Stream 
+		list.forEach(i -> System.out.println(i));		// forEach from interable interface
+
+	}
+};
+
+Note :
+-------
+
+-> In the above case the forEach() method from iterable interface cant perform any operation other then iterating 
+
+-> forEach() from Stream interface , we can able perform multiple operations with the help of methods are available in the stream interface because of the collection object is a stream type.
+	
+
+
+Stream() method using object type:
+-----------------------------------
+
+Example :
+
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		List<Object> list = new ArrayList<>();
+
+		list.add(23);
+		list.add("maartin");
+		list.add(true);
+		list.add('K');
+		list.add(99.99);
+
+		Stream<Object> stream = list.stream();
+		stream.forEach(i -> System.out.println(i));
+
+		System.out.println();
+
+	}
+};
+
+Types of methods available in Streams:
+---------------------------------------
+These all methods from Stream interface and we can apply these methods only on the stream object
+
+
+There are 2 types are available
+
+1) Intermediate operational methods
+
+2) Terminal operational methods
+
+
+-> Intermediate operational methods accept function interfaces as parameters and returns a new stream
+
+	Ex : Filter , map , flatMap....
+
+-> Terminal operational methods will take inputs and produce outputs.
+
+	Ex : count(), toList()....
+
+
+Filter:
+=======
+
+-> filter();
+
+-> filter is used to apply some conditions on the stream object.
+
+-> Internally it uses Predicate functional interface as a parameter 
+
+
+// filter the values more than 18 
+
+Example :
+----------
+
+Steam object Integer type using Stream.of()
+------------------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<Integer> values = Stream.of(23, 45, 60, 43, 22, 17, 14);
+
+// `````approach1
+		Stream<Integer> filter = values.filter(t -> t < 18);
+		filter.forEach(i -> System.out.println(i));
+
+//``````approach2
+		
+		values.filter(f -> f < 18).forEach(i -> System.out.println(i));
+
+	}
+};
+
+Output :   
+
+23
+45
+60
+43
+22
+
+
+Example 2:
+----------
+
+Stream object with the String type using Stream.of()
+----------------------------------------------------
+
+package com.demo.java.version_8;
+
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		Stream<String> values = Stream.of("naresh", "nani", "kiran", "kranthi");
+
+		values.filter(f -> f.startsWith("n")).forEach(i -> System.out.println(i));
+
+	}
+};
+
+Output : naresh 
+	 nani
+
+
+Stream object with the Integer type using Stream() :
+----------------------------------------------------
+
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		List<Integer> list = new ArrayList<>();
+
+		list.add(23);
+		list.add(34);
+		list.add(12);
+		list.add(77);
+		list.add(24);
+
+	//list.stream().filter(t -> t > 18).forEach(i -> System.out.println(i));
+
+	}
+};
+
+
+Stream object with the String type using Stream() :
+----------------------------------------------------
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("veera");
+		list.add("vamsi");
+		list.add("anitha");
+		list.add("mallesh");
+		list.add("mounika");
+
+//		Predicate<String> p = i -> i.startsWith("m");	
+//		for(String name  : list) {
+//			if(p.test(name)) {
+//				System.out.println(name);
+//			}
+//		}
+
+//		System.out.println();
+
+
+		list.stream().filter(t -> t.startsWith("m")).forEach(i -> System.out.println(i));
+
+	}
+};
+
+
+-> Create the Student data & filter the data using stream API :
+===============================================================
+
+Example 1:
+-----------
+-> Student and Test class
+-> No getters No Setters , only One ToString()
+
+Entity Class:
+-------------
+
+package com.demo.java.version_8;
+
+public class EmployeeEntity {
+
+	String name;
+	int age;
+	String job;
+	Long salary;
+	String company;
+
+	EmployeeEntity(String name, int age, String job, Long salary, String company) {
+
+		this.name = name;
+		this.age = age;
+		this.job = job;
+		this.salary = salary;
+		this.company = company;
+
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [name=" + name + ", age=" + age + ", job=" + job + ", salary=" + salary + ", company="
+				+ company + "]";
+	}
+
+}
+
+
+
+Test class:
+------------
+
+package com.demo.java.version_8;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		List<EmployeeEntity> list = new LinkedList<>();
+
+		EmployeeEntity e1 = new EmployeeEntity("rakesh", 25, "software", 50000L, "infosys");
+
+		EmployeeEntity e2 = new EmployeeEntity("mahesh", 35, "carpenter", 20000L, "business");
+
+		list.add(e1);
+		list.add(e2);
+		list.add(new EmployeeEntity("ravi", 45, "painter", 25000L, "business"));
+		list.add(new EmployeeEntity("harika", 55, "software", 45000L, "tcs"));
+
+		list.stream().filter(i -> i.age > 40).forEach(a -> System.out.println(a));
+		
+	}
+};
+
+
+
+
+Note :
+-------
+-> Internally When calling the Top most Object class ToString() method  the output is like below format
+
+public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
+Output:
+-------
+com.demo.java.version_8.EmployeeEntity@5b2133b1
+com.demo.java.version_8.EmployeeEntity@72ea2f77
+
+
+-> We can override Object class ToString() when ever required and generate this method using source >> generate to String
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [name=" + name + ", age=" + age + ", job=" + job + ", salary=" + salary + ", company="
+				+ company + "]";
+	}
+
+Output -> 
+--------
+
+EmployeeEntity [name=ravi, age=45, job=painter, salary=25000, company=business]
+EmployeeEntity [name=harika, age=55, job=software, salary=45000, company=tcs]
+
+
+
+Example 2:
+----------
+-> make variables as a private & Use Entity class with the help of getter methods and setter methods.
+
+
+-> Entity Class:
+----------------
+
+package com.demo.java.version_8;
+
+public class EmployeeEntity {
+
+	private String name;
+	private int age;
+	private String job;
+	private Long salary;
+	private String company;
+
+	EmployeeEntity(String name, int age, String job, Long salary, String company) {
+
+		this.name = name;
+		this.age = age;
+		this.job = job;
+		this.salary = salary;
+		this.company = company;
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public Long getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Long salary) {
+		this.salary = salary;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [name=" + name + ", age=" + age + ", job=" + job + ", salary=" + salary + ", company="
+				+ company + "]";
+	}
+
+}
+
+-> Test Class:
+---------------
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Streams {
+
+	public static void main(String[] args) {
+
+		EmployeeEntity e1 = new EmployeeEntity("rakesh", 25, "software", 50000L, "infosys");
+		EmployeeEntity e2 = new EmployeeEntity("mahesh", 35, "carpenter", 20000L, "business");
+		EmployeeEntity e3 = new EmployeeEntity("ravi", 45, "painter", 25000L, "business");
+		EmployeeEntity e4 = new EmployeeEntity("harika", 55, "software", 45000L, "tcs");
+		EmployeeEntity e5 = new EmployeeEntity("monika", 50, "builder", 65000L, "LnT");
+
+		List<EmployeeEntity> list = new LinkedList<>();
+
+		List<EmployeeEntity> asList = Arrays.asList(e1, e2, e3, e4, e5);
+
+		asList.stream().filter(i -> i.getSalary() > 45000 && i.getJob().equals("software"))
+				.forEach(a -> System.out.println(a));
+	}
+};
+
+
+
+Q1)  Find the emp details where age is more then 30;
+
+A) asList.stream().filter(i -> i.getAge()>30).forEach(a -> System.out.println(a));
+
+Q) Find the emp details where age is > 20  and < 50 ?
+
+A) asList.stream().filter(i -> i.getAge() > 20 && i.getAge() < 50).forEach(a -> System.out.println(a));
+
+
+Q) Find the emp details where job role is -> painter
+
+A) asList.stream().filter(i -> i.getJob().equals("painter")).forEach(a -> System.out.println(a));
+
+
+Q) Find the emp details where emp salary is more than 25000 
+
+A) asList.stream().filter(i -> i.getSalary()>25000).forEach(a -> System.out.println(a));
+
+
+Q) Find the emp details where emp job role is SOFTWARE & salary is more than 45000 
+
+A) 	asList.stream().filter(i -> i.getSalary() > 45000 && i.getJob().equals("software"))
+				.forEach(a -> System.out.println(a));
+
+Q) Find the emp details where emp Company name is tcs & age is more than 50
+
+A) 	asList.stream().filter(i -> i.getAge()>50 && i.getCompany().endsWith("tcs"))
+				.forEach(a -> System.out.println(a));
+
+Q) Find the emp details who are running their business with minimum salary of 20000 ?
+
+A)  asList.stream().filter(i -> i.getSalary() >= 20000)
+				.forEach(a -> System.out.println(a));x
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
