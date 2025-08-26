@@ -1,0 +1,1046 @@
+Map() :
+=======
+-> Its a intermediate operational method in java 8 Stream API
+
+-> It used predefined Function Functional interface after performing some operation it returns a new stream.
+
+Stream Filter(Predicate p);
+
+Stream Map(Function f);
+
+-> It don't check any condition inside the parameter of map() method , because it not using predicate.
+
+-> It uses Function functional interface so based on this functionality only we need to write logic inside the Map().
+
+
+Example :1:
+-------------
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Practice {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("anusha");
+		list.add("venkat");
+		list.add("soumya");
+		list.add("harsha");
+
+		// apply(T t);
+
+		Stream<String> map = list.stream().map(name -> name.toUpperCase());
+		map.forEach(System.out::println);
+		
+		System.out.println();
+		
+		list.stream()
+			.map(name-> name.toUpperCase())
+			.forEach(i-> System.out.println(i));
+	}
+
+}
+
+
+Example 2:
+----------
+
+-> use MapToInt() -> It return a Stream of Integer values
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Practice {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("anusha");
+		list.add("venkat");
+		list.add("soumya");
+		list.add("harsha");
+		list.add("lakshman");
+		list.add("john paul");
+		list.stream()
+			.mapToInt(name -> name.length())
+			.forEach(i-> System.out.println(i));
+
+// similarly use mapToLong() & mapToDube()
+
+		list.stream()
+			.mapToDouble(name -> name.length())
+			.forEach(i-> System.out.println(i));
+	
+		
+		list.stream()
+			.mapToLong(name -> name.length())
+			.forEach(i-> System.out.println(i));
+	}
+	
+      }
+   }
+
+}
+
+output of maptoInt:
+
+6
+6
+6
+6
+8
+9
+
+Output Of mapToDouble:
+
+6.0
+6.0
+6.0
+6.0
+8.0
+9.0
+
+Example 3:
+----------
+Print all names in uppercase as well as along with its length
+
+Code :
+-------
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Practice {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("anusha");
+		list.add("venkat");
+		list.add("soumya");
+		list.add("harsha");
+		list.add("lakshman");
+		list.add("john paul");
+
+		list.stream()
+			.map(name -> name.toUpperCase()  +  " & name Lenght is -> " + name.length() )
+			.forEach(i-> System.out.println(i));
+	}
+
+}
+
+Output :
+
+ANUSHA & name Lenght is -> 6
+VENKAT & name Lenght is -> 6
+SOUMYA & name Lenght is -> 6
+HARSHA & name Lenght is -> 6
+LAKSHMAN & name Lenght is -> 8
+JOHN PAUL & name Lenght is -> 9
+
+
+Example 4:
+-----------
+
+Print the Names in Upper cases along with its name length , only the names starts with letter "S"
+
+Code:
+-----
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Practice {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("anusha");
+		list.add("venkat");
+		list.add("soumya");
+		list.add("harsha");
+		list.add("samarat");
+		list.add("john paul");
+		list.add("santhosh");
+		list.stream()
+			.filter(name-> name.startsWith("s"))
+			.map(name -> name.toUpperCase()  +  " & name Lenght is -> " + name.length() )
+			.forEach(i-> System.out.println(i));
+	}
+
+}
+
+Output:
+-------
+
+SOUMYA & name Lenght is -> 6
+SAMARAT & name Lenght is -> 7
+SANTHOSH & name Lenght is -> 8
+
+Example 5:
+-------------
+Now Print the names only if its length is = 6 and into upper case and names start with "s"
+
+Code:
+-----
+
+package com.demo.java.version_8;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Practice {
+
+	public static void main(String[] args) {
+
+		List<String> list = new ArrayList<>();
+
+		list.add("anusha");
+		list.add("venkat");
+		list.add("soumya");
+		list.add("harsha");
+		list.add("samarat");
+		list.add("john paul");
+		list.add("santhosh");
+		list.stream()
+			.filter(name-> name.startsWith("s") && name.length() ==6)
+			.map(name -> name.toUpperCase()  +  " & name Lenght is -> " + name.length() )
+			.forEach(i-> System.out.println(i));
+	}
+
+}
+
+Output:
+--------
+
+SOUMYA & name Lenght is -> 6
+
+
+Example 6:
+----------
+
+With Employee or Student class Use Filter and map methods 
+
+Eamployee Entity:
+-----------------
+
+package com.demo.java.version_8;
+
+public class EmployeeEntity {
+
+	private String name;
+	private int age;
+	private String job;
+	private Long salary;
+	private String company;
+
+	EmployeeEntity(String name, int age, String job, Long salary, String company) {
+
+		this.name = name;
+		this.age = age;
+		this.job = job;
+		this.salary = salary;
+		this.company = company;
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public Long getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Long salary) {
+		this.salary = salary;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeEntity [name=" + name + ", age=" + age + ", job=" + job + ", salary=" + salary + ", company="
+				+ company + "]";
+	}
+
+}
+
+
+
+Test class:
+----------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Practice {
+
+	public static void main(String[] args) {
+		
+		EmployeeEntity e1 = new EmployeeEntity("rakesh", 25, "software", 50000L, "infosys");
+		EmployeeEntity e2 = new EmployeeEntity("mahesh", 35, "carpenter", 70000L, "business");
+		EmployeeEntity e3 = new EmployeeEntity("ravi", 45, "painter", 25000L, "business");
+		EmployeeEntity e4 = new EmployeeEntity("harika", 55, "software", 45000L, "tcs");
+		EmployeeEntity e5 = new EmployeeEntity("monika", 50, "builder", 65000L, "LnT");
+
+		List<EmployeeEntity> list = Arrays.asList(e1, e2, e3, e4, e5);
+
+//Q) Print the employees whos salary is more than 45k & with business type & in Capital letters & job name & company name
+
+list.stream()
+	.filter(f -> f.getSalary()>45000 &&  f.getCompany().equals("business"))
+	.map(m -> m.getName().toUpperCase() + " &  " +  m.getJob() + " & " + m.getCompany())
+	.forEach(System.out::println);
+
+	}
+
+}
+
+
+//Q) Print the employees whos salary is more than 45k & with business type & in Capital letters & job name & company name
+
+list.stream()
+	.filter(f -> f.getSalary()>45000 &&  f.getCompany().equals("business"))
+	.map(m -> m.getName().toUpperCase() + " &  " +  m.getJob() + " & " + m.getCompany())
+	.forEach(System.out::println);
+
+	}
+
+
+
+Output:
+
+MAHESH &  carpenter & business
+
+
+Q) Get the employee details of Name , age, job , company who's minimum age is 30 and working as software engineer in the Infosys company ?
+
+A) 	 
+   list.stream()
+	 .filter(a -> a.getAge()>= 30 && a.getJob().equals("software"))
+	 .map(m->m.getName() + " , " + m.getSalary() + " , " + m.getJob() + " , " +m.getCompany())     
+	 .forEach(i-> System.out.println(i));
+
+Output:
+
+	harika , 45000 , software , tcs
+
+
+Q) Get All details without using map() 
+
+A)  list.stream()
+	 .filter(a -> a.getAge()>= 30 && a.getJob().equals("software"))
+	 .forEach(i-> System.out.println(i));
+
+
+===========
+Flat Map:
+===========
+
+-> If there is collection of streams are present ,we can use FlatMap() to flatten or to create a unified stream.
+
+-> Its Intermediate operational method 
+
+-> It is used for parallel streams in java.
+
+-> if Collection inside a collection we can create a unified stream with the help of flatmap().
+
+Exmaple : 1 Without using FlatMap();
+---------------------------------------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+//		List<String> list = new ArrayList<>();	  // dont write like this
+//		list.add("CSE");
+//		list.add("AI");
+//		list.add("DS");
+//		list.add("CYBER SECURITY");
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", "CYBER SECURITY", "IOT");
+		List<String> list2 = Arrays.asList("MECH", "EEE", "CIVIL", "ECE");
+		List<String> list3 = Arrays.asList("Degree", "MBA", "MEDICAL");
+
+// Previous approach by creating stream individually
+//		list1.stream().filter().map().forEach();
+//		list2.stream().filter().map().forEach();
+//		list3.stream().filter().map().forEach();
+
+// Make all stream of collection in to a single stream
+
+
+		List<List<String>> listAll = Arrays.asList(list1, list2, list3);
+
+		Stream<List<String>> stream = listAll.stream();
+
+		stream.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+Output :
+
+[CSE, AI, DS, CYBER SECURITY, IOT]
+[MECH, EEE, CIVIL, ECE]
+[Degree, MBA, MEDICAL]
+
+Eaxmple 2: Using FlatMap()
+----------------------------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", "CYBER SECURITY", "IOT");
+		List<String> list2 = Arrays.asList("MECH", "EEE", "CIVIL", "ECE");
+		List<String> list3 = Arrays.asList("Degree", "MBA", "MEDICAL");
+
+		List<List<String>> listAll = Arrays.asList(list1, list2, list3);
+
+		Stream<List<String>> stream = listAll.stream();
+
+		Stream<String> flatMap = stream.flatMap(m -> m.stream());
+
+		flatMap.forEach(i -> System.out.println(i));
+
+//In a single line
+//	stream.flatMap(m -> m.stream()).forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+Output:
+-------
+
+CSE
+AI
+DS
+CYBER SECURITY
+IOT
+MECH
+EEE
+CIVIL
+ECE
+Degree
+MBA
+MEDICAL
+
+======================
+Slicing Operations :
+======================
+
+There are few methods are available to perform slicing operation for the streams 
+
+-> skip();
+-> limit();
+-> distinct();
+
+1) skip();
+-----------
+
+-> This method is used to ignore some First/intial elements or values present in the stream object
+
+-> Stream<T> skip(long n);
+
+-> It Takes a long value means number as a input parameter and return the Stream as a output.
+
+Code>
+-----
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", 
+				"CYBER SECURITY", "IOT" , "MECH", 
+				"EEE", "CIVIL", "ECE", "Degree",
+				"MBA", "MEDICAL");		
+
+		list1.stream()
+		.skip(11)
+		.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+Use cases :
+
+1) skip() After Stream() OR before filter/map
+
+->  It skip the elements from the result of output Stream() immediately with out applying any filter/map.
+
+	  asList.stream()
+		.skip(2)
+		.filter(i -> i.getSalary() >= 45000)	
+		.forEach(a -> System.out.println(a));
+
+2) Skip() After Filter/map OR before ForEach();
+
+-> It Skip the elements from the result of Filtered data or the result of Map() output
+
+
+	  asList.stream()
+		.filter(i -> i.getSalary() >= 45000)	
+		.skip(2)
+		.forEach(a -> System.out.println(a));
+
+2) Limit();
+==========
+
+-> Used to get the Initial/First values or elements present in the stream object by giving some count .
+
+-> Stream<T> limit(long maxSize);
+
+-> It returns Stream as output and it takes long value as a input.
+
+
+Example:
+---------
+
+	package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", 
+				"CYBER SECURITY", "IOT" , "MECH", 
+				"EEE", "CIVIL", "ECE", "Degree",
+				"MBA", "MEDICAL");		
+
+		list1.stream()
+		.limit(5)
+		.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+Output:
+
+CSE
+AI
+DS
+CYBER SECURITY
+IOT
+
+
+Ex : 2
+
+
+		list1.stream()
+		.skip(5)
+		.limit(2)
+		.forEach(i -> System.out.println(i));
+
+
+
+Output is -> 
+
+MECH
+EEE
+
+
+Ex 3:
+
+MECH
+EEE
+CIVIL
+
+
+	
+distinct();
+==========
+
+	->It is used to get the unique elements/values from a give stream 
+	
+	-> It dont take any input as a parameter it just returns output as a stream
+
+	Stream<T> distinct();
+
+	
+Example :
+---------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", 
+				"CYBER SECURITY", "CSE" , "MECH", 
+				"EEE", "CSE", "CSE", "CSE",
+				"CSE", "CSE");		
+
+		list1.stream()
+		.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+Output :
+-------
+
+CSE
+AI
+DS
+CYBER SECURITY
+CSE
+MECH
+EEE
+CSE
+CSE
+CSE
+CSE
+CSE
+
+
+With Using Distinct()
+------------------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FlatMapExmp {
+	
+	public native void m1();
+	
+	
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", 
+				"CYBER SECURITY", "CSE" , "MECH", 
+				"EEE", "CSE", "CSE", "CSE",
+				"CSE", "CSE");		
+
+		list1.stream()
+		.distinct()
+		.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+Output:
+-------
+
+CSE
+AI
+DS
+CYBER SECURITY
+MECH
+EEE
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+Finding operations :
+---------------------
+
+These are used to find the elements [ only one record ] from the given stream
+
+available methods are 
+
+1) findFirst()
+1) findAny ()
+
+
+1) findFirst()
+----------------
+
+-> Used to find the first most element in a given stream 
+-> The return type of findFirst() Optional type
+-> So if we use findFirst() in a stream then we cant directly write the forEach() method inline with the given stream
+-> To get the data after perfoming some operation with findFirst() we need to use one more method called get() to get the actual output or result.
+
+->
+	 Optional<T> findFirst();
+
+
+-> Example:
+
+
+public class FlatMapExmp {
+
+	public native void m1();
+
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList("CSE", "AI", "DS", "CYBER SECURITY", "CSE", "MECH", "EEE", "CSE", "CSE",
+				"CSE", "CSE", "CSE");
+
+		Optional<String> first = list1.stream().findFirst();
+		
+		System.out.println(first.get());
+
+	}
+
+}
+
+Example 2 with Previous Employee entity 
+---------------------------------------
+
+	 Optional<EmployeeEntity> first = list.stream().filter(a -> a.getAge()>= 20 && a.getJob().equals("software"))
+	 .findFirst();
+
+	 System.out.println(first.get());
+
+
+2) FindAny();
+------------
+
+-> Used to get any value from the given stream 
+
+-> The return type this findAny() also an Optional Type
+
+-> It wont follow any order , It just pick some random value from the stream.
+
+
+->   Optional<T> findAny();
+
+
+Example : only with FindAny()
+---------------------------
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class FlatMapExmp {
+
+	public native void m1();
+
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList( "AI", "DS", "CYBER SECURITY", "CSE", "MECH", "EEE", "CSE", "CSE",
+				"CSE", "CSE", "CSE");
+
+		Optional<String> first = list1.stream()
+				.findAny();
+		
+		System.out.println(first.get());
+
+	}
+
+}
+
+Output: AI
+
+
+Example : Along with the filter
+-------------------------------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class FlatMapExmp {
+
+	public native void m1();
+
+	public static void main(String[] args) {
+
+		List<String> list1 = Arrays.asList( "AI", "DS", "CYBER SECURITY", "CSE", "MECH", "EEE", "CSE", "CSE",
+				"CSE", "CSE", "CSE");
+
+		Optional<String> first = list1.stream()
+				.filter(p -> p.length() ==4)
+				.findAny();
+		
+		System.out.println(first.get());
+
+	}
+
+}
+
+Output : 
+
+MECH
+
+Note :
+------
+We can use any methods are available in Optional class with that reference.
+
+------------------------------------------------------------------------------------------------
+
+Collector
+==========
+
+Collectors are used to collect the data from the stream
+
+
+
+The following type are 
+
+	Collectors.toList();
+	Collectors.toMap();
+	Collectors.toSet();
+
+
+-> These all methods are available in Collectors class.
+-> 
+	<R, A> R collect(Collector<? super T, A, R> collector);
+
+-> collect is an abstract method in Stream interface.
+
+
+Collectors.toList():
+--------------------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class FlatMapExmp {
+
+	public native void m1();
+
+	public static void main(String[] args) {
+
+		List<String> inputList = Arrays.asList("AI", "DS", "CYBER SECURITY", "CSE", "MECH", "EEE", "CSE", "CSE", "CSE",
+				"CSE", "CSE");
+
+		List<String> resultList = inputList.stream().filter(i -> i.startsWith("C")).distinct()
+				.collect(Collectors.toList());
+
+		System.out.println(resultList);
+	}
+
+}
+
+
+Collectors.toMap():
+====================
+
+-> used to convert the stream output into the Collection Map object
+
+-> toMap() -> 
+
+	it takes 2 input parameters with Function predefined functional interface
+	& It return output as a Collection Map object.
+
+-> Means it always represent the dada in the form of KEY  & VALUE pair.
+
+	key = value;
+
+
+-> Collector<Map<K,U>> toMap(Function keyMappe,  Function valueMapper).
+
+Example :
+---------
+
+package com.demo.java.version_8;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class FlatMapExmp {
+
+	public native void m1();
+
+	public static void main(String[] args) {
+
+		List<String> inputList = Arrays.asList("AI", "DS", "CYBER SECURITY", "CSE", "MECH", "EEE", "CSE", "CSE", "CSE",
+				"CSE", "CSE");
+
+	Map<String, Integer> collect = inputList.stream()
+				.filter(i -> i.startsWith("C")).distinct()
+				.collect(Collectors.toMap(a->a, a->a.length()));
+
+		System.out.println(collect);
+	}
+
+}
+
+
+Output :
+--------
+
+{CYBER SECURITY=14, CSE=3}
+
+  key = value , key = value
+
+
+SELF STUDY:
+--------------
+
+toSet,
+SplitIterator,
+MethodReferance
+ConstructorReferance
+Grpuping operations
+Avaraging
+..
+Date & TIME API
+	LocalDate
+	LocalTime
+	LocalDateAndTime
+
+
+
+
+Date And Time API 
+----------------
+
+Before java 8 to work with dates in java we have only one predefined class called DATE
+
+		Date d = new Date();
+
+		System.out.println(d);
+
+	
+O/P -> Tue Aug 26 15:53:44 IST 2025
+
+
+In Java 8 new feature came to work with date and times , there are multiple pre defined classes are available 
+
+	LocalDate;
+	LocalTime;
+	LocalDateAndTime;
+
+
+package com.demo.java.version_8;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+public class FlatMapExmp {
+
+	public static void main(String[] args) {
+
+		LocalDate l1 = LocalDate.now();
+		System.out.println(l1);
+
+		LocalTime t2 = LocalTime.now();
+		System.out.println(t2);
+		
+		LocalDateTime l3 = LocalDateTime.now();
+		System.out.println(l3);
+	}
+}
+
+
+
+Output:
+------
+
+2025-08-26
+16:03:16.664867200
+2025-08-26T16:03:16.664867200
+
+
+
+
+
+
+
