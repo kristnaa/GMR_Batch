@@ -1,0 +1,700 @@
+Full stack , Front end tech stack ,UI names , web site & app , static & dynamic ,HTML history, 
+its importance , Extensions
+where to execute ? 
+Note pad .html diff
+web page, browser, server
+URL
+
+
+What is HTML, Doctype, Structure of HTML Document, HTML Boilerplate, Comments
+Headings, Paragraphs, Line Breaks, Horizontal Rules, Bold, Italic, Underline, Superscript/Subscript
+div , span
+strong,emphasising, 
+
+
+Front end:
+===========
+
+Fullstack -> Back end + Front end
+
+	java & db
+
+Front end = 
+
+
+HTML 
+CSS
+JAVA SCRIPT 
+ANGULAR- JS- outdated/  TS - Angular
+REACT -  JS / TS
+
+
+ let m1(){
+
+}
+
+Predicate<Integer> values = ()=> {}
+
+
+HTML:
+-------
+
+HYPER TEXT MARKUP LANGUAGE
+
+MARKUP LANGUAGE - > Its a tag based language
+
+<></>
+
+
+Object oriented - java, python, c#
+Scripting langauge - Js , type scipt , react
+Markup languge -  HTML , XML , HTMLX
+
+History 
+=========
+
+html -> found by -> berners lee @ 1991 
+ 
+1st version 1993
+
+lATEST VERSION - HTML5 - 2014 TO tillnow
+
+----------------------------------------------
+
+where to write this HTML code
+
+-> Offline editors -> 
+	
+	-> Note pad
+	-> IDE -> VS code ,Brackets, ....
+-> Online editors
+	
+	-> Online compilers....
+
+------------------------------------------------
+
+Extensions of HTML 
+------------------
+
+	-either .html or    
+		.htm
+
+----------------------------------------------
+
+Website & WebApplication
+
+Static  / Dynamic 
+
+HTML/CSS  - JAVA SCRIPT 
+-------------------------------------------------
+
+UI developemet/ Front end development
+
+Front end
+UI - User interface
+GUI -> Graphical user interface
+UX - User exprerience
+
+--------------------------------------------
+
+Web page, Web bworser, web server
+
+Web page
+
+-> The information or the actual resouce we could see on the website.
+
+Website contains multiple web pages
+
+, Web bworser,
+
+-> It's a software tool used to show or access the web pages.
+
+EX : Chrome , edge, opera ,mozilla, firefox, e exp...
+
+ web server :
+
+-> Its like a meditaor to deliver web pages to web browser.
+
+
+----------------------------------------------------
+
+
+
+ 2 types of tags are available
+
+		1) self closing
+		2) Not self closing tags
+
+-> html 
+
+	-> its an example for nonself closing tag
+
+open tag -> 	<html> 
+	
+		here we can write out html code
+	
+Closed tag -> 	</html> 
+
+
+-> br  
+	
+	-> ita self closing tag means closing tag is optional 
+
+	<br>	    --> Open tag is sufficient 
+
+	<br> </br>   ------> Optional closing tag.
+
+--------------------------------------------------------
+
+Create HTML Page - with the note pad 
+
+
+-> with .html extension 
+
+
+ Doctype :
+--------------
+
+it is added in the latest feature of HTML5
+
+	<!DOCTYPE html> 
+
+-> It tell the browser about what version of the HTML to expect.
+
+
+ Structure of HTML5 Document,
+-----------------------------
+
+<!DOCTYPE html>
+<html>
+
+<head>		</head>
+<body> 		</body>
+
+</html>
+
+
+Install VS CODE:
+-----------------
+ 
+-> Open vs code directly and open the file localtion 
+
+-> Go to the file location and Open CMD prompt 
+			-> type   code space dot [  code . ].
+
+Install some extensions
+-------------------------
+
+	1) Live server  -> Automatic reload the wen page on brow..
+	2) Lorem ipsum  -> Genarates some dummy text.
+
+
+
+HTML Boilerplate : 
+------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+Comments :
+=========
+
+java ->    //code
+Db-> 	  -- code
+Html ->   <!-----code---->
+
+Headings
+==========
+
+-> html contains 6 header tags
+
+        from h1 to h6
+
+<h1></h1>
+<h2></h2>, h3 , h3.........h6.
+
+
+Each tag shows the text ot content with different sizes
+
+
+	h1 -> Maximum size
+
+	h2 -> Smaller then h1
+
+	h3 -> Smaller then h2
+
+	,,,...... h6 -> is Smaller than reaming all header tags
+
+<h1>  Welcome to the HTML in GMR_IT</h1>
+<h2>  Welcome to the HTML in GMR_IT</h2>
+<h3>  Welcome to the HTML in GMR_IT</h3>
+<h4>  Welcome to the HTML in GMR_IT</h4>
+<h5>  Welcome to the HTML in GMR_IT</h5>
+<h6>  Welcome to the HTML in GMR_IT</h6>
+
+Welcome to the HTML in GMR_IT     -> its a normal text
+
+
+Paragraphs :
+=============
+
+<p> abc.............  </p>   
+
+
+ Line Breaks :
+--------------
+
+<br>   self closing tag
+
+-> It separates the content with one empty line
+
+ Horizontal Rule:
+-----------------
+
+<hr>  
+
+-> used to separate the data with a single line
+
+
+marquee tag:
+-------------
+
+<marquee>  abc,,,,,,,,..........   </marquee>
+
+
+-> used to move the text from right to left direction 
+
+-> we can change the direction usign
+		
+	Attribute called -> direction 
+
+	value is 	->   "right"		[left to right]
+
+	
+<marquee  direction = "right"> 
+
+ abc,,,,,,,,..........   
+
+
+</marquee>
+
+pre tag:
+========
+
+It allows spaces given or mentioned inside this PRE tag
+
+<pre>               All Copy rights reserved by GMR_IT @razam</pre>
+
+
+<center> </center>
+================
+
+used to align the text in the center of the web page.
+
+
+
+span
+=====
+
+span tag is used to access the css features inside the HTML document
+
+	<span style = "color:red">   
+
+	abc...... 
+
+	</span>
+
+
+<span style="color:rgb(15, 8, 225)">Each centre stands</span> 
+
+<span style="text-decoration: underline;">Each centre stands</span> 
+
+
+-> Its not a self closing tag.
+-> With this only we can apply Inline css features for the HTML elements.
+
+Note : It is not recommended to use CSS inline features with the help of this span tag.
+
+
+div tag :
+========
+
+It is used to group or store some html elements into a separate section.
+
+tag:
+-----
+<div>   </div>
+
+Example : 
+
+<!-- div section - one -->
+
+<div id="one"> 
+<h4> IT Cources</h4>
+<p> Artificial intelligence</p>
+<p>Data science</p>
+</div>
+
+
+<!-- div section - two -->
+
+<div class="non-it">
+<h4>Non IT Cources</h4>
+<p>Civil engineering</p>
+<p>Electronics  & Communication engineering</p>
+</div>
+
+
+Text formatters:
+================
+
+Theses tags are used to formate the text content in the html document.
+
+different types as follows below
+
+1) small
+2) big
+
+3) bold 
+4) strong
+
+5) itallic
+6) emphasize
+
+7) underline
+
+8) del
+9) strike
+
+10) sub script
+11) super script
+
+1) small 
+---------
+-> It used to reduce the size of the regular text.
+
+ <small>Apollo's specialized </small>
+
+
+2)Big
+------
+
+-> used to represent the content with big size when compare with regular text
+
+<big> specialized </big>
+
+3) Bold
+-------
+
+-> used to represent text with BOLD letters.
+
+-> <b> </b> used for Highliting some Non - important data
+
+<b>innovation. </b>
+
+4) Strong
+---------
+
+-> Used to represent some Important data with BOLD letters .
+
+-> <strong> </strong> 
+
+->  <strong>  centres deliver  </strong> 
+
+5) itallic tag
+-------------
+
+-> To represent the data with itallic text format
+
+-> <i>  </i>
+
+-> <i> world-class</i>
+
+6) emphasizing tag
+-----------------------
+
+-> used to represent the important data in itallic  nature . 
+
+-> <em>  </em>
+
+-> <em> specialized hubs</em> 
+
+7) underline
+--------------
+
+-> used to represent the html data with underline 
+
+-> <u> </u>
+
+-> <u> centre stands </u>
+
+8) delete tag
+ --------------
+
+-> used to represent data that has been deleted or has to be replaced or removed
+
+-> <del>  </del>
+
+-> it hiligts the data with strike throgh  [ text with horizontal line strike ]
+
+-> <del> new benchmarks in clinical</del>
+
+9) strike tag
+--------------
+
+-> used to represent important data that has to be deleted or deleted or replaced 
+  with a strike [ horizontal line ] 
+
+-> <strike> </strike>
+
+-> <strike> ipsum dolor sit amet </strike>
+
+10) sub script
+---------------
+
+-> used to represent data below the baseline[ below to the other text ]
+
+-> <sub> obcaecati</sub>
+
+11) super script
+-----------------
+-> used to represent the data above the base line
+
+-> <sup> </sup>
+
+-> <sup>quis! Ex laborum hic</sup>
+
+----------------------------------------------------------------------
+
+Lists in HTML:
+-------------
+
+-> To show HTML elimenets in the form lists we can use list related tags.
+
+-> There are 2 types of lists are available in HTML
+
+-> 	1) Unordered List
+	2) Ordered List
+
+-> And use the tag called "li"  <li>   </li>  to represent actual html element. 
+
+1) UnOrdered List:
+------------------
+
+-> It shows or represents data in a list format without any order.
+
+-> means it dont show the data with some specific order by using numbers.
+
+-> tabs ->    <ul>  </ul>
+
+-> Ex-> 
+	
+<h3>Company visits in this year 2025 </h3>
+
+    <ul>
+
+        <li>Infosys</li>
+        <li>TechMahindra</li>
+        <li>Tcs</li>
+        <li>Google</li>
+        <li>amazon</li>
+
+    </ul>	
+	
+
+2) Ordered List :
+------------------	
+
+-> It shows the data with some specific order with the help of numbers
+
+-> tag name is ->  <ol>  </ol>
+
+-> <h3>List of companies dont want to visit this college </h3>
+
+    <ol>
+        <li>Google</li>
+        <li>Amazon</li>
+        <li>facebook</li>
+        <li>adobe</li>
+        <li>benz</li>
+    </ol>
+
+definition list:
+----------------
+  it contains 3 tags
+
+<dl> (Definition List): This is the container element that wraps the entire definition list.
+<dt> (Definition Term): This element represents a term or name within the definition list. 
+<dd> (Definition Description): This element provides the description or definition for the preceding <dt> term.
+
+
+Symbols :
+---------
+-> defining symbols with the help of & ampersand
+
+-> to use accurate symbols we can go for & symbol_name ;
+
+
+   symbols
+ -----------
+
+        &		
+        &amp;  		<br>
+
+        <
+        &lt; 		<br>
+
+        >
+        &gt; 		<br>
+
+        &copy;
+
+        &Aacute;
+        &Abreve;
+        &bigcap;
+        &ccirc;
+
+Tables:
+-------
+To create a table in a htmal page we can use the following tags 
+
+< table > 
+<thead> 
+<tfoot>
+<tr> 
+<th>
+<td> 
+
+
+
+Example :
+---------
+
+
+    <h4><u>Student's Information table</u></h4>
+    
+    <table border="2">
+
+        <thead>
+
+            <tr>
+
+                <th>Sl_No</th>
+                <th>Student_Name</th>
+                <th>Student_age</th>
+                <th>Course_enrolled</th>
+                <th>fees</th>
+
+            </tr>
+          
+
+        </thead>
+
+            <tr>
+
+                <td>01</td>
+                <td>Swathi</td>
+                <td>20</td>
+                <td>CSE</td>
+                <td>100000</td>
+            </tr>
+
+            <tr>
+
+                <td>02</td>
+                <td>Anil</td>
+                <td>19</td>
+                <td>IT</td>
+                <td>200000</td>
+            </tr>
+
+             <tr>
+
+                <td>03</td>
+                <td>Mukesh</td>
+                <td>21</td>
+                <td>Vimal</td>
+                <td>20</td>
+            </tr>
+
+             <tr>
+
+                <td>04</td>
+                <td>Suresh</td>
+                <td>18</td>
+                <td>AI</td>
+                <td>500000</td>
+            </tr>
+
+        <tbody>
+          
+        </tbody>
+    </table>
+
+---------------------------------------------------------------------------------
+
+image tag :
+-----------
+
+-> to insert image in to the html web page
+
+-> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tags
+-----
+doctype , 
+html, 
+body, 
+head, 
+tittle, 
+marquee, 
+pre, 
+br, 
+hr, 
+span , 
+centre , 
+headers h1,h2,h3.....h6 
+paragraph, 
+div
+formatters:
+------
+strong
+b
+small
+big
+i
+em
+u
+del
+strike
+sub
+sup
