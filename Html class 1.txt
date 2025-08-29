@@ -287,8 +287,8 @@ marquee tag:
 
 </marquee>
 
-pre tag:
-========
+preFormatting tag:
+==================
 
 It allows spaces given or mentioned inside this PRE tag
 
@@ -484,7 +484,7 @@ Lists in HTML:
 
 -> 	1) Unordered List
 	2) Ordered List
-
+    3) Discreption List
 -> And use the tag called "li"  <li>   </li>  to represent actual html element. 
 
 1) UnOrdered List:
@@ -698,3 +698,4 @@ del
 strike
 sub
 sup
+
