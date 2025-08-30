@@ -1,0 +1,537 @@
+Ordered Lists, Unordered Lists, Description Lists  :
+===================================================
+
+
+<!-- Un-Ordered List -->
+
+    <h4>Old Movies List</h4>
+    <ul>
+     	<li>Athadu</li>
+        <li><a href="https://www.justwatch.com/us/movie/pushpa-the-rule-part-2">Pushpa </a></li>
+        <li>coolie</li>
+        <li>Bahubali
+            <ul>
+                <li>Bahubali - 1
+                    <ul>
+                        <li>why kattappa killed bahubali</li>
+                        <li>who is ballala dheva</li>
+                    </ul>
+                </li>
+                <li>Bahubali - 2 </li>
+            </ul>
+        </li>
+    </ul>
+
+<!-- Ordered List -->
+    <h4>Movies yet to release</h4>
+    <ol start="9">
+        <li>Mirai</li>
+        <li>OG</li>
+        <li>Kalki-2</li>
+    </ol>
+
+
+<!-- Discription list -->
+
+    <h4>Movies from multiple languages</h4>
+    <Dl>
+        <dt>Telugu</dt>
+        <dd>Some telugu movies are -> eega, aparichitudu, rakhasudu ,etc....</dd>
+
+        <dt>English</dt>
+        <dd>Some English movies are dSpiderMan, BatMan, Super Man , Avengers etc....</dd>
+    </Dl>
+
+
+
+Table Tag, Row/Column (<tr>, <td>, <th>):
+=============================================
+
+Table tag:
+-------------
+
+-> Used to create the tables in html pages.
+-> It contains rows and columns 
+
+
+<table>  
+
+ <!-- rows & columns information -----> 
+
+</table>
+
+
+table row: <tr> 
+----------------
+
+ <tr> tag can hold eithe <th> table header or <td>  table data
+
+
+table header : <th>
+--------------------
+
+
+-> <th> used to create the headers in the table row
+
+-> The data created with this tag can be represented with BOLD letters.
+
+
+table data: <td>
+--------------------
+
+-> <td> used to create normal table rows information or data [ not headers ].
+
+->  it shold not show the content with bold letters.
+
+
+
+
+Column span :
+--------------
+
+-> a single cell can hold multiple columns of data.
+
+        <tr>
+
+            <th>Sl_No</th>
+            <th colspan="3">Movies_Name</th>
+
+        </tr>
+
+        <!-- 2nd row -->
+        <tr>
+
+            <td>01</td>
+            <td>Khaleja</td>
+            <td>aagadu</td>
+            <td>atadu</td>
+
+        </tr>
+    </table>
+
+rowspan :
+---------
+
+-> It can able to hold or represent mutiple columns of data.
+
+
+
+<!-- 1st row -->
+        <tr>
+
+            <th rowspan="2">Sl_No</th>
+            <th>Movies_Name1</th>
+              <th>Movies_Name2</th>
+                <th>Movies_Name3</th>
+
+        </tr>
+
+        <!-- 2nd row -->
+        <tr>
+
+         
+            <td>Khaleja</td>
+            <td>aagadu</td>
+            <td>atadu</td>
+
+        </tr>
+    </table>
+
+
+rowspan & colspan
+---------------------
+
+Example:
+--------
+
+
+<!-- 1st row -->
+        <tr>
+
+            <th rowspan="2">Sl_No</th>
+            <th colspan="3">Movies_Name</th>
+
+        </tr>
+
+        <!-- 2nd row -->
+        <tr>
+
+         
+            <td>Khaleja</td>
+            <td>aagadu</td>
+            <td>atadu</td>
+
+        </tr>
+    </table>
+
+
+------------------------------------------------------------------------------------------------
+
+Anchor (<a>)  :
+==============
+ 
+-> This tag is used to create Hyper links in the HTML pages.
+
+-> by using this we can redirect to any other websites and or other html pages.
+
+Syntax:
+---------
+			<a href="">   "text"   </a>
+
+href="" attribute  -> source file name or url of any other website
+
+
+Example : 
+---------
+
+ 	<a href="index.html">Student Index |</a>
+        <a href="Courses.html">Cources offered |</a>
+        <a href="https://www.ramojifilmcity.com/">Ramoji Film city |</a>
+        <a href="About.html">About page </a>
+
+----------------------------------------------------------------------------------------------------
+
+MEDIA TAGS :
+============
+
+----------
+Image tag:
+----------
+
+-> Image tag is used to embed external images in side the HTML pages.
+
+-> Image tag is a self closing tag.
+
+-> Syntax :
+
+	
+    <img src="" alt=""> 
+
+-> src -> its a actual resource name , or a url of a resource
+
+-> alt -> Disctiption or information about the image.
+	-> It display only when the images if failed to load.
+
+Example :
+-------
+
+-> Image from external website
+
+    <img src="https://wallpapers.oneindia.com/ph-1024x768/2013/10/bahubali_138252361510.jpg" 		alt="Bahubali one image" width="600" height="400">
+
+
+-> Image from local system
+
+	<img src="bahubali.jpeg" alt="Bahubali local image">
+
+
+
+-> height and width attribute -> to arrange or modify the html elements.
+
+------------------------------------------------------------------------------------------------
+
+Audio tag:
+----------
+
+-> Used to embedd the audio files inside the HTML documents.
+
+-> 
+
+    <audio controls>
+        <source src="audio1.mp3" type="audio/mp3">
+    </audio>
+
+controls -> it gives the controll acces on the audio file 
+		
+		like -> start and stop and speed control , download  , volume .
+
+type : "audio/mp3"
+
+
+------------------------------------------------------------------------------------------------
+
+Video tag:
+------------
+
+-> Used to embed the video files in the HTML documents
+
+-> 
+	Example : 
+
+	<video controls>
+            <source src="video1.mp4" type="video/mp4">
+        </video>
+
+---------------------------------------------------------------------------------------------------
+======
+Note:  for HTML documet text formate or arrange the elements in some standard structure use the short ======   cut
+
+	ALT + SHIFT + F
+-----------------------------------------------------------------------------------------
+Image (<img>), Audio, Video, iframe :-
+--------------------------------------
+
+===========
+iframe tag:
+===========
+-> iFrame tag is used to embedd the another wibsites or html documents in the HTML pages.
+
+-> Syntax : 
+
+	
+    <iframe src="" frameborder="0"></iframe>
+
+FRAME border -> 0 -> means NO border
+
+		1 -> means With border
+
+-> Example : 
+------------
+
+
+   	 <h5>GMR_IT website</h5>
+	 <iframe src="https://gmrit.edu.in/" frameborder="0">GMR_IT</iframe>
+
+	 <h5>Ramoji fil City website</h5>
+    	<iframe src="https://www.ramojifilmcity.com/" frameborder="0">Ramoji filmcity</iframe>
+
+
+<h5>Google Map location for the GMR_IT College</h5>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3158.5699725999025!2d83.65908003974718!3d18.46685196177363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c772724754cc9%3A0xcf876cd74c2b6b01!2sGMR%20Institute%20of%20Technology!5e1!3m2!1sen!2sin!4v1756452382340!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+-------------------------------------------------------------------------------------------
+=============
+html forms : 
+=============
+	
+Form Tag:
+==========
+
+-> form -> Is a tag in html used to create the form pages.
+
+-> form pages means the page contains group of fields to collect to insert some data from the UI to server
+
+-> <form> 
+
+  <!--here remaing all types of form tags will declare---> 
+	
+		
+   </form>
+
+-> All form related tags are called as formFields.
+
+
+Systax : 
+
+	  <form action="/submit" method="post">
+
+
+    		</form>
+
+method attribute with acceptable values -> post , get
+
+
+Lable tag:
+==========
+
+-> Lable tag is used to create a name [lable name] for any type of html elements
+-> 
+	for -> attribute -> used to link with the another html element
+	ex : 
+		-> lable for="fname"
+			input type="text" id="fname"
+	-> in the above syntaxes both lable and input tags are linked togeater with the help of 
+		for in lable tag & id in a input tag.
+
+Input types 
+===========
+
+It's a tag used to take the input values given by the user , there are multiple types of input tags are available.
+
+Types :
+-------
+
+1) text  :
+--------
+
+type = "text"
+
+-> It can accept any type of charecters as a input.
+
+-> Attribute ID -> Its unique value given for the input field to establish link between this                       Input tag & Lable tag.
+
+-> Attribute Name ->  Used to send the data to the server in the form of key and pair 
+		     so here Key is Name attribute
+
+		Ex : name="firstName"
+
+				key is -> firstName
+
+	
+Note : Attribute Value -> to assign a defautl value for the HTML element
+
+
+After filling all the student details when the user click on submit button the entire data has to send to the server in the form of "KEY = VALUE" pairs 
+
+	firstName = "ramoji"
+
+Input types tags
+-----------------
+text
+number
+email
+password
+radio
+
+file
+search
+url
+
+date
+month
+time
+datetime-local
+
+color
+range
+
+Checkbox
+submit 
+reset 
+
+Special tags:
+-------------
+
+Tocreate the drop down :
+-------------------------
+
+
+<select> tag
+with <option> tag
+
+
+<textarea>
+with attributes -> rows , cols  to increase or decrease the size of the text area
+
+
+To Group some fields into a set :
+----------------------------------
+<fieldSet>
+<legend>   -> with special name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>, <footer>, <article>, <section>, <nav>, <main>, <aside>
+Accessibility roles, SEO Importance, Proper nesting, Screen reader considerations
+
+<meta>, charset, viewport, keywords, description, author, refresh, robots
+New elements (e.g., <canvas>, <video>, <audio>), input enhancements (email, date, range)
+
