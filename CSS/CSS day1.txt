@@ -1,0 +1,632 @@
+Syllabus im gonna cover today is ***
+-------------------------------------
+
+-> Introduction to CSS, Syntax ,How to add in HTML->  Inline/Internal or embedded/External CSS, Comments, 
+-> Selectors: Element, Class, ID, 
+-> color, background, borders, font, text-align, Units (px, %, em, rem)
+-> Box Model (content, padding, border, margin), width, height, overflow, border-boxPositioning: Static, Relative, Absolute, Fixed, Stickyz-index, display types     (block, inline, inline-block, none).
+
+----------------------------------------------------------------------------
+====================
+Introduction to CSS:
+====================
+
+-> CSS -> CSS stands for "Cascading style sheets".
+
+-> It is a Standard method used to apply styles for the web sites.
+
+-> It defines how the HTML pages should be displayed.
+
+Note : HTML creates Only Structure of the web page.
+	CSS defines how the HTML pages should be display.
+
+=======
+Syntax :
+=======
+
+-> Syntax contains the following Components
+
+1) Selector or HTML element
+
+2) Property
+
+3) Value
+
+==> 
+
+Selector  {
+
+   Property :  value
+
+} 
+
+
+-> Selector -> Means Selecting HTMl tag or element for applying styles.
+
+	Ex  : h1 to h6 , <p> , <div> , ,....
+
+-> Property -> Its a feature what type of style we can apply on HTML element.
+	
+	Ex : color , background-image , font-size ,.....
+
+-> value -> for every property we should assign one value for applying styles
+
+	Ex : red , 100px , 50% , center ,,,...
+
+=====>
+
+
+	h1{
+            color: red;
+          }
+
+Declaration :
+-------------
+
+-> A set of one property and one value is called as Disclaration.
+
+	Ex :  color: red;    
+
+
+=======================
+How to add CSS in HTML :
+=======================
+
+-> There are total 3 ways are available to add CSS feature to the HTML pages.
+
+1) Inline CSS
+
+2) Internal CSS / Embedded CSS
+
+3) External CSS
+
+
+1) Inline CSS :
+---------------
+
+->Inline CSS measn adding CSS properties directly inside the HTML elements or tags.
+
+-> To add Inline or CSS use attribute "style".
+
+
+Ex : 
+
+<body style="background-color: black;">
+    
+    <h1 style="color: yellow;">Welcome the CSS</h1>
+
+Limitations :
+-------------
+
+-> Its not possible to add styles for HTML tags more than one.
+
+-> we need to write a separate style attribute for each and every HTML tad/component present in the HTML page.
+
+
+2) Internal or Embedded CSS:
+----------------------------
+
+-> By using <Style> , Selector , property and value we can applly CSS styles for the multiple HTML elements at a time.
+
+-> For internal CSS usign <style> </style> is mandatory.
+
+
+Syntax : 
+
+
+   <style>
+        body{
+            background-color: black;
+        }
+
+        h1{
+            color: yellow;
+        }
+
+        p{
+            color:white;
+        }
+
+    </style>
+
+Limitations : 
+--------------
+
+-> If we want to apply same styles for the other HTML pages its not possible with the INTERNAL css.
+
+-> It will increase the duplicate or repeated code in multiple HTML pages.
+
+-> It is not recommended , if you want to use same or common styles for the multiple HTML pages go for EXTERNAL css.
+
+
+3) External CSS:
+----------------
+
+-> Writing the CSS properties enternally in a separate file with the extension of .CSS
+
+-> create External CSS file 
+
+Example : 
+--------
+File name is -> Styels.css & it contains some selectors properties and values
+
+
+body {
+    background-color: rgb(0, 0, 0);
+}
+
+h1 {
+    color: yellow;
+}
+
+p {
+    color: white;
+}
+
+
+-> We can link this External CSS file with the help of <link> tag
+
+	   <link rel="stylesheet" href="projectstyles.css">
+
+-> This link tag has to declare in HTML page inbetween the head tags.
+
+---------------------------------------------------------------------------------------
+
+Comments :
+----------
+
+-> /* content   */
+
+Ex : 
+
+      /*body {
+    		background-color: rgb(0, 0, 0);
+	}
+
+	h1 {
+    		color: yellow;
+	}
+
+	p {
+    		color: white;
+	} */
+
+----------------------------------------------------------------------------------------
+==========
+Selectors :
+==========
+
+-> For what HTML element we can able to apply style is a Selector.
+
+Types of Selectors :
+--------------------
+
+	1) Elemenent or tag selector
+	2) id selector
+	3) class selector
+	4) Attribute selector
+	5) Universal selector
+	6) Pseudo selectors
+
+1) Element or tag selector 
+--------------------------
+
+-> Selecting HTML tags directly to apply the css styles.
+
+	Ex : 
+
+	body {
+    		background-color: rgb(0, 0, 0);
+	     }
+
+	h1 {
+    		color: yellow;
+	   }
+
+	p {
+	    color: white;
+	  }
+
+
+ex : 
+
+	  h1 , p{
+    			color: yellow;
+		}
+
+	
+2) id Selector :
+----------------
+
+-> It is used to assign unique value for the HTML element with the help of attribute called "ID".
+
+-> Along with the Attribute ID -> we need to assign some unique value and it should be not repeated in the HTML page for any other HTML tags or elements.
+
+-> use # with Id value to apply styles
+
+
+-> <h1 id="head1">  text </h1>
+-> <h1 id="head2">  text </h1>
+
+-> <p id="p1">  text   </p>
+-> <p id="p2">  text   </p>
+-> <p id="p3">  text   </p>
+-> <p id="p4">  text   </p>
+
+#head1{
+    color: red;
+}
+
+#head2{
+    color: aqua;
+}
+
+
+#p1{
+    color: white;
+}
+
+#p2{
+    color: rgb(254, 1, 43);
+}
+#p3 {
+    color: blueviolet;
+}
+#p4{
+    color: brown;
+}
+
+
+3) Class selector :
+------------------
+
+-> If we want to apply styles for the group of seletive HTML elements we can use class selectors.
+
+-> <h1 class = "cl1"> header one </h1>
+-> <h1 class = "cl2"> header two </h1>
+-> <h1 class = "cl1"> header three </h1>
+-> <h1 class = "cl1"> header four</h1>
+-> <h1 class = "cl2"> header five</h1>
+
+
+-> 
+
+.cl1{
+    color: yellow;
+}
+
+.cl2
+{
+    color: blue;
+}
+
+Note : 
+-> We can use id selector for the HTML elements grouping, we wont get any error while    writing CSS.
+-> but using ID selector for grouping of HTML elements is Not recommended 
+-> because it should be used for the UNIQUE eliments only.
+
+-> istead of using ID selector for grouping html tags we can use CLASS selector.
+
+Attribute selector:
+---------------------
+-> we can apply styles by using attributes with values also 
+
+Example :  <h1 id="head2">Applying colour for HTML elemets</h1>
+
+css styele:
+-----------
+
+h1[id="head1"]{
+    color: red;
+}
+
+
+p[class="para"],p[lang="en"]{
+    color: yellow;
+}
+
+Universal or global selector :
+---------------------------
+-> its a special selector to apply styles for the html elements
+
+
+Example : 
+
+* {
+    background-color: #000000;
+    color: white;
+}
+
+
+6) Pseudo selector :
+---------------------
+
+-> used to apply styles based on the events perfomed by the user on HTML pages
+
+-> Means when a user perform some action on HTMl web page we can call it as an event.
+
+-> based on the user activity or the events we can apply CSS styles.
+
+
+Ex : hover , and focus
+
+
+Example:
+--------
+
+ 	<input type="text" name="" id="">
+    	<br><br>
+
+    	<input type="button" value="click here">
+
+     	<input type="submit">
+
+
+css code :
+----------
+
+input[type="text"]:hover{
+    background-color: rgb(251, 36, 36);
+}
+input[type="submit"]:focus{
+    background-color: yellow;
+}
+
+input[type="button"]:focus{
+    background-color: rgb(22, 189, 255);
+}
+
+--------
+Colors :
+--------
+-> color is a property used to specify different colors to the HTMl elements
+-> in CSS we can apply colors in multiple aproaches 
+
+-> 
+	1) Text type
+   	2) RGB
+	3) Hexa decimal
+	4) HSL
+	5) RGBA
+	6) HSLA
+
+1) -> Text type :
+---------------
+-> In this we can apply colors values in the textual format for the color related properties.
+
+-> color : red;
+-> color : green;
+-> background-color : Teal;	,,........
+
+h1{
+    color: yellow;
+}
+
+-> With this Textual format type its not possible to apply or specify a required shade of particular color.
+
+2) -> RGB :
+----------
+
+-> RGB -> Red , Green, Blue
+
+-> Syntax :
+
+	
+	color : rgb(  0  ,   0   ,   0   );   -> Balck color
+	     red     greeen  blue
+
+-> in this approach we can get different types of combinations of each and every color.
+
+-> 	color : rgb(255,255,255);	  -> White color
+
+-----
+3) Hex
+-----
+-> In this approach we will specify colors with the help of Hexa decimal values
+
+-> starting from O to F
+
+-> Syntax ->  	 color :#000000;    -> Black color
+	
+		 color :#FFFFFF;    -> White color
+			
+		 color :#FFAFFB;    -> some color shade in Violet
+
+-------
+4) HSL :
+-------
+-> HSL -> Hue , Saturation , Lightness
+
+-> Hue ->  color circle with 0 degree ->  red 
+			
+		            120 degree -> greem
+	
+			    240 ..->  blue
+
+			    320 -> balck
+
+-> Saturation levels -> 0 to 100 % -> Light grey to Full colour
+
+-> Lightness -> O to 100%  -> Light color to Full color
+
+Ex : 
+	  color : hsl(204, 42%, 37%);
+	  color : hsl(204, 100%, 48%);
+
+
+5) RGBA -> 
+-----------
+-> Along with R , G , B There is one more component added and its name is "ALPHA" 
+
+-> Alpha -> means -> TRANSPARANCY
+
+-> 0 -> Represents ->  Full Trasparant - Invisible
+
+-> 1 -> Represens -> Full Color 
+
+6) HSLA 
+--------
+-> H , S , L , + with A -> [ALPHA] 
+
+-> 0 -> Fully Transparent - Invisible
+
+-> 1 -> Fully color
+
+
+BackGround:
+-----------
+-> It's is a property used to specify defferent feature related to BackGround related elements.
+
+->  Background color
+->  Backgroung image
+->  Backgroung repeat
+->  Backgroung position
+->  Background size
+->  Backgroung attachment
+
+------------------------- 
+->  Background-color   :
+-------------------------
+-> used to apply color for back bround of HTML element.
+
+ex :  
+
+
+h1{
+    background-color: yellow;
+}
+
+--------------------
+2) Background-image :
+--------------------
+
+In this we can apply some image as a background for the HTML element.
+
+-> additionally we need to use one attribute called "url" to specify the Name of the Image.
+
+
+Ex:  background-image: url("image.jpeg");
+
+---------------------
+3) Backgroung-repeat:
+---------------------
+
+-> This property decides wether the background images shoud repeat or not ?
+
+-> different values for this Background repreat property 
+
+	->  repeat
+	->  repeat-x
+	->  repeat-y
+	->  No repeat
+
+-> background-repeat: repeat;  
+-------------------------------
+-> By default image will repeat based on the image quality , eventhough if we wont use this property as -> background-repeat: repeat; 
+
+-> background-repeat: repeat-x;
+---------------------------------
+
+-> The image will repeat only in the X axis 
+
+-> background-repeat: repeat-y;
+-------------------------------
+
+-> The image will repeat only in the Y axis
+
+-> background-repeat: no-repeat;
+----------------------------------
+
+-> The image will appears only once , it should allow the image to repeat again.
+
+-------------------------
+->  Backgroung position
+-------------------------
+
+-> Used to set the image position inside the Html page
+-> the correspoding values are
+
+	-> bottom 
+	-> top 
+	-> left
+	-> right 
+	-> center
+
+--------------------
+-> BackGround-size :
+--------------------
+
+-> to modify the size of an image 
+
+-> the values we can use for this -> 
+
+	auto  -> is a defult type for the back ground image size
+		cover , contain -> used to fit image to the screen.
+
+-------------------------
+-> Background-attachment
+-------------------------
+
+-> It used to how the background image will move with respect to the page scrolling
+
+-> the values for this property are
+
+	-> scroll 
+	-> fixed
+	-> local
+
+-> Background-attachment : scroll
+---------------------------------
+
+-> It is the default type means the background image will scroll along with the page scrolling
+
+	->  background-attachment: scroll
+
+-> Background-attachment : fixed
+---------------------------------
+
+->  when the page is scrolling , With this property we can fix the background image to dont move along with scrolling of the page.
+
+->     background-attachment: fixed;
+
+-> Background-attachment : local
+---------------------------------
+
+-> it also same like scroll type , the image will moves along with the html page when it scrolls
+
+ background-attachment: local;
+
+
+---------------------------------------------------------------------------------
+=========
+Borders :
+=========
+
+-> Syntax : 
+
+ property : value1 value2 value3;
+
+border : width style color;
+
+----------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
