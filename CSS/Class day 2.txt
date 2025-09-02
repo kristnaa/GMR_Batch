@@ -1,0 +1,401 @@
+-> boaders , font, text-align, Units 
+-> Box Model (content, padding, border, margin), 
+width, height, overflow, 
+Semantic tags with styles
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+font properties
+----------------
+
+-> font family  ->we can apply different types font familiy
+-> font style  -> 
+		itallic -> converts normal english text into original itallic text
+		oblique -> it converts normal text into some slant 
+		normal  -> default type.
+-> font size  -> small, large, x-large, x-small, xx-large......
+-> font weight -> 100 to 900 , bold or bolder , lighter.
+
+
+text - aligns   -> values -> left , right , center
+
+
+Units 
+-------
+
+-> pixels
+-> points
+-> centimeters
+-> millimeters
+-> pica
+-> percentage 
+
+Ex : 
+
+ <style>
+        #hed1{
+            font-size: 50px;
+        }
+
+        #hed2{
+            font-size: 50pt;
+        }
+        #hed3{
+            font-size: 10cm;
+        }
+
+        #hed4{
+            font-size: 10mm;
+        }
+
+        #hed5{
+            font-size: 1pc;
+        }
+
+        #hed6{
+            font-size: 30%;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 id="hed1">pixels</h1>
+    <h1 id="hed2">points</h1>
+    <h1 id="hed3">centimeters</h1>
+    <h1 id="hed4">millimeters</h1>
+    <h1 id="hed5">pica</h1>
+    <h1 id="hed6">percentages</h1>
+    
+</body>
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Box :
+-----
+
+	-> Content  -> actual text of an html tag
+	-> Padding 
+	-> border
+	-> margin
+
+-> padding:	space between content and border inner line
+	
+	
+   	    padding-left: 80px;
+            padding-right: 40px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+		
+	    padding: 50pt;
+
+-> margin:	
+
+	    margin-top: 50px;
+            margin-bottom: 80px;
+	    margin-left: 80px;
+	    margin-right: 80px;
+            margin: 10px;
+
+-> border : 
+
+Syntex :
+
+  border: 5px solid black;
+
+	value1   v2   v3
+
+	width style color
+
+-> width :
+ --------
+horizontal size of a text area of an html element
+
+
+-> height:
+ --------
+
+-> Vertical size 
+
+
+different styles of borders :
+-----------------------------
+
+-> Solid
+-> dotted
+-> dashed
+-> groove
+-> ridge
+-> hidden
+-> double 
+-> inset
+-> outset
+
+-> We can add different color and different style for every side of a box border separately.
+
+
+ border-color with multiple sides :
+-----------------------------------
+	
+	     border-bottom-color: red;
+             border-top-color: yellow;
+             border-left-color: green;
+             border-right-color: black;
+
+
+ border-style with multiple sides :
+-----------------------------------
+		
+			
+	     border-bottom-style :groove;
+             border-top-style: solid;
+             border-left-style: dashed;
+             border-right-style: ridge;
+
+ border-Width with multiple sides :
+-----------------------------------
+	
+ 	     border-bottom-Width : 15px
+             border-top-Width: 20px
+             border-left-Width : 60pt
+             border-right-Width : 50px;
+
+
+All properties of width , style , color at a time for ALL SIDE separately 
+--------------------------------------------------------------------------
+
+	     border-top: 20px dotted rgb(68, 230, 23);
+             border-bottom: 5px double rgb(255, 0, 0) ;
+             border-left : 40px ridge  yellow;
+             border-right : 40px inset blue;   
+
+border radius :
+---------------
+
+for some specific corners of border :
+
+       	    border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+
+border-raduis -> 
+
+
+   		border-radius: 20px;
+
+------------------------------------------------------------------------------
+
+Overflow :
+----------
+
+If the content exceeds from text area of a html element we can use this overflow property to allign or to adjust all overflown text.
+
+values -> 
+
+	visible  -> default type -> over flown content shoulb be visible
+	hidden   -> Not visible -> only overflown content shoulb be hide
+	scroll   -> It adds Horizantal and vertical scroll bars based on the text.
+			Always it provide both scroll bars even though if there is no 			necessary 
+				-> horizantal 
+				-> vartical 
+	auto     ->  It will select either Horizantal or Vertical or both at a time 			automatically based on the text content adjustment.
+
+	Note : It is recommended to use AUTO type value for OverFlow property type.
+
+Example :
+--------
+
+	 overflow: auto;    // visbile, hidden, scroll
+
+
+----------------------------------------------------------------------------------------
+===========
+Semantic 
+===========
+
+-> These are special type of Structural tags give detailed desctiption or these tags conveys the meaningful imformation about the HTML Content.
+
+
+->  <header>
+->  <nav> 
+->  <main>
+->  <article>
+->  <section>
+->  <aside> 
+->  <footer>
+
+Advantages :
+------------
+
+-> increase the accesibility
+-> for SEO -> Search engine optimization.
+-> improve readability and maitainability.
+-> To separate Content with meaning ful separation.
+-> Conveys meaingful information & its in the form both human and machine readable way.
+-> machines can easily understand the content and easily narrates to the screen readers.
+
+
+CODE example for semantic tags in HTML  : 
+-----------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header,
+        footer {
+            background-color: rgb(27, 142, 27);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        aside {
+            background-color: rgb(234, 190, 190);
+            border-left: 6px solid green;
+            padding-top: 1px;
+            padding-bottom: 3px;
+        }
+
+        aside ul li a {
+            color: blue;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Welcome to my blog spot</h1>
+        <nav>
+            <ul>
+                <li> <a href="#index">Index page</a></li>
+                <li><a href="#Blogs">Blogs</a></li>
+                <li><a href="#About">AboutUs</a></li>
+                <li><a href="#Links">RelatedLinks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <article id="index">
+            <h2>It is Index of this page </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum veritatis, quae, vero atque at consequuntur
+                nam accusamus tempora impedit maxime eos inventore sapiente magni facere nisi ullam provident ipsa
+                doloremque.</p>
+        </article>
+
+        <hr>
+        <article>
+            <section id="Blogs">
+                <h2>Mind blowing blogs in my site</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non porro minus distinctio ipsum quisquam
+                    atque mollitia soluta maiores rerum? Deserunt at iure amet commodi? Repudiandae harum aut numquam
+                    voluptates tempora.</p>
+            </section>
+
+            <section id="About">
+                <h2>About our arganisation</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid ipsam incidunt repudiandae quisquam
+                    officia hic tempora quis ipsa eveniet. Dolorum fugit possimus alias ratione, in optio velit quos
+                    ipsam rem.</p>
+            </section>
+
+        </article>
+
+        <hr>
+
+        <aside id="Links">
+            <h3>Related Links for Booking tickets</h3>
+
+            <ul>
+                <li>
+                    <a href="https://www.makemytrip.com/holidays-india/">Books tickets on MakeMytrip</a>
+                </li>
+                <li>
+                    <a href="https://www.yatra.com/india-tour-packages">Book tickets on Yatra .com</a>
+                </li>
+            </ul>
+        </aside>
+
+
+    </main>
+
+
+    <footer>
+        <p> &copy; My Blog spot , All Rights reserved</p>
+    </footer>
+
+</body>
+
+</html>
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
