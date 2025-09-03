@@ -1,0 +1,370 @@
+-> Flex Container & Flex ItemsProperties: display: flex, justify-content, align-items, flex-direction, flex-wrap, gap, order
+
+
+-> Grid container & items, grid-template-rows/columns, gap, grid-area, auto-fit, auto-fillMedia Queries, Mobile-First Design, Viewport Width Units
+
+
+
+-----------------------------
+1. display: flex
+-----------------------------
+
+-> display: flex is a CSS property that turns an HTML element into a flex container.
+-> When an element becomes a flex container, its direct children become flex items.
+-> Flexbox helps you lay out, align, and distribute space among items in a container — even when their size is unknown or dynamic.
+-> Child elements distribute horizontally by default inside of the flex box or conatiner.
+
+Example:
+-------
+	
+  display: flex;
+
+-----------------------------
+2. justify-content
+-----------------------------
+-> Aligns items horizontally along the main axis.
+
+values:
+- flex-start       -> Items align to the left (default)
+- flex-end         -> Items align to the right
+- center           -> Items align in the center
+- space-between    -> Items have space between them
+- space-around     -> Items have space around them
+- space-evenly     -> Equal space between all items
+
+Example:
+
+justify-content: flex-start;
+
+
+-----------------------------
+3. align-items
+-----------------------------
+-> Aligns items vertically along the cross axis.
+
+values:
+- stretch (default) -> Items stretch to fill the container
+- flex-start        -> Align to top
+- flex-end          -> Align to bottom
+- center            -> Centered vertically
+- baseline          -> Align items based on text baseline
+
+Example:
+
+	  align-items: center;
+
+-----------------------------
+4. flex-direction
+-----------------------------
+- Sets the direction of the main axis.
+
+Values:
+- row (default)         -> Horizontal (left to right)
+- row-reverse           -> Horizontal (right to left)
+- column                -> Vertical (top to bottom)
+- column-reverse        -> Vertical (bottom to top)
+
+Example:
+
+ flex-direction: column;
+-----------------------------
+5. flex-wrap
+-----------------------------
+- Controls whether flex items should wrap to the next line.
+
+Values:
+- nowrap (default) -> All items stay on one line
+- wrap             -> Items wrap to next line if needed
+- wrap-reverse     -> Wrap items in reverse order
+
+Example:
+	
+	display: flex;
+            gap: 20px;
+            
+      flex-wrap: wrap-reverse;
+
+Ex : Without wrap show overflow usage with last class example
+
+	->       align-items: center;
+            		overflow: auto;
+
+-----------------------------
+6. gap
+-----------------------------
+- Adds spacing between flex items (both rows and columns).
+
+Example: 
+
+	  gap: 50px;
+
+-----------------------------
+7. order
+-----------------------------
+- Controls the order of flex items, regardless of HTML order.
+
+Example:
+
+HTML:
+
+	<div>
+
+        <h1 class="one">box 1</h1>
+        <h1 class="two">box 2</h1>
+        <h1 class="three">box 3</h1>
+
+        </div>
+
+CSS : 
+	.one{
+            order: 3;
+        }
+
+        .two{
+            order: 1;
+        }
+
+        .three{
+            order: 2;
+        }
+
+------------------
+Code HTML & CSS :
+------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        div {
+            background-color: teal;
+            padding: 15px;
+            display: flex;
+            gap: 50px;
+            /* flex-direction: column; */
+            flex-wrap: wrap-reverse;
+
+            /* justify-content: left; */
+            /* justify-content: flex-end; */
+
+            /* align-items: center;
+            overflow: auto; */
+
+            ord
+
+            
+        }
+
+        h1 {
+            background-color: yellow;
+
+        }
+
+        #one {
+            background-color: blueviolet;
+        }
+
+        #two {
+            background-color: red;
+        }
+
+        p{
+            background-color: rgb(255, 252, 71);
+            color: black;
+            border-radius: 10px;
+            height: 130px;
+            width: 80px;
+            padding: 10px;
+        }
+
+        .one{
+            order: 3;
+        }
+
+        .two{
+            order: 1;
+        }
+
+        .three{
+            order: 2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+
+        <h1 class="one">box 1</h1>
+        <h1 class="two">box 2</h1>
+        <h1 class="three">box 3</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quia.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quia.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quia.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, quia.</p>
+        
+	<h1 id="one">box 1</h1>
+        <h1 id="two">box 2</h1>
+        <h1>box 3</h1>
+
+	
+    </div>
+
+</body>
+
+</html>
+
+===========
+float
+===========
+-> The CSS float property enables you to determine where to position an element relative to the other elements on tht page.
+
+-> Values of float:
+
+-> left: Floats the element to the left, and subsequent content flows around its right side.
+-> right: Floats the element to the right, and subsequent content flows around its left side.
+-> none: (Default) The element does not float and remains in the normal document flow.
+-> initial: Sets the property to its default value (none).
+-> inherit: Inherits the float value from its parent element.
+
+
+Example :
+----------
+
+HTML:
+-----
+
+<body>
+
+    <h1>
+        float example
+    </h1>  
+       
+    <div>
+        <p>
+            Lorem ipsum dolor sit amet.
+
+            <p id="para2">
+                Lorem ipsum dolor sit amet.
+            </p>
+        </p>
+    </div>
+    </p>
+</body>
+
+CSS:
+-----
+   <style>
+
+
+        h1{
+            color: blueviolet;
+            float: initial;
+        }
+
+        div{
+            border: 2px solid blue;
+            width: 350px;
+            height: 200px;
+            padding: 10px;
+            
+            float: right;
+        }
+
+        #para2{
+            border: 1px solid rgb(255, 0, 0);
+            float:inherit;
+        }
+    </style>
+
+-----------------------------------------------------------------------------------------------------------------
+---------
+CSS GRID?
+----------
+
+CSS Grid is a 2-dimensional layout system used to create complex web layouts easily.
+it allows you to design web pages using a grid-like structure (rows and columns)
+
+It consists of:
+- A Grid Container (parent)
+- Grid Items (direct children of the container)
+
+----------------------------------
+2. GRID CONTAINER
+----------------------------------
+
+A Grid Container is the parent element where the grid layout is applied. When you define display: grid (or inline-grid) on an element, it becomes a grid container, and its direct children become grid items.
+
+
+Example:
+	
+
+--------------------------
+KEY PROPERTIES OF GRID CONTAINER:
+--------------------------
+
+1. grid-template-columns:
+   Defines the number and width of columns.
+   Example:
+  
+		
+  with auto ?
+
+
+2. grid-template-rows:
+   Defines the number and height of rows.
+   Example:
+     grid-template-rows: 100px auto;
+
+3. gap (or grid-gap):
+   Sets spacing between rows and columns.
+   Example:
+     gap: 10px;
+     row-gap: 20px;
+     column-gap: 15px;
+
+4. justify-items:
+   Aligns items horizontally (start, center, end, stretch).
+   Example:
+     justify-items: center;
+
+5. align-items:
+   Aligns items vertically (start, center, end, stretch).
+   Example:
+     align-items: stretch;
+
+----------------------------------
+3. GRID ITEMS
+----------------------------------
+
+Grid Items are the direct children of the grid container.
+
+--------------------------
+SOME KEY PROPERTIES OF GRID ITEMS:
+--------------------------
+
+1. grid-column:
+   Specifies start and end lines for columns.
+   Example:
+     grid-column: 1 / 3;
+
+2. grid-row:
+   Specifies start and end lines for rows.
+   Example:
+     grid-row: 2 / 4;
+
+3. grid-area:
+   Shorthand for:
+     grid-row-start / grid-column-start / grid-row-end / grid-column-end
+   Example:
+     grid-area: 1 / 2 / 3 / 4;
