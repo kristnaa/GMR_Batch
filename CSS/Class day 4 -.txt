@@ -1,0 +1,591 @@
+-> Media Queries 
+-> pseduo class properties
+
+ -> hover, :active, :first-child, :nth-child, :not, etc.
+
+-> CSS Transitions: transition-property, transition-duration, timing-function, transiton-delay, , shadows , Gradients, transform.
+
+-----------------------
+ Media Queries in CSS
+-----------------------
+-> Media queries allow you to apply CSS rules depending on screen size, resolution, or device type, or dimensions.
+
+-> They help make your website responsive — meaning it looks good on phones, tablets, laptops, and desktops.
+
+
+Different devices & different screen widths:
+
+ Device         Typical Width 
+-------------------------------     
+ Mobile Phone   320px – 480px       
+ Tablet         600px – 768px      
+ Laptop         1024px – 1366px     
+ Desktop        1440px < more than
+
+Media queries let user can apply different CSS styles based on the screen size.
+
+
+Syntax:
+--------
+
+@media (condition) {
+
+  /* CSS styles here */
+
+}
+
+Example:
+
+/* large screens */
+        @media(min-width:1000px) {
+
+            body {
+                background-color: yellow;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+
+        }
+
+
+/* small screens */
+	@media(max-width : 600px){
+	 	
+	body {
+		background-color: yellow;
+	} 
+}
+
+
+This applies the style only when the screen is 600px wide or less.
+
+Conditions :
+--------------
+
+- max-width: 
+
+	-> when screen is less than or equal to a width
+
+- min-width: 
+	-> when screen is greater than or equal to a width
+
+- max-height / min-height: 
+	-> based on screen height
+
+- orientation: 
+	-> portrait or landscape
+
+- resolution: 
+	-> for high DPI screens   [ Dots per Inch ]
+
+
+Example:
+---------
+
+Example with HTML & CSS
+------------------------
+
+HTML:
+-----
+
+<h1>Welcome to media quries</h1>
+
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, dolor.</p>
+
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae nihil cupiditate perferendis rem, veroperspiciatis?</p>
+
+CSS:
+----
+ <style>
+        body {
+            text-align: center;
+            padding-top: 80px;
+            color: red;
+            background-color: aqua;
+        }
+
+
+
+  /* small screens */
+        @media(max-width : 600px) {
+
+            body {
+                background-color: teal;
+                color: white;
+            }
+        }
+
+   /* big screens */
+        @media(min-width:1000px) {
+
+            body {
+                background-color: yellow;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                color: red;
+            }
+
+        }
+
+    </style>
+
+
+
+
+Observations :
+-----------------
+
+->   @media(max-width : 600px)    -> small screens -> Applied style remains same  until it 					reaches 600px
+
+->   @media(min-width:1000px)	   -> big screens -> Only applies when screen size from 1000px.
+
+->   from (600px to 1000px)    ->  Noraml CSS properties [Not enclosed in @Media queries] will      apply.
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+CSS Pseudo-classes Explained with Examples
+==========================================
+
+1. :hover
+---------
+
+-> The :hover pseudo-class applies styles to an element when the user places the mouse pointer over it.
+
+Use case:
+---------
+Commonly used for buttons, links, or any interactive element to provide visual feedback on mouse hover.
+
+Example:
+
+
+// button created with <button> 
+
+ button:hover{
+            background-color: rgb(237, 237, 56);
+            color:red;
+            border-radius:8px;
+            border: 2px ridge green;
+            cursor: crosshair;
+        }
+
+// button created with input type as button
+
+ 
+        input[type="button"]:hover{
+            cursor: pointer;
+        }
+
+2. :active
+----------
+
+-> The :active pseudo-class applies styles when the element is being activated — typically when the mouse button is pressed down on it (before the mouse button is released).
+
+Use case:
+Used to show a pressed state on buttons or links.
+
+Example:
+     button:active{
+            background-color: black;
+            color: white;
+        }
+
+3. :first-child
+---------------
+
+-> The " :first-child  " pseudo-class targets an element if it is the first child of its parent.
+
+-> and the parent should contains only same type of child html elements. than only this first-child can identify the first element in the parent container.
+
+Use case:
+Styling only the first element among siblings, e.g., first paragraph in a section.
+
+Example:
+
+
+        li:first-child{
+            font-weight: bold;
+            color: yellow;
+        }
+
+
+
+4. :nth-child()
+---------------
+
+-> :nth-child() lets you select elements based on their position (index) within their parent.
+
+Use case:
+Styling every second row in a table, or alternating list items.
+
+
+take even odd num 
+
+Example:
+
+        li:nth-child(5){
+            color: blue
+        }
+        li:nth-child(6){
+            color: blue;
+            font-weight: bo;
+        }
+
+5. :not()
+---------
+-> :not(selector) selects elements that DO NOT match the given selector inside the parentheses.
+
+Use case:
+Applying styles to all elements except some specific ones.
+
+Example:
+
+  li:not(.third){
+            font-style: italic;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+To disable the element
+-------------
+: disabled
+-------------
+
+without class attribute
+
+html:
+
+    <button> submit</button>
+css:
+
+  button{
+            cursor: not-allowed;
+        }
+
+class name:
+
+html
+
+	<button class="disable"> submit</button>
+
+
+css 		
+
+	.disable{
+            cursor: not-allowed;
+        }
+
+
+-> to desable the html content
+
+Putting it all together example
+-------------------------------
+
+HTML:
+-----
+
+<body class="bodyOne">
+
+    <h1>Some pseudo peroperties</h1>
+
+
+    <h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, fuga.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sunt?</p>
+    </h1>
+
+
+    <button class="disable"> submit</button>
+    <!-- <input type="button" value="submit with button type"> -->
+
+    <!-- <input type="submit" value="submit with submit type"> -->
+
+
+    <ul>
+
+        <li>First List Element</li>
+        <li>Second List Element</li>
+        <li class="third">Third List Element</li>
+        <li>Forth List Element</li>
+        <li>Fifth List Element</li>
+        <li>Sixth List Element</li>
+    </ul>
+
+
+</body>
+
+
+
+CSS:
+----
+
+<style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color: rgb(246, 224, 224);
+            color: black;
+        }
+
+        button:hover {
+            background-color: rgb(237, 237, 56);
+            color: red;
+            border-radius: 8px;
+            border: 2px ridge green;
+            cursor: crosshair;
+        }
+
+        button:active {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        } 
+
+       input[type="button"]:hover {
+            cursor: pointer;
+        } 
+
+
+        input[type="button"]:active {
+            cursor: pointer;
+            background-color: palevioletred;
+        } */
+
+        p:first-child {
+            color: rgb(16, 126, 176);
+        }
+
+        li:first-child {
+            font-weight: bold;
+            color: rgb(229, 55, 35);
+        }
+
+        li:nth-child(5) {
+            color: blue
+        }
+
+ 	li:nth-child(odd) {
+            color: blue;
+            font-weight: bold;
+        }
+
+ 	li:nth-child(even) {
+            color: blue;
+            font-weight: bold;
+        }
+
+        li:nth-child(6) {
+            color: blue;
+            font-weight: bo;
+        }
+
+        li:not(.third) {
+            font-style: italic;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        /* button.disabled{
+            cursor: pointer;
+        } */
+
+        .disable{
+            cursor: not-allowed;
+        }
+
+    </style>
+
+---------------------------------------------------------------------------------------------
+
+Transitions -
+============
+
+Transition property  :  color, background color , s
+Transition duration -> duration time between start and end
+trasition time function 
+transition delay  -> the period before starting any transition 
+
+
+shadow effect
+
+
+gradients
+
+	linear 
+	radial 
+
+transform : scale(1):
+
+
+=============================================================================================================================================================
+
+
+CSS Transitions and Effects :
+===============================
+
+
+1. CSS Transitions
+------------------
+
+CSS transitions allow you to smoothly change CSS property values over time instead of an instant change.
+
+Key properties:
+---------------
+
+a) transition-property
+	
+   - Specifies which CSS properties to animate/or to perform transition.
+   
+	- Example:
+
+
+b) transition-duration
+	
+   - Defines how long the transition lasts (in seconds or milliseconds).
+   
+	- Example:
+
+c) transition-timing-function
+	
+   - Controls the speed curve of the transition.
+   
+	- Common values:
+     		linear, ease (default), ease-in, ease-out, ease-in-out, cubic-bezier(...)
+   
+	- Example:
+ 
+
+d) transition-delay
+	
+   - Delays the start of the transition.
+  
+	 - Example:
+  
+
+
+
+2. Shadows
+----------
+
+a) Box-shadow
+   - Adds shadow effects to elements.
+   - Syntax:
+     box-shadow: offset-x offset-y blur-radius spread-radius color;
+
+	Syntax:
+	
+	  box-shadow -> horizantalofset   verticalofset   blurRadius   color
+
+	Note :
+	------
+	-> Horizantal ofset -> negative values ->    for left side shadow
+			       possitive values ->   for right side shadow
+	-> Vertical ofset -> negative values -> for Top side shadow
+			      postive values -> for Bottom side shadow
+
+  
+	 - Example:
+	--------------
+	
+	  box-shadow: 5px 5px 5px  rgb(0, 0, 0);
+ 
+
+
+
+3. Gradients
+------------
+
+Gradients create smooth color transitions.
+
+Note :
+
+-> These Gradients only apply fot the css property background:
+-> and these gradients won't wokr for background-color property.
+
+a) Linear gradients
+   - Colors blend along a straight line.
+
+   - Syntax:
+     background : linear-gradient(direction, color-stop1, color-stop2, ...);
+	
+   - Example:
+
+
+b) Radial gradients
+   - Colors radiate outwards from a center point.
+
+   - Syntax:
+     background: radial-gradient(circle, color-stop1, color-stop2, ...);
+
+   - Example:
+
+	 background: linear-gradient(to left, rgb(45, 213, 222), rgb(20, 2, 36) , pink , orange);
+
+	 background: linear-gradient(to right, rgb(45, 213, 222), rgb(20, 2, 36) , pink , orange);
+	
+
+4) transform (with scale >1) 
+
+
+
+Ex :
+-----
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            padding-top: 70px;
+        }
+
+        .box {
+            background: linear-gradient(to left, orange, yellow);
+            /* background-color: aqua; */
+            font-family: Arial, Helvetica, sans-serif;
+            width: 150px;
+            height: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+
+            transition-property: background, box-shadow, transform ,;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-in-out;
+           transition-delay: 1ms;
+
+        }
+
+
+        .box:hover {
+            background: linear-gradient(to left, rgb(230, 28, 62), orange);
+            /* cursor: pointer; */
+            box-shadow: 2px 2px 5px black;
+            transform: scale(2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box"> Hover me </div>
+
+</body>
+
+</html>
+	
+
