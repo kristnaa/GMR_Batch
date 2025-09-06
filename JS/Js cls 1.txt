@@ -1,0 +1,489 @@
+
+
+
+history :
+basics -> why PL 
+
+-> Not only in browsers
+-> we can run in Application server and data base server 
+
+types of appli
+learn parllel
+importance & demand
+what is js ? 
+
+-> Java script is a programming language used to create dynamic user interfaces.
+
+
+static , Dynamic 
+
+-> Dynamic featrures:
+-----------------------
+-> A page can respond based on the user actions.
+-> Update the page content without any reloading.
+-> used to integrate front end and back end of the application.
+-> used to provide Server side and client side validations.
+-> To Fetch the data from the server or back end using 
+	Ajax [Asysnchronous java script xml ] and Fetch API.
+-> used to hide or show html eliments and styles.
+
+
+
+
+Ex for Dynamic nature:
+-----------------------
+
+
+-> Update the header in a html page with the help of java script 
+
+Ex : 
+
+refer the below any type of insertion of js
+
+
+how to insert
+--------------
+
+1) Inline js
+2) Internal js
+3) External js
+
+1) Inline Js
+------------
+
+-> throw alert direcly using inline js
+
+	<button onclick="alert('alret has been thrown')"> thorw alert</button>
+
+
+-> Hide the HTML element using inline java script
+
+	
+        <button onclick="document.getElementById('box').style.display='none'">Hide box</button>
+
+
+2) Internal js:
+----------------
+
+-> We can use js either in head element 
+			or body element
+
+-> use <script> </script> to write the java script
+
+
+Example :
+---------
+
+<body>  or <head> 
+
+    <script>
+
+        
+        function changeText() {
+            document.getElementById("name").innerHTML = "Welcome to the Java script";
+        }
+
+        function revert() {
+            document.getElementById("name").innerHTML = "Front End Technologies";
+       
+              alert("reverting changes");
+        }
+
+    </script>
+
+
+</body>  or </head> 
+
+
+Throw an alert :
+---------------
+
+use -> alert() 
+
+-> If it is declared out side of the function , the alert will thrown immediatly after web page load on browser.
+-> If it is declared in side of the function , the alert will throw only when that function executed.
+
+
+3) External Js:
+---------------
+
+-> create external java script file with .js extension.
+
+-> It not required to declare the script tag in side the external java script file.
+
+-> Link external js file in html page using following tag
+
+	
+	    <script src="external.js"></script>
+
+------> external.js:   -> contains java script
+
+	function changeText() {
+    		document.getElementById("name").innerHTML = "Welcome to the Java script";
+	}
+
+	function revert() {
+    		document.getElementById("name").innerHTML = "Front End Technologies";
+
+    		  alert("reverting changes");
+
+	}
+
+
+--------------------------------------------------------------------------------------------------
+
+
+===================================
+display output in different types : 
+===================================
+
+-> innerHTML & innerText
+
+-> document.write();
+
+-> window.alert();
+
+-> alert();
+
+-> console.log();
+
+
+1) innerHtml & innerText:
+--------------------------
+
+-> Used to Write to output to the html element
+
+	 document.getElementById("name").innerText = "Welcome to the Java script";
+
+	 document.getElementById('name').innerHTML = "Front End Technologies";
+
+2) document.writeln() or write():
+--------------------------------
+
+-> Used to write output to the html document
+
+	
+	document.write("document.WRITE,");
+
+	document.writeln("document.WRITELN");
+
+3) window.alert() or alert();
+------------------------------
+
+-> used to write output text to the alert message.
+
+4) console.log();
+-----------------
+
+-> used to write output text to the browser developer tools console.
+
+
+	console.log('message from the java script');
+
+	console.log('2 nd message from the java script');
+
+
+-----------------------------------------------------------------------------------------
+
+
+-> Scoping statements:
+------------------------
+
+
+	-> var
+	-> let
+	-> const
+
+
+java script:
+------------
+var/let/const name = "gmrit";
+
+var id = 12;
+var name = "krish";
+var percentage = 9.6;
+var isMarried = false;
+
+
+let id = 12;
+let name = "krish";
+let percentage = 9.6;
+let isMarried = false;
+
+
+
+const id = 12;
+const name = "krish";
+const percentage = 9.6;
+const isMarried = false;
+
+
+	-> variable -> name
+	-> data type -> String type
+	-> value -> gmrit
+	-> Scoping statement -> var
+
+java
+-----
+String name = "gmrit";
+
+int age = 12;
+
+double salary = 99999.999;
+
+boolean isverified = true;
+
+char letter = 'y';
+
+	-> variable -> name
+	-> data type -> String
+	-> value  -> gmrit
+
+
+what are the data types in js:
+--------------------------------
+Total data types are 8 under following types.
+
+there are 2 types of data types are there 
+
+
+1) Primitive
+2) Non primitive
+
+Primitive:
+----------
+Total 7 -> 
+
+1) number
+		53
+2) bigInt   -> 2    - 1
+
+3) boolean
+
+4) String
+
+5) null
+
+6) undefined
+
+7) symbol
+
+
+Non primitive:
+---------------
+Only one -> Object
+
+{
+
+}
+
+
+[ ]
+
+Operators:
+
+
+Control statement:
+
+
+DOM manipulations
+
+
+user events
+
+ES6 features
+
+
+Today code :
+-------------
+
+HTML, CSS, JAVA SCRIPT
+
+
+`````````````````````````````````````````
+HTML :
+-----
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            background-color: teal;
+            color: white;
+        }
+    </style>
+
+    <script src="external.js"></script>
+
+</head>
+
+
+<body>
+
+    <h1 id="name">Front End Technologies</h1>
+
+    <h2 id="box"
+        style="color: red;height: 100px; width: 100px; background-color: yellow; border-radius: 10px;box-shadow: 3px 3px 5px black;">
+        Second header </h2>
+
+    <button onclick="changeText()">Update header</button>
+
+    <button onclick="revert()"> revert changes </button>
+
+    <button onclick="alert('alret has been thrown')"> thorw alert</button>
+
+    <button onclick="document.getElementById('box').style.display='none'">Hide box</button>
+
+
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum quis saepe enim tempora, ducimus nihil qui atque eos assumenda cum quasi cupiditate accusamus fuga dignissimos vero, sint quibusdam? Quas, adipisci.</p>
+
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, fugit!
+    </div>
+
+    <section>Lorem ipsum dolor sit amet.</section> <br><br>
+
+    
+    User Name:
+    <input type="text" id="user"> <br><br>
+
+    <button onclick="validate()">Save</button>
+
+
+</body>
+
+</html>
+
+
+
+JAVA SCRIPT :
+---------------
+
+function changeText() {
+    document.getElementById("name").innerText = "Welcome to the Java script";
+}
+
+function revert() {
+    document.getElementById('name').innerHTML = "Front End Technologies";
+
+    alert("Are you sure to revert back ?????");
+
+}
+
+
+document.write("document.WRITE,");
+
+document.writeln("document.WRITELN");
+
+//alert('alert');
+
+// window.alert('new alert');
+
+console.log('message from the java script');
+
+console.log('2 nd message from the java script');
+
+console.log('3 rd message from the java script');
+
+
+function validate() {
+
+    let name = document.getElementById('user').value;
+
+    if (name === "") {
+        alert('Please Enter the Name');
+    } else {
+        alert('Saved Succesfully.');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+alert
+console
+
+
+
+
+
+
